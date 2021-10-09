@@ -27,4 +27,9 @@ public class LambdaTest {
         System.out.println(collect);
     }
 
+    @Test
+    public void test2(){
+        User user = User.builder().id(1).build();
+    }
+
 }

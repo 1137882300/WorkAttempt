@@ -2,6 +2,7 @@ package com.zhong.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -9,8 +10,8 @@ import lombok.Data;
  */
 
 @Data
-@Builder
-public class User {
+@SuperBuilder(toBuilder = true)
+public class User extends People{
 
     private int age;
 
