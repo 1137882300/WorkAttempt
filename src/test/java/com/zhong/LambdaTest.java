@@ -50,6 +50,10 @@ public class LambdaTest {
     @Test
     public void test2(){
         User user = User.builder().id(1).build();
+        User uu = User.builder().sex(1).id(1).age(2).build();
+        int sex = uu.getSex();
+        System.out.println(sex);
+        System.out.println(uu);
     }
 
     /**
@@ -75,10 +79,10 @@ public class LambdaTest {
     public void test4(){
         User user = User.builder().age(1).id(1).build();
         System.out.println(user);
-        User build = user.toBuilder().id(2).age(2).build();
-        System.out.println(build);
-        System.out.println(user == build);
-        System.out.println(user.equals(build));
+//        User build = user.toBuilder().id(2).age(2).build();
+//        System.out.println(build);
+//        System.out.println(user == build);
+//        System.out.println(user.equals(build));
     }
 
 }

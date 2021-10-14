@@ -1,9 +1,6 @@
 package com.zhong.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -12,9 +9,11 @@ import lombok.experimental.SuperBuilder;
  */
 
 @Data
-@Builder(toBuilder = true)
+//@Builder(toBuilder = true)
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(callSuper = true)
 public class User extends People{
 
     private int id;
