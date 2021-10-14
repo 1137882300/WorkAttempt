@@ -85,5 +85,20 @@ public class LambdaTest {
 //        System.out.println(user.equals(build));
     }
 
+
+    @Test
+    public void test5(){
+        List<User> users = Lists.newArrayList();
+        List<String> collect = users.stream().map(User::toString).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+
+
+
+
+
+
+
 }
 
