@@ -94,6 +94,10 @@ public class LambdaTest {
     }
 
 
+    @Test
+    public void test6(){
+
+        }
 
 
 
