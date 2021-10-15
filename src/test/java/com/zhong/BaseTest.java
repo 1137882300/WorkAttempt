@@ -1,5 +1,9 @@
 package com.zhong;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.zhong.entity.Cat;
+import com.zhong.entity.Dog;
+import com.zhong.entity.StateEnum;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
@@ -36,6 +40,26 @@ public class BaseTest {
 
     }
 
+
+    @Test
+    public void test3(){
+        Dog dog = Dog.builder().id(1).state(StateEnum.OPEN).build();
+        Dog dog1 = new Dog();
+        /**
+         * 枚举类是会拷贝的
+         */
+        BeanUtil.copyProperties(dog, dog1);
+        System.out.println(dog1);
+
+        Cat cat = new Cat();
+        /**
+         * 枚举两种类型都可以拷贝的，只要有相同的类型
+         */
+        BeanUtil.copyProperties(dog, cat);
+        System.out.println(cat);
+
+
+    }
 
 
 }

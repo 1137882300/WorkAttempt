@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -20,15 +21,23 @@ import java.util.stream.Collectors;
 public class LambdaTest {
 
     private User u1,u2,u3,u4,u5,u6,u7;
+    private List<User> list = Lists.newArrayList();
 
     @Before
     public void init(){
         u1 = User.builder().id(1).age(4).build();
         u2 = User.builder().id(2).age(34).build();
-        u3 = User.builder().id(3).age(15).build();
-        u4 = User.builder().id(4).age(52).build();
-        u5 = User.builder().id(5).age(23).build();
-        u6 = User.builder().id(6).age(51).build();
+        u3 = User.builder().id(4).age(15).build();
+        u4 = User.builder().id(3).age(52).build();
+        u5 = User.builder().id(6).age(23).build();
+        u6 = User.builder().id(5).age(51).build();
+
+        list.add(u1 );
+        list.add( u2 );
+        list.add( u3 );
+        list.add( u4);
+        list.add( u5 );
+        list.add( u6);
     }
 
     /**
@@ -96,10 +105,21 @@ public class LambdaTest {
 
     @Test
     public void test6(){
+        System.out.println(list);
+        List<User> sorted = list.stream().sorted(Comparator.comparing(User::getId)).collect(Collectors.toList());
+        System.out.println(sorted);
 
-        }
+        List<User> revers = list.stream().sorted(Comparator.comparing(User::getId).reversed()).collect(Collectors.toList());
+        System.out.println(revers);
 
+    }
 
+    @Test
+    public void test7(){
+        List<Long> list = Collections.emptyList();
+        List<Long> collect = list.stream().distinct().collect(Collectors.toList());
+        System.out.println(collect);
+    }
 
 
 
