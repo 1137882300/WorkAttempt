@@ -1,12 +1,14 @@
 package com.zhong;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.PageUtil;
 import com.zhong.entity.Cat;
 import com.zhong.entity.Dog;
 import com.zhong.entity.StateEnum;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -60,6 +62,19 @@ public class BaseTest {
 
 
     }
+
+    @Test
+    public void test4(){
+        String name = "TEST NAME";
+        String s = name.toLowerCase(Locale.ROOT);
+        System.out.println(s);
+
+        String ss = "SHI NI MA";
+        String sss = ss.toLowerCase();
+        System.out.println(sss);
+
+    }
+
 
 
 }
