@@ -2,13 +2,19 @@ package com.zhong;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.PageUtil;
+import cn.hutool.json.JSON;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.zhong.entity.Cat;
 import com.zhong.entity.Dog;
 import com.zhong.entity.StateEnum;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -75,6 +81,18 @@ public class BaseTest {
 
     }
 
+
+    @Test
+    public void test5(){
+        Map<String, String> skuExtendMap = Maps.newHashMap();
+
+                skuExtendMap.put("orderType", "12");
+                skuExtendMap.put("goodsCode", "123");
+                skuExtendMap.put("guarantee", "13213");
+                skuExtendMap.put("isTaxIncluded", "0");
+        System.out.println(skuExtendMap.toString());
+
+            }
 
 
 }
