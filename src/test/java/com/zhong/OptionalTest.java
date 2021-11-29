@@ -6,6 +6,7 @@ import com.zhong.entity.User;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,17 @@ public class OptionalTest {
         System.out.println("--------------------------------");
         optional = optional1;
         System.out.println(optional);
+
+    }
+
+    /**
+     * Optional.ofNullable
+     */
+    @Test
+    public void test2(){
+        Integer k = null;
+        Integer integer = Optional.ofNullable(k).orElse(11);
+        System.out.println(integer);
 
     }
 }
