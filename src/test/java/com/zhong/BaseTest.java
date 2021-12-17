@@ -92,7 +92,20 @@ public class BaseTest {
                 skuExtendMap.put("isTaxIncluded", "0");
         System.out.println(skuExtendMap.toString());
 
-            }
+    }
+
+
+    @Test
+    public void ssss(){
+        String s = "qw";
+        System.out.println(s.length());
+        String upperCase = s.toUpperCase(Locale.ROOT);
+        System.out.println(upperCase);
+
+
+    }
+
+
 
 
 }
