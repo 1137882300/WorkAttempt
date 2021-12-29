@@ -121,7 +121,16 @@ public class LambdaTest {
         System.out.println(collect);
     }
 
+    /**
+     * 有一个匹配就返回true
+     */
+    @Test
+    public void anyMatch(){
+        List<Integer> list = Arrays.asList(3, 4, 2, 1, 5);
+        boolean answer = list.stream().anyMatch(n -> (n * (n + 1)) / 4 == 5);
 
+        System.out.println(answer);
+    }
 
 
 }

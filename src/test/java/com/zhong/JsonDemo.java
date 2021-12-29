@@ -1,6 +1,8 @@
 package com.zhong;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.entity.*;
@@ -170,6 +172,17 @@ public class JsonDemo {
     }
 
 
+    @Test
+    public void analysis(){
+        String ss = "[{\"rootId\":123,\"categoryTree\":{\"categoryCode\":\"222\",\"categoryId\":1,\"createTime\":1321,\"creatorId\":12,\"extendMap\":{},\"categoryName\":{\"languageStringMap\":{\"zh_CN\":\"xx\",\"ja_JP\":\"xx\",\"in_ID\":\"xx\",\"en_US\":\"xx\"},\"defaultLocale\":\"in_ID\",\"allLanguageString\":{\"zh_CN\":\"xx\",\"ja_JP\":\"xx\",\"in_ID\":\"xx\",\"en_US\":\"xx\"},\"defaultLanguageString\":\"xx\"},\"categoryList\":[{\"categoryCode\":\"222\",\"categoryId\":1,\"createTime\":1321,\"creatorId\":12,\"extendMap\":{},\"categoryName\":{},\"categoryList\":[],\"imageUrl\":\"sssss\",\"level\":2,\"modifiedId\":234,\"outerCategoryId\":\"2\",\"parentId\":1,\"status\":1,\"updateTime\":123123,\"version\":12}],\"imageUrl\":\"sssss\",\"level\":2,\"modifiedId\":234,\"outerCategoryId\":\"2\",\"parentId\":1,\"status\":1,\"updateTime\":123123,\"version\":12}},{\"rootId\":123,\"categoryTree\":{\"categoryCode\":\"222\",\"categoryId\":1,\"createTime\":1321,\"creatorId\":12,\"extendMap\":{},\"categoryName\":{},\"categoryList\":[],\"imageUrl\":\"sssss\",\"level\":2,\"modifiedId\":234,\"outerCategoryId\":\"2\",\"parentId\":1,\"status\":1,\"updateTime\":123123,\"version\":12}}]";
+        Object parse = JSON.parse(ss);
+
+
+        Category category = JSON.parseObject(parse.toString(), new TypeReference<Category>() {});
+        System.out.println(category);
+
+
+    }
 
 
 

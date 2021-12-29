@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
@@ -105,7 +106,34 @@ public class BaseTest {
 
     }
 
+    @Test
+    public void clearMap(){
+        Map<String, Integer> map = new HashMap<>();
+        map.clear();
+        System.out.println(map);
+        map.put("", 1);
+        System.out.println(map);
+        map.put("", null);
+        System.out.println(map);
+    }
 
+
+    /**
+     *    %03d : 0表示填充的地方，3表示位数，d表示整型
+     */
+    @Test
+    public void stringFormat(){
+        int i1 = 3;
+        int i2 = 13;
+        int i3 = 33;
+
+        String format1 = String.format("%03d", i1);
+        String format2 = String.format("%03d", i2);
+        String format3 = String.format("%03d", i3);
+
+        System.out.println(format1 +" , "+ format2+" , "+  format3);
+
+    }
 
 
 }
