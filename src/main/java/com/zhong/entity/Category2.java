@@ -1,22 +1,26 @@
-package com.zhong.cache;
+package com.zhong.entity;
 
-import com.zhong.entity.MultiLanguageString;
+import com.zhong.cache.CategoryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 /**
  * @author zhong.zihan@xyb2b.com
- * @date 2021/12/27 19:03
+ * @date 2021/12/31 11:31
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CategoryEntity {
+public class Category2 implements Serializable {
+
+    private Long rootId;
 
     private Long categoryBackendId;
     private MultiLanguageString categoryName;
@@ -36,6 +40,10 @@ public class CategoryEntity {
     private Long version;
     private Map<String,String> extendMap;
 
-    private CategoryEntity children;
+    private List<Category2> children;
+
+
+
+
 
 }

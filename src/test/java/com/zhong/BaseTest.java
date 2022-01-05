@@ -11,6 +11,7 @@ import com.zhong.entity.StateEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
@@ -135,5 +136,20 @@ public class BaseTest {
 
     }
 
+    @Test
+    public void fin(){
+        System.out.println(StandardCharsets.UTF_8);
+        System.out.println(StandardCharsets.UTF_8.canEncode());
+        System.out.println(StandardCharsets.UTF_8.name());
+    }
+
+    @Test
+    public void replace(){
+        String ss = "bbmall\\home\\sdf";
+        String replace = ss.replace(File.separator, "/");
+        System.out.println(replace);
+
+
+    }
 
 }

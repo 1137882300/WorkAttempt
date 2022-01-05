@@ -1,6 +1,7 @@
 package com.zhong;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.google.common.collect.Lists;
@@ -8,6 +9,7 @@ import com.google.common.collect.Maps;
 import com.zhong.entity.*;
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -177,11 +179,41 @@ public class JsonDemo {
         String ss = "[{\"rootId\":123,\"categoryTree\":{\"categoryCode\":\"222\",\"categoryId\":1,\"createTime\":1321,\"creatorId\":12,\"extendMap\":{},\"categoryName\":{\"languageStringMap\":{\"zh_CN\":\"xx\",\"ja_JP\":\"xx\",\"in_ID\":\"xx\",\"en_US\":\"xx\"},\"defaultLocale\":\"in_ID\",\"allLanguageString\":{\"zh_CN\":\"xx\",\"ja_JP\":\"xx\",\"in_ID\":\"xx\",\"en_US\":\"xx\"},\"defaultLanguageString\":\"xx\"},\"categoryList\":[{\"categoryCode\":\"222\",\"categoryId\":1,\"createTime\":1321,\"creatorId\":12,\"extendMap\":{},\"categoryName\":{},\"categoryList\":[],\"imageUrl\":\"sssss\",\"level\":2,\"modifiedId\":234,\"outerCategoryId\":\"2\",\"parentId\":1,\"status\":1,\"updateTime\":123123,\"version\":12}],\"imageUrl\":\"sssss\",\"level\":2,\"modifiedId\":234,\"outerCategoryId\":\"2\",\"parentId\":1,\"status\":1,\"updateTime\":123123,\"version\":12}},{\"rootId\":123,\"categoryTree\":{\"categoryCode\":\"222\",\"categoryId\":1,\"createTime\":1321,\"creatorId\":12,\"extendMap\":{},\"categoryName\":{},\"categoryList\":[],\"imageUrl\":\"sssss\",\"level\":2,\"modifiedId\":234,\"outerCategoryId\":\"2\",\"parentId\":1,\"status\":1,\"updateTime\":123123,\"version\":12}}]";
         Object parse = JSON.parse(ss);
 
+        JSONArray jsonArray = JSONArray.parseArray(ss);
+        System.out.println(jsonArray);
 
-        Category category = JSON.parseObject(parse.toString(), new TypeReference<Category>() {});
-        System.out.println(category);
+//        Category category = JSON.parseObject(parse.toString(), new TypeReference<Category>() {});
+//        System.out.println(category);
+    }
 
+    /**
+     * 1. byte[] 转 string 转 jsonString
+     * 2. byte[] 转 string 转 jsonArray
+     */
+    @Test
+    public void da(){
+        Dog dog = new Dog();
+        dog.setId(1);
+        dog.setState(StateEnum.OPEN);
+        Dog dog2 = new Dog();
+        dog2.setId(1);
+        dog2.setState(StateEnum.OPEN);
+        List<Dog> list = Lists.newArrayList(dog,dog2);
 
+        String toJSONString = JSON.toJSONString(list);
+        System.out.println(toJSONString);//[{"id":1,"state":"OPEN"},{"id":1,"state":"OPEN"}]
+
+        byte[] bytes = JSON.toJSONString(list).getBytes();
+        System.out.println(Arrays.toString(bytes));//[91, 123, 34, 105, 100, 34, 58, 49, 44, 34, 115, 116, 97, 116, 101, 34, 58, 34, 79, 80, 69, 78, 34, 125, 44, 123, 34, 105, 100, 34, 58, 49, 44, 34, 115, 116, 97, 116, 101, 34, 58, 34, 79, 80, 69, 78, 34, 125, 93]
+
+        String s = new String(bytes, StandardCharsets.UTF_8);
+        System.out.println(s);//            [{"id":1,"state":"OPEN"},{"id":1,"state":"OPEN"}]
+
+        String jsonString = JSON.toJSONString(s);
+        System.out.println(jsonString);//   "[{\"id\":1,\"state\":\"OPEN\"},{\"id\":1,\"state\":\"OPEN\"}]"
+
+        JSONArray jsonArray = JSONArray.parseArray(s);
+        System.out.println(jsonArray);//    [{"id":1,"state":"OPEN"},{"id":1,"state":"OPEN"}]
     }
 
 
