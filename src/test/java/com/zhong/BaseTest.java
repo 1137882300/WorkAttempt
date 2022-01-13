@@ -152,4 +152,66 @@ public class BaseTest {
 
     }
 
+
+    @Test
+    public void equals(){
+        String s1 = "nnnnn";
+        Object s2 = "nnnnn";
+
+        boolean equals = s2.equals(s1);
+        System.out.println(equals);
+    }
+
+    @Test
+    public void bytes(){
+        String ss = "abcsdqiladlkjadji{}。，/，‘；’~#@！#@￥#￥……%&……（&*——+——";
+        byte[] bytes = ss.getBytes();
+        System.out.println(bytes.toString());
+
+
+        byte[] ssBytes = ss.getBytes(StandardCharsets.UTF_8);
+        System.out.println(ssBytes.toString());
+
+
+    }
+
+
+    @Test
+    public void test43(){
+        Boolean b = null;
+        System.out.println(b);//null
+
+        b = false;
+        System.out.println(b);//false
+
+    }
+
+    @Test
+    public void testEqus(){
+        boolean equals = Objects.equals("", null);
+        System.out.println(equals);
+
+        boolean equals2 = Objects.equals("nihao", null);
+        System.out.println(equals2);
+
+        String bb = null;
+        boolean equals3 = Objects.equals("nihao", bb);
+        System.out.println(equals3);
+    }
+
+    @Test
+    public void testMap_value(){
+        Map<Object, Object> map = new HashMap<>();
+        map.put(1,null);
+        map.put(2,null);
+        map.put(3,null);
+        map.put(null, null);
+        //{null=null, 1=null, 2=null, 3=null}
+        System.out.println(map);
+
+        map.put(null, 1);
+        //{null=1, 1=null, 2=null, 3=null}
+        System.out.println(map);
+    }
+
 }

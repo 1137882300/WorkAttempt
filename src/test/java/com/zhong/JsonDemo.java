@@ -217,6 +217,42 @@ public class JsonDemo {
     }
 
 
+    @Test
+    public void parse(){
+        String ss = "{\"category\":\"123456789\",\"brand\":\"md5\",\"country\":\"md5,country\"}";
+        Object json = JSON.toJSON(ss);
+        System.out.println(json);
+
+        Object toJSON = JSONObject.toJSON(ss);
+        System.out.println(toJSON);
+
+        JSONObject jsonObject = JSON.parseObject(ss);
+        Object category = jsonObject.get("category");
+        System.out.println(category);
+
+        //JSONObject 转 map
+        Map<String, Object> map = jsonObject.toJavaObject(Map.class);
+        System.out.println("map: "+ map);
+
+
+        Collection<Object> values = jsonObject.values();
+        System.out.println(values);
+
+
+    }
+
+    @Test
+    public void parseMap(){
+        String ss = "{\"category\":\"123456789\",\"brand\":\"md5\",\"country\":\"md5,country\"}";
+        JSONObject jsonObject = JSON.parseObject(ss);
+        Map<String, Object> map = JSONObject.parseObject(ss, new TypeReference<Map<String, Object>>() {});
+        System.out.println(map);
+        map.forEach((k,v)->{
+            System.out.println(k+" <----> " + v);
+        });
+    }
+
+
 
 
 
