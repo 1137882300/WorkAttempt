@@ -13,10 +13,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -212,6 +209,35 @@ public class BaseTest {
         map.put(null, 1);
         //{null=1, 1=null, 2=null, 3=null}
         System.out.println(map);
+    }
+
+    @Test
+    public void trs(){
+        Long ll = 4L;
+        this.trs_to(ll);
+        System.out.println(ll);
+
+        ll++;
+        System.out.println(ll);
+    }
+    private void trs_to(Long ll){
+        System.out.println("trs_to " + ll );
+        ll++;
+        System.out.println("trs_to " + ll );
+    }
+
+
+
+    @Test
+    public void oo(){
+        ArrayList<Object> objects = Lists.newArrayList();
+        objects.add(null);
+        Object o = objects.get(0);
+        System.out.println(o);//null
+
+        int size = objects.size();
+        System.out.println(size);//1
+
     }
 
 }

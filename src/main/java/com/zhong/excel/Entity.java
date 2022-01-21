@@ -12,30 +12,30 @@ import lombok.Data;
 public class Entity extends BaseRowModel {
 
 
-    @ExcelProperty(value = "一级分类", index = 0)
-    private String oneCn;
+    @ExcelProperty(value = "第1列", index = 0)
+    private String column1;
 
-    @ExcelProperty(value = "The primary category", index = 1)
-    private String oneEn;
+    @ExcelProperty(value = "第2列", index = 1)
+    private String column2;
 
-    @ExcelProperty(value = "印尼语", index = 2)
-    private String oneId;
+    @ExcelProperty(value = "第3列", index = 2)
+    private String column3;
 
-    @ExcelProperty(value = "二级分类名称", index = 3)
-    private String twoCn;
+    @ExcelProperty(value = "第4列", index = 3)
+    private String column4;
 
-    @ExcelProperty(value = "The secondary category", index = 4)
-    private String twoEn;
+    @ExcelProperty(value = "第5列", index = 4)
+    private String column5;
 
-    @ExcelProperty(value = "印尼语2", index = 5)
-    private String twoId;
+    @ExcelProperty(value = "第6列", index = 5)
+    private String column6;
 
-    @ExcelProperty(value = "三级分类名称", index = 6)
-    private String threeCn;
+    @ExcelProperty(value = "第7列", index = 6)
+    private String column7;
 
-    @ExcelProperty(value = "The thirdly category", index = 7)
-    private String threeEn;
+    @ExcelProperty(value = "第8列", index = 7)
+    private String column8;
 
-    @ExcelProperty(value = "印尼语3", index = 8)
-    private String threeId;
+    @ExcelProperty(value = "第9列", index = 8)
+    private String column9;
 }
