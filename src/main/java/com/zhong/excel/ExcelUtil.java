@@ -7,6 +7,7 @@ import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.poifs.filesystem.FileMagic;
+import org.junit.Assert;
 
 import java.io.*;
 import java.util.List;
@@ -38,6 +39,7 @@ public final class ExcelUtil {
 
 
     public static void writeExcel(final File file, List<? extends BaseRowModel> list) {
+        Assert.assertNotSame("list 不能为空",0, list.size());
         try (OutputStream out = new FileOutputStream(file)) {
             ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX);
             //写第一个sheet,  有模型映射关系

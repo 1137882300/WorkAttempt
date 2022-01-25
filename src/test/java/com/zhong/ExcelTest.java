@@ -22,6 +22,47 @@ import java.util.stream.Collectors;
 public class ExcelTest {
 
     @Test
+    public void sql(){
+
+        StringBuffer buffer = new StringBuffer();
+
+        try (FileInputStream inputStream = new FileInputStream("C:\\Users\\EDZ\\Documents\\删除数据\\brand.xlsx")) {
+            List<Entity> list = ExcelUtil.readExcel(new BufferedInputStream(inputStream), Entity.class,1);
+
+            List<String> collect = list.stream().map(Entity::getColumn1).filter(Objects::nonNull).collect(Collectors.toList());
+            collect.forEach(c -> {
+                buffer.append("\n"+ "update t_brand set is_deleted = 1 where brand_id = "+ c + "; ");
+            });
+
+            System.out.println(buffer.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void sql2(){
+        StringBuffer buffer = new StringBuffer();
+
+        try (FileInputStream inputStream = new FileInputStream("C:\\Users\\EDZ\\Documents\\删除数据\\brandLanguage.xlsx")) {
+            List<Entity> list = ExcelUtil.readExcel(new BufferedInputStream(inputStream), Entity.class,1);
+
+            List<String> collect = list.stream().map(Entity::getColumn1).filter(Objects::nonNull).collect(Collectors.toList());
+            collect.forEach(c -> {
+                buffer.append("\n"+ "update t_brand_language set is_deleted = 1 where brand_id = "+ c + "; ");
+            });
+
+            System.out.println(buffer.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @Test
     public void SE(){
         try (FileInputStream inputStream = new FileInputStream("C:\\Users\\EDZ\\Downloads\\lazada_sg.xlsx")) {
             List<Entity> list = ExcelUtil.readExcel(new BufferedInputStream(inputStream), Entity.class,2);
