@@ -17,7 +17,7 @@ public enum StateEnum {
         this.message = message;
     }
 
-    public StateEnum getByCode(int code){
+    public static StateEnum getByCode(int code){
         for (StateEnum state : StateEnum.values()){
             if (state.code == code){
                 return state;

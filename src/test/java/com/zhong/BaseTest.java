@@ -8,6 +8,8 @@ import com.google.common.collect.Maps;
 import com.zhong.entity.Cat;
 import com.zhong.entity.Dog;
 import com.zhong.entity.StateEnum;
+import org.apache.commons.collections4.BidiMap;
+import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -238,6 +240,35 @@ public class BaseTest {
         int size = objects.size();
         System.out.println(size);//1
 
+    }
+
+
+
+    @Test
+    public void BidiMap(){
+        HashMap<Long, String> map = new HashMap<>();
+        map.put(1L, "nihao");
+        map.put(2L, "nihao2");
+        map.put(3L, "nihao3");
+
+        BidiMap<Long, String> bidiMap = new DualHashBidiMap<>(map);
+
+
+        System.out.println(bidiMap);
+
+        System.out.println(bidiMap.getKey("nihao2"));
+
+    }
+
+    @Test
+    public void enums(){
+        StateEnum stateEnum = StateEnum.getByCode(200);
+        if (Objects.isNull(stateEnum)){
+            System.out.println("is null");
+        }else {
+            System.out.println("non null");
+        }
+        System.out.println(stateEnum);
     }
 
 }
