@@ -271,4 +271,49 @@ public class BaseTest {
         System.out.println(stateEnum);
     }
 
+
+
+    @Test
+    public void findAnyAndMap(){
+
+        List<Integer> ids = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "w s  11");
+        map.put(2, "w s  22");
+        map.put(3, "w s  33");
+
+        Optional<String> any = ids.stream().filter(map::containsKey).map(map::get).findAny();
+        String orElse = any.orElse("没有");
+
+        System.out.println(orElse);
+
+    }
+
+
+    @Test
+    public void stringM(){
+        String ss = "1231asd,asd";
+        boolean contains = ss.contains("!");
+        System.out.println(contains);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
