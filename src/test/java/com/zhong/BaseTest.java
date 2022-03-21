@@ -5,6 +5,7 @@ import cn.hutool.core.util.PageUtil;
 import cn.hutool.json.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.zhong.cache.CacheMap;
 import com.zhong.entity.Cat;
 import com.zhong.entity.Dog;
 import com.zhong.entity.StateEnum;
@@ -302,8 +303,38 @@ public class BaseTest {
 
 
 
+    @Test
+    public void overMap(){
+        Map<Long, String> copy = new HashMap<>();
+        copy.put(1L, "111");
+        copy.put(2L, "222");
+        copy.put(3L, "333");
+        CacheMap.putAll(copy);
+        System.out.println(CacheMap.getAll());
+
+        System.out.println("--------------------------");
+
+        Map<Long, String> map = new HashMap<>();
+        map.put(4L, "444");
+        map.put(5L, "555");
+        map.put(6L, "666");
+        CacheMap.putAll(map);
+        System.out.println(CacheMap.getAll());
+    }
 
 
+    @Test
+    public void Stringbuffer(){
+       StringBuffer stringBuffer = new StringBuffer();
+       stringBuffer.append("1231321");
+       stringBuffer.setLength(0);
+        System.out.println(stringBuffer.toString());
+
+        stringBuffer.append("asdasdasd");
+        System.out.println(stringBuffer.toString());
+
+
+    }
 
 
 

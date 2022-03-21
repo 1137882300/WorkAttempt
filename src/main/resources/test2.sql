@@ -1,0 +1,171 @@
+CREATE TABLE `t_country_locale` (
+                                    `country_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+                                    `country_code` bigint(20) NULL DEFAULT NULL COMMENT '国别代码',
+                                    `country_icon` varchar(256) NULL DEFAULT NULL COMMENT '国别图标',
+                                    `currency_code` bigint(20) NULL DEFAULT NULL COMMENT '币种代码',
+                                    `country_Full_Name` varchar(100) NULL DEFAULT NULL COMMENT '国别全称',
+                                    `currency_Abbreviation` varchar(100) NULL DEFAULT NULL COMMENT '币种简称',
+                                    `status` tinyint(4) NULL DEFAULT 1 COMMENT '状态，[1:正常,0:禁用]',
+                                    `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                                    `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                                    `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                                    `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '创建时间',
+                                    `version` bigint(20) NULL DEFAULT 0 COMMENT '版本号',
+                                    `is_deleted` tinyint(4) NULL DEFAULT 0 COMMENT '是否删除，[0:否,1:是]',
+                                    `features` text NULL COMMENT '拓展预留',
+                                    `country_two_abbreviation` varchar(100) NULL DEFAULT NULL COMMENT '国家2位简写',
+                                    `platform` varchar(100) NULL DEFAULT NULL COMMENT '平台',
+                                    `post_code` int(11) NULL DEFAULT NULL COMMENT '邮编',
+                                    `phone_area_code` int(11) NULL DEFAULT NULL COMMENT '长途电话区号',
+                                    PRIMARY KEY (`country_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '国家表';
+CREATE TABLE `t_country_locale_language` (
+                                             `country_lan_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+                                             `country_Id` bigint(20) NOT NULL COMMENT '国别id',
+                                             `country_Abbreviation` varchar(100) NULL DEFAULT NULL COMMENT '国别简称',
+                                             `preferred_language` varchar(64) NULL DEFAULT NULL COMMENT '语言地区',
+                                             `status` tinyint(4) NULL DEFAULT 1 COMMENT '状态，[1:正常,0:禁用]',
+                                             `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                                             `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                                             `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                                             `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '创建时间',
+                                             `version` bigint(20) NULL DEFAULT 0 COMMENT '版本号',
+                                             `is_deleted` tinyint(4) NULL DEFAULT 0 COMMENT '是否删除，[0:否,1:是]',
+                                             `country_name` varchar(100) NULL DEFAULT NULL COMMENT '国别名称',
+                                             PRIMARY KEY (`country_lan_id`) USING BTREE,
+                                             INDEX `index_countryid`(`country_Id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '国家语言表';
+CREATE TABLE `t_currency` (
+                              `currency_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+                              `currency_abbreviation` varchar(100) NULL DEFAULT NULL COMMENT '币种简称',
+                              `currency_code` bigint(20) NULL DEFAULT NULL COMMENT '币种代码',
+                              `platform` varchar(100) NULL DEFAULT NULL COMMENT '平台',
+                              `status` tinyint(4) NULL DEFAULT NULL COMMENT '状态，[0:正常,1:禁用]',
+                              `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间',
+                              `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间',
+                              `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                              `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '创建时间',
+                              `version` bigint(20) NULL DEFAULT 0 COMMENT '版本号',
+                              `is_deleted` tinyint(4) NULL DEFAULT 0 COMMENT '是否删除，[0:否,1:是]',
+                              `features` text NULL COMMENT '拓展预留',
+                              PRIMARY KEY (`currency_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = '币种表';
+CREATE TABLE `t_currency_language` (
+                                       `currency_lan_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+                                       `currency_id` bigint(20) NOT NULL COMMENT '币种id',
+                                       `currency_name` varchar(128) NULL DEFAULT NULL COMMENT '币种名称',
+                                       `preferred_language` varchar(64) NULL DEFAULT NULL COMMENT '语言地区：zh_CN 中国大陆',
+                                       `status` tinyint(4) NULL DEFAULT NULL COMMENT '状态，[0:正常,1:禁用]',
+                                       `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间',
+                                       `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间',
+                                       `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                                       `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '创建时间',
+                                       `version` bigint(20) NULL DEFAULT 0 COMMENT '版本号',
+                                       `is_deleted` tinyint(4) NULL DEFAULT 0 COMMENT '是否删除，[0:否,1:是]',
+                                       PRIMARY KEY (`currency_lan_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = '币种语言表';
+CREATE TABLE `t_goods_unit` (
+                                `unit_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+                                `unit_code` bigint(20) NULL DEFAULT NULL COMMENT '计量单位代码',
+                                `platform` varchar(255) NULL DEFAULT NULL COMMENT '平台',
+                                `status` tinyint(4) NULL DEFAULT 1 COMMENT '状态，[1:正常,0:禁用]',
+                                `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                                `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                                `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                                `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '创建时间',
+                                `version` bigint(20) NULL DEFAULT 0 COMMENT '版本号',
+                                `is_deleted` tinyint(4) NULL DEFAULT 0 COMMENT '是否删除，[0:否,1:是]',
+                                `features` text NULL COMMENT '拓展预留',
+                                PRIMARY KEY (`unit_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '单位表';
+CREATE TABLE `t_goods_unit_language` (
+                                         `unit_lan_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+                                         `unit_id` bigint(20) NOT NULL COMMENT '计量单位id',
+                                         `unit_name` varchar(100) NULL DEFAULT NULL COMMENT '计量单位',
+                                         `preferred_language` varchar(64) NULL DEFAULT NULL COMMENT '语言地区',
+                                         `status` tinyint(4) NULL DEFAULT 1 COMMENT '状态，[1:正常,0:禁用]',
+                                         `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                                         `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                                         `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                                         `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '修改时间',
+                                         `version` bigint(20) NULL DEFAULT 0 COMMENT '版本号',
+                                         `is_deleted` tinyint(4) NULL DEFAULT 0 COMMENT '是否删除，[0:否,1:是]',
+                                         PRIMARY KEY (`unit_lan_id`) USING BTREE,
+                                         INDEX `index_unitid`(`unit_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '单位语言表';
+CREATE TABLE `t_property` (
+                              `property_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '属性id',
+                              `outer_property_id` varchar(100) NULL DEFAULT NULL COMMENT '外部属性id',
+                              `property_type` tinyint(4) NULL DEFAULT NULL COMMENT '属性类型,商品属性0，销售属性1',
+                              `platform` varchar(100) NULL DEFAULT NULL COMMENT '所属平台',
+                              `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                              `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '修改时间',
+                              `show_type` tinyint(1) NULL DEFAULT NULL COMMENT '展示类型：1.文本输入 2.单选 3.多选 4.下拉选择',
+                              `is_extendable` tinyint(1) NULL DEFAULT NULL COMMENT '是否支持拓展：1.是 0.否 ',
+                              `is_searchable` tinyint(1) NULL DEFAULT NULL COMMENT '是否支持帅选：1.是 0.否',
+                              `is_enable` tinyint(1) NULL DEFAULT NULL COMMENT '是否启用：1.是 0.否',
+                              `is_deleted` tinyint(1) NULL DEFAULT NULL COMMENT '是否删除，[0:否,1:是]',
+                              `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                              `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                              `features` text NULL COMMENT '预留字段',
+                              `version` bigint(20) NULL DEFAULT NULL COMMENT '版本号',
+                              `status` bigint(4) NULL DEFAULT NULL COMMENT '状态',
+                              PRIMARY KEY (`property_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '属性表';
+CREATE TABLE `t_property_language` (
+                                       `property_lan_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '属性语言表id',
+                                       `property_id` bigint(20) NULL DEFAULT NULL COMMENT '属性id',
+                                       `property_name` varchar(128) NULL DEFAULT NULL COMMENT '属性name',
+                                       `preferred_language` varchar(64) NULL DEFAULT NULL COMMENT '语言地区',
+                                       `is_deleted` tinyint(1) NULL DEFAULT NULL COMMENT '是否删除，[0:否,1:是]',
+                                       `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                                       `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                                       `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                                       `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '修改时间',
+                                       `version` bigint(20) NULL DEFAULT NULL COMMENT '版本号',
+                                       PRIMARY KEY (`property_lan_id`) USING BTREE,
+                                       INDEX `index_propertyid`(`property_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '属性语言表';
+CREATE TABLE `t_property_relation` (
+                                       `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '关系id',
+                                       `platform` varchar(100) NULL DEFAULT NULL COMMENT '所属平台',
+                                       `source_property_id` bigint(20) NOT NULL COMMENT '内部平台属性id',
+                                       `target_property_id` bigint(20) NOT NULL COMMENT '关联的外部平台属性id(内部新id)',
+                                       `is_deleted` tinyint(4) NULL DEFAULT 0 COMMENT '是否删除，否0，是1',
+                                       `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                                       `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                                       `version` bigint(20) NULL DEFAULT 0 COMMENT '版本号',
+                                       `system_update_time` bigint(20) NULL DEFAULT NULL COMMENT '系统修改时间',
+                                       `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
+                                       `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
+                                       `features` text NULL COMMENT '预留字段',
+                                       PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '属性关联表';
+CREATE TABLE `t_property_value` (
+                                    `property_value_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '属性值id',
+                                    `property_id` bigint(20) NULL DEFAULT NULL COMMENT '属性Id',
+                                    `is_deleted` tinyint(1) NULL DEFAULT NULL COMMENT '是否删除，[0:否,1:是]',
+                                    `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                                    `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                                    `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                                    `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '修改时间',
+                                    `features` text NULL COMMENT '预留字段',
+                                    `version` bigint(20) NULL DEFAULT NULL COMMENT '版本号',
+                                    `platform` varchar(40) NULL DEFAULT NULL COMMENT '所属平台',
+                                    `status` tinyint(1) NULL DEFAULT NULL COMMENT '状态',
+                                    PRIMARY KEY (`property_value_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '属性值表';
+CREATE TABLE `t_property_value_language` (
+                                             `property_value_lan_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '属性值语言id',
+                                             `property_value_id` bigint(20) NULL DEFAULT NULL COMMENT '属性值id',
+                                             `property_value_name` varchar(128) NULL DEFAULT NULL COMMENT '属性值name',
+                                             `preferred_language` varchar(64) NULL DEFAULT NULL COMMENT '语言地区',
+                                             `is_deleted` tinyint(1) NULL DEFAULT NULL COMMENT '是否删除，[0:否,1:是]',
+                                             `create_time` bigint(20) NULL DEFAULT NULL COMMENT '创建时间，unix时间戳，单位，毫秒',
+                                             `update_time` bigint(20) NULL DEFAULT NULL COMMENT '更新时间，unix时间戳，单位，毫秒',
+                                             `creator_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人id',
+                                             `modified_id` bigint(20) NULL DEFAULT NULL COMMENT '修改时间',
+                                             `version` bigint(20) NULL DEFAULT NULL COMMENT '版本号',
+                                             PRIMARY KEY (`property_value_lan_id`) USING BTREE,
+                                             INDEX `index_propertyvalueid`(`property_value_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 comment '属性值语言表';
