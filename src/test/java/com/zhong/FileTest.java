@@ -3,7 +3,9 @@ package com.zhong;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.google.common.collect.Lists;
+import com.zhong.cache.AreaModel;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -191,6 +193,21 @@ public class FileTest {
     public void sssd(){
         String string = Locale.US.toString();
         System.out.println(string);
+
+    }
+
+    @Test
+    public void  readAreaData() throws IOException {
+        String path = "C:\\Users\\EDZ\\Downloads\\6eaea88095ce04ae9369b4d458abf166.json";
+        File file = new File(path);
+        long time1 = System.currentTimeMillis();
+        String content = FileUtils.readFileToString(file, "UTF-8");
+        System.out.println("read time: " + (System.currentTimeMillis() - time1));
+
+        long time = System.currentTimeMillis();
+        List<AreaModel> areaModelList = JSONArray.parseObject(content, new TypeReference<List<AreaModel>>() {});
+        System.out.println("consume time: " + (System.currentTimeMillis() - time) +"::::"+ areaModelList.size());
+
 
     }
 

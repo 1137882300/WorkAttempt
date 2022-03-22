@@ -1,14 +1,16 @@
 package com.zhong;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.zhong.cache.CurrencyModel;
 import com.zhong.entity.*;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -267,6 +269,35 @@ public class JsonDemo {
             System.out.println("countryName = "+ countryName);
         }
     }
+
+
+    @Test
+    public void parseArray2Obj(){
+        String ss = "[{\"creatorId\":23,\"currencyAbbreviation\":\"CNY\",\"currencyCode\":\"142\",\"currencyId\":1,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"version\":0},{\"creatorId\":23,\"currencyAbbreviation\":\"HKD\",\"currencyCode\":\"110\",\"currencyId\":2,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"version\":0},{\"createTime\":1638173137238,\"creatorId\":23,\"currencyAbbreviation\":\"JPY\",\"currencyCode\":\"116\",\"currencyId\":17,\"extendMap\":{},\"modifiedId\":1,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638188844542,\"version\":8},{\"createTime\":1638187940210,\"creatorId\":1,\"currencyAbbreviation\":\"13364856\",\"currencyCode\":\"468496\",\"currencyId\":29,\"extendMap\":{},\"modifiedId\":1,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638240070907,\"version\":2},{\"createTime\":1638191274966,\"creatorId\":1,\"currencyAbbreviation\":\"THB\",\"currencyCode\":\"136\",\"currencyId\":38,\"extendMap\":{},\"modifiedId\":1,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638191307059,\"version\":8},{\"createTime\":1638861980600,\"creatorId\":1,\"currencyAbbreviation\":\"9\",\"currencyCode\":\"99\",\"currencyId\":132,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638861980600,\"version\":1},{\"createTime\":1638870892025,\"creatorId\":1,\"currencyAbbreviation\":\"454\",\"currencyCode\":\"454\",\"currencyId\":137,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638870892025,\"version\":1},{\"createTime\":1638871817609,\"creatorId\":1,\"currencyAbbreviation\":\"767\",\"currencyCode\":\"676\",\"currencyId\":138,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638871817609,\"version\":1},{\"createTime\":1638875219161,\"creatorId\":1,\"currencyAbbreviation\":\"8888\",\"currencyCode\":\"888\",\"currencyId\":139,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638875219161,\"version\":1},{\"createTime\":1638875413310,\"creatorId\":1,\"currencyAbbreviation\":\"0909\",\"currencyCode\":\"999\",\"currencyId\":143,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638875413310,\"version\":1},{\"createTime\":1638875467186,\"creatorId\":1,\"currencyAbbreviation\":\"777\",\"currencyCode\":\"777\",\"currencyId\":144,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638875467186,\"version\":1},{\"createTime\":1638875551785,\"creatorId\":1,\"currencyAbbreviation\":\"66666\",\"currencyCode\":\"666\",\"currencyId\":145,\"extendMap\":{},\"modifiedId\":1,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638875916092,\"version\":3},{\"createTime\":1638875899219,\"creatorId\":1,\"currencyAbbreviation\":\"34323232323\",\"currencyCode\":\"434323232323\",\"currencyId\":147,\"extendMap\":{},\"modifiedId\":1,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638876018021,\"version\":2},{\"createTime\":1638957513750,\"creatorId\":1,\"currencyAbbreviation\":\"阿富汗尼2\",\"currencyCode\":\"99090\",\"currencyId\":186,\"extendMap\":{},\"modifiedId\":1,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1638960273275,\"version\":4},{\"createTime\":1639021850599,\"creatorId\":1,\"currencyAbbreviation\":\"USD\",\"currencyCode\":\"502\",\"currencyId\":219,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639021850599,\"version\":1},{\"createTime\":1639037786234,\"creatorId\":1,\"currencyAbbreviation\":\"EUR\",\"currencyCode\":\"300\",\"currencyId\":240,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639037786234,\"version\":1},{\"createTime\":1639041479815,\"creatorId\":1,\"currencyAbbreviation\":\"测试一下\",\"currencyCode\":\"23456\",\"currencyId\":242,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639041479815,\"version\":1},{\"createTime\":1639048791114,\"creatorId\":1,\"currencyAbbreviation\":\"23232323343\",\"currencyCode\":\"23233434\",\"currencyId\":246,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639048791114,\"version\":1},{\"createTime\":1639101529643,\"creatorId\":1,\"currencyAbbreviation\":\"23\",\"currencyCode\":\"2323\",\"currencyId\":254,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639101529643,\"version\":1},{\"createTime\":1639103163645,\"creatorId\":1,\"currencyAbbreviation\":\"5454545\",\"currencyCode\":\"46565656\",\"currencyId\":256,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639103163645,\"version\":1},{\"createTime\":1639105888253,\"creatorId\":1,\"currencyAbbreviation\":\"币种增加后刷新\",\"currencyCode\":\"2344\",\"currencyId\":257,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639105888253,\"version\":1},{\"createTime\":1639400394990,\"creatorId\":1,\"currencyAbbreviation\":\"DC\",\"currencyCode\":\"8907\",\"currencyId\":354,\"extendMap\":{},\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639400394990,\"version\":1},{\"createTime\":1639986246600,\"creatorId\":23,\"currencyAbbreviation\":\"PO\",\"currencyCode\":\"1126\",\"currencyId\":497,\"extendMap\":{},\"modifiedId\":233,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639986550640,\"version\":6},{\"createTime\":1639988533566,\"creatorId\":1,\"currencyAbbreviation\":\"OOO\",\"currencyCode\":\"14665\",\"currencyId\":501,\"extendMap\":{},\"modifiedId\":1,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1639988533566,\"version\":3},{\"createTime\":1640848792300,\"creatorId\":103338,\"currencyAbbreviation\":\"创建人\",\"currencyCode\":\"908000\",\"currencyId\":772,\"extendMap\":{},\"modifiedId\":999999999,\"platform\":\"product_GLO\",\"status\":0,\"updateTime\":1643253030928,\"version\":5}]";
+        long time = System.currentTimeMillis();
+        List<CurrencyModel> c = JSONArray.parseArray(ss, CurrencyModel.class);
+        System.out.println("差值1： " + (System.currentTimeMillis()- time));
+
+        long time2 = System.currentTimeMillis();
+        List<CurrencyModel>  v = JSONArray.parseObject(ss, new TypeReference<List<CurrencyModel>>() {});
+        System.out.println("差值2： " + (System.currentTimeMillis()- time2));
+    }
+
+
+    @Test
+    public void entity2Array(){
+        CurrencyModel a = new CurrencyModel();
+        CurrencyModel b = new CurrencyModel();
+        CurrencyModel c = new CurrencyModel();
+        List<CurrencyModel> list = Lists.newArrayList(a, b, c);
+        Object[] array = list.toArray();
+        System.out.println(Arrays.toString(array));
+
+
+    }
+
+
+
 
 
 
