@@ -11,10 +11,13 @@ import com.zhong.entity.Dog;
 import com.zhong.entity.StateEnum;
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -335,6 +338,18 @@ public class BaseTest {
 
 
     }
+
+    public static void main(String[] args) throws IOException {
+        List<Long> one = Lists.newArrayList();
+        List<Long> two = Lists.newArrayList();
+        List<Long> three = Lists.newArrayList();
+        List<Long> four = Lists.newArrayList();
+
+        IOUtils.readLines(Objects.requireNonNull(BaseTest.class.getClassLoader().getResourceAsStream("Yearning_Data (21).csv")),"UTF-8").forEach(x->{
+
+        });
+    }
+
 
 
 

@@ -1,6 +1,7 @@
 package com.zhong;
 
 import com.google.common.collect.Lists;
+import com.zhong.entity.Cat;
 import com.zhong.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -130,6 +131,29 @@ public class LambdaTest {
         boolean answer = list.stream().anyMatch(n -> (n * (n + 1)) / 4 == 5);
 
         System.out.println(answer);
+    }
+
+    @Test
+    public void removeList(){
+        Cat cat1 = Cat.builder().id(1).state(11).build();
+        Cat cat2 = Cat.builder().id(2).state(22).build();
+        Cat cat3 = Cat.builder().id(3).state(33).build();
+        List<Cat> list = Lists.newArrayList(cat1,cat2,cat3);
+
+//        list.removeIf(x -> x.getId() == 2 || x.getId() ==3);
+
+        list.removeIf(x -> {
+            boolean flag = false;
+            if (x.getId() == 2){
+                flag = true;
+            }
+            return flag;
+        });
+
+
+        System.out.println(list);
+
+
     }
 
 
