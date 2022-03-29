@@ -1,5 +1,11 @@
 package com.zhong.entity;
 
+import org.apache.commons.collections4.EnumerationUtils;
+import org.apache.commons.lang3.EnumUtils;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * @author zhong.zihan@xyb2b.com
  * @date 2021/10/15 16:22
@@ -26,6 +32,18 @@ public enum StateEnum {
         return null;
     }
 
+    public int getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public static Set<String> getStateSet(){
+        return EnumUtils.getEnumList(StateEnum.class).stream().
+                map(StateEnum::getMessage).collect(Collectors.toSet());
+    }
 
 
 }

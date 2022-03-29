@@ -352,6 +352,13 @@ public class BaseTest {
 
 
 
+    @Test
+    public void enum2List(){
+
+        Set<String> stateSet = StateEnum.getStateSet();
+        System.out.println(stateSet);
+
+    }
 
 
 
