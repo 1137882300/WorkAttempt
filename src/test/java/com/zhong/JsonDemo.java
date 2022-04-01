@@ -1,15 +1,19 @@
 package com.zhong;
 
+import cn.hutool.core.util.ZipUtil;
 import com.alibaba.fastjson.*;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.zhong.cache.AreaModel;
 import com.zhong.cache.CurrencyModel;
+import com.zhong.cache.UnitModel;
 import com.zhong.entity.*;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -296,8 +300,73 @@ public class JsonDemo {
 
     }
 
+    @Test
+    public void fastjsonWrite() throws IOException {
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("sss", "aaaa");
+        Map<Locale, String> map = new HashMap<>();
+        map.put(Locale.US, "niao");
+        map.put(Locale.UK, "niao222");
+        map.put(Locale.ENGLISH, "niao3333");
+        UnitModel unitModel = UnitModel.builder()
+                .unitCode(111L)
+                .extendMap(hashMap)
+                .unitName(MultiLanguageString.of(map))
+                .build();
+//        String string = JSON.toJSONString(Lists.newArrayList(unitModel), SerializerFeature.DisableCircularReferenceDetect);
+        String string = JSON.toJSONString(Lists.newArrayList(unitModel));
+        FileWriter writer = new FileWriter("C:\\Users\\EDZ\\Documents\\meta\\fastjsonTest.json");
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        bufferedWriter.write(string);
+        bufferedWriter.close();
+
+    }
+
+    @Test
+    public void fastJsonRead() throws IOException {
+        long time = System.currentTimeMillis();
+        File file = new File("C:\\Users\\EDZ\\Documents\\meta\\fixJsonString.json");
+        String content = FileUtils.readFileToString(file, "UTF-8");
+        List<AreaModel> unitModels = JSONArray.parseObject(content, new TypeReference<List<AreaModel>>() {});
+        System.out.println(unitModels.get(0).getAreaName().getAllLanguageString());
+        System.out.println("consume time: " + (System.currentTimeMillis() - time) +"::::"+ unitModels.size());
+//        consume time: 1406738::::147177   23分钟
+
+    }
 
 
+
+    @Test
+    public void fastjsonWriteZip() throws IOException {
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("sss", "aaaa");
+        Map<Locale, String> map = new HashMap<>();
+        map.put(Locale.US, "niao");
+        map.put(Locale.UK, "niao222");
+        map.put(Locale.ENGLISH, "niao3333");
+        UnitModel unitModel = UnitModel.builder()
+                .unitCode(111L)
+                .extendMap(hashMap)
+                .unitName(MultiLanguageString.of(map))
+                .build();
+//        String string = JSON.toJSONString(Lists.newArrayList(unitModel), SerializerFeature.DisableCircularReferenceDetect);
+        String jsonString = JSON.toJSONString(Lists.newArrayList(unitModel));
+
+        byte[] bytes = jsonString.getBytes(StandardCharsets.UTF_8);
+        System.out.println(bytes.length);
+        //压缩
+        byte[] gzip = ZipUtil.gzip(bytes);
+        System.out.println(gzip.length);
+//
+//        File zip = ZipUtil.zip(jsonString);
+//        String zipString = FileUtils.readFileToString(zip, "UTF-8");
+//
+//        FileWriter writer = new FileWriter("C:\\Users\\EDZ\\Documents\\meta\\fastjsonZip.json");
+//        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+//        bufferedWriter.write(zipString);
+//        bufferedWriter.close();
+
+    }
 
 
 

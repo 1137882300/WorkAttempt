@@ -1,6 +1,8 @@
 package com.zhong;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.math.MathUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.PageUtil;
 import cn.hutool.json.JSON;
 import com.google.common.collect.Lists;
@@ -18,6 +20,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -361,7 +364,44 @@ public class BaseTest {
     }
 
 
+    @Test
+    public void div(){
+        int aaa = 49;
+        int bbb = 23;
+//        for (int i = 0; i < aaa / bbb+1; i++) {
+//            System.out.print( i+1 + "   ");
+//        }
 
+//        System.out.println(aaa/bbb+"----");
+//        System.out.println(aaa%bbb+"++++");
+
+//        int subtractExact = Math.subtractExact(aaa, bbb);
+//        System.out.println(subtractExact);
+
+        int floorDiv = Math.floorDiv(aaa, bbb);
+        System.out.println(floorDiv);
+
+        int ceil = (int) Math.ceil(aaa / bbb);
+        System.out.println(ceil);
+
+        int ccc = aaa%bbb == 0 ? (aaa/bbb) : (aaa/bbb)+1;
+        System.out.println(ccc);
+
+
+    }
+
+
+    @Test
+    public void exc(){
+        try {
+            int k = 10/0;
+            System.out.println("会执行吗？");
+        }catch (Exception e){
+            System.out.println("eeeee");
+        }
+
+
+    }
 
 
 

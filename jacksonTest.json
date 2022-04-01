@@ -1,0 +1,22 @@
+[
+  {
+    "unitName": {
+      "languageStringMap": {
+        "en": "niao3333",
+        "en_US": "niao",
+        "en_GB": "niao222"
+      },
+      "defaultLocale": "in_ID",
+      "defaultLanguageString": "niao",
+      "allLanguageString": {
+        "en": "niao3333",
+        "en_US": "niao",
+        "en_GB": "niao222"
+      }
+    },
+    "unitCode": 111,
+    "extendMap": {
+      "sss": "aaaa"
+    }
+  }
+]

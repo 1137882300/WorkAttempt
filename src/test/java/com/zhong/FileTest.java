@@ -1,9 +1,11 @@
 package com.zhong;
 
+import cn.hutool.core.util.ZipUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.zhong.cache.AreaModel;
 import org.apache.commons.collections4.CollectionUtils;
@@ -200,15 +202,26 @@ public class FileTest {
     public void  readAreaData() throws IOException {
         String path = "C:\\Users\\EDZ\\Downloads\\6eaea88095ce04ae9369b4d458abf166.json";
         File file = new File(path);
-        long time1 = System.currentTimeMillis();
         String content = FileUtils.readFileToString(file, "UTF-8");
-        System.out.println("read time: " + (System.currentTimeMillis() - time1));
 
         long time = System.currentTimeMillis();
         List<AreaModel> areaModelList = JSONArray.parseObject(content, new TypeReference<List<AreaModel>>() {});
-        System.out.println("consume time: " + (System.currentTimeMillis() - time) +"::::"+ areaModelList.size());
+        System.out.println("consume time: " + (System.currentTimeMillis() - time) +"::::"+ areaModelList.size());//consume time: 8667::::15403
 
-
+        System.out.println(JSON.toJSONString(areaModelList.get(2)));
     }
+
+
+    @Test
+    public void zipTest() throws IOException {
+        File file = new File("C:\\Users\\EDZ\\Documents\\meta\\fixJsonString.json");
+        String content = FileUtils.readFileToString(file, "UTF-8");
+        System.out.println(content.length());
+
+        File zip = ZipUtil.zip(file);
+        String content2 = FileUtils.readFileToString(zip, "UTF-8");
+        System.out.println(content2.length());
+    }
+
 
 }

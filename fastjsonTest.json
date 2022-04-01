@@ -1,0 +1,20 @@
+[
+  {
+    "extendMap": {
+      "sss": "aaaa"
+    },
+    "unitCode": 111,
+    "unitName": {
+      "allLanguageString": {
+        "en": "niao3333",
+        "en_US": "niao",
+        "en_GB": "niao222"
+      },
+      "defaultLanguageString": "niao",
+      "defaultLocale": "in_ID",
+      "languageStringMap": {
+        "$ref": "$[0].unitName.allLanguageString"
+      }
+    }
+  }
+]
