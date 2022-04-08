@@ -8,13 +8,12 @@ import cn.hutool.json.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.cache.CacheMap;
-import com.zhong.entity.Cat;
-import com.zhong.entity.Dog;
-import com.zhong.entity.StateEnum;
+import com.zhong.entity.*;
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -394,9 +393,9 @@ public class BaseTest {
     @Test
     public void exc(){
         try {
-            int k = 10/0;
+            int k = 10 / 0;
             System.out.println("会执行吗？");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("eeeee");
         }
 
@@ -404,9 +403,66 @@ public class BaseTest {
     }
 
 
+    /**
+     * <?> 和 <T>的区别
+     */
+    @Test
+    public void testWenHao() {
+        GenericsEntity<User> generics = new GenericsEntity<>(new User());
+        generics.get(generics);
+
+        GenericsEntity<?> f = new GenericsEntity<>(new User());
+//        f.get(f);
+    }
 
 
+    private void wenhao(GenericsEntity<?> gg) {
+        System.out.println("ggg ");
+    }
 
+    private void TT(GenericsEntity<T> tt) {
+        System.out.println("TT");
+    }
+
+    @Test
+    public void testWenhaoAndT() {
+        this.wenhao(new GenericsEntity<>(new User()));
+
+        this.TT(new GenericsEntity(new Dog()));
+    }
+
+    @Test
+    public void listWenHaoAndT() {
+        List<Object> list1 = new ArrayList<>();
+        List<String> list2 = new ArrayList<>();
+        List<Integer> list3 = new ArrayList<>();
+        List<Long> list4 = new ArrayList<>();
+        List<?> list5 = new ArrayList<>();
+        List<T> list6 = new ArrayList<>();
+
+//        this.listT(list1);
+//        this.listT(list2);
+//        this.listT(list3);
+//        this.listT(list4);
+//        this.listT(list5);
+        this.listT(list6);
+
+        this.listWenHao(list1);
+        this.listWenHao(list2);
+        this.listWenHao(list3);
+        this.listWenHao(list4);
+        this.listWenHao(list5);
+        this.listWenHao(list6);
+    }
+
+    public void listT(List<T> list) {
+        System.out.println("list t");
+    }
+
+    public void listWenHao(List<?> list) {
+        System.out.println(list);
+        System.out.println("list ?");
+    }
 
 
 }

@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 import com.zhong.cache.AreaModel;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.io.*;
@@ -221,6 +222,64 @@ public class FileTest {
         File zip = ZipUtil.zip(file);
         String content2 = FileUtils.readFileToString(zip, "UTF-8");
         System.out.println(content2.length());
+    }
+
+    /**
+     * BufferedWriter
+     * 写入文件
+     */
+    @Test
+    public void appendWrite() throws FileNotFoundException {
+        AreaModel areaModel = AreaModel.builder().areaId(1L).areaLevel(2).countryId(3L).platform("nihaoya").build();
+        AreaModel areaModel2 = AreaModel.builder().areaId(1L).areaLevel(2).countryId(3L).platform("bushiba").build();
+        AreaModel areaModel3 = AreaModel.builder().areaId(1L).areaLevel(2).countryId(3L).platform("按这个是").build();
+        String toJSONString = JSON.toJSONString(Lists.newArrayList(areaModel, areaModel2, areaModel3));
+        this.writeJson(toJSONString);
+
+    }
+
+
+    private void writeJson(String content) throws FileNotFoundException {
+        File file = new File("app.json");
+        FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+        BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+        String substring = content.substring(1, content.length() - 1);
+
+        try {
+            bufferedWriter.write("[");
+            bufferedWriter.write(substring);
+            bufferedWriter.write("]");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bufferedWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Test
+    public void deleteFile() {
+        File file = new File("app.json");
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
+
+    /**
+     * 创建文件夹
+     */
+    @Test
+    public void createFile() {
+        File file = new File("app.json");
+        if (!file.exists()) {
+            file.mkdir();
+        }
     }
 
 

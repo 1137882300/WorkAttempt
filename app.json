@@ -1,0 +1,20 @@
+[
+  {
+    "areaId": 1,
+    "areaLevel": 2,
+    "countryId": 3,
+    "platform": "nihaoya"
+  },
+  {
+    "areaId": 1,
+    "areaLevel": 2,
+    "countryId": 3,
+    "platform": "bushiba"
+  },
+  {
+    "areaId": 1,
+    "areaLevel": 2,
+    "countryId": 3,
+    "platform": "按这个是"
+  }
+]
