@@ -351,9 +351,19 @@ public class JacksonTest {
         System.out.println(jsonNode);
 
         String string = mapper.writeValueAsString(ss);
+    }
 
+    @Test
+    public void parse2() throws IOException {
+        long time = System.currentTimeMillis();
+        File file = new File("fastjsonTest.json");
+        String content = FileUtils.readFileToString(file, "UTF-8");
 
-
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        List<UnitModel> areaModels = mapper.readValue(content, new TypeReference<List<UnitModel>>() {
+        });
+        System.out.println(areaModels.get(0).getUnitName().getAllLanguageString());
     }
 
 
