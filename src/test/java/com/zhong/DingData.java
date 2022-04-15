@@ -20,7 +20,7 @@ public class DingData {
      */
     @Test
     public void img2() throws IOException {
-        String path = "C:\\Users\\EDZ\\Downloads\\image2.csv";
+        String path = "C:\\Users\\EDZ\\Downloads\\imageNew.csv";
         BufferedReader reader = new BufferedReader(new FileReader(path));
         reader.readLine();
         String line = null;
@@ -38,7 +38,7 @@ public class DingData {
             list.add(spuImg);
         }
 
-        String pathImg = "C:\\Users\\EDZ\\Downloads\\relation2.csv";
+        String pathImg = "C:\\Users\\EDZ\\Downloads\\模板relation.csv";
         BufferedReader reader2 = new BufferedReader(new FileReader(pathImg));
         reader2.readLine();
         String line2 = null;
@@ -83,9 +83,9 @@ public class DingData {
             }
         }
 
-        System.out.println("item_image_id: " + item_image_id);//3000021062
+        System.out.println("item_image_id: " + item_image_id);//3000020618
 
-        FileWriter writer = new FileWriter("Insert1.text");
+        FileWriter writer = new FileWriter("mu-ban.text");
         BufferedWriter bufferedWriter = new BufferedWriter(writer);
         bufferedWriter.write(sb.toString());
         bufferedWriter.close();
@@ -96,7 +96,7 @@ public class DingData {
      */
     @Test
     public void storeImage() throws IOException {
-        String path = "C:\\Users\\EDZ\\Downloads\\image2.csv";
+        String path = "C:\\Users\\EDZ\\Downloads\\imageNew.csv";
         BufferedReader reader = new BufferedReader(new FileReader(path));
         reader.readLine();
         String line = null;
@@ -115,7 +115,7 @@ public class DingData {
         }
         Map<Long, List<SpuImg>> group = list.stream().collect(Collectors.groupingBy(SpuImg::getSpuId));
 
-        String pathImg = "C:\\Users\\EDZ\\Downloads\\relation3.csv";
+        String pathImg = "C:\\Users\\EDZ\\Downloads\\商品relation.csv";
         BufferedReader reader2 = new BufferedReader(new FileReader(pathImg));
         reader2.readLine();
         String line2 = null;
@@ -130,7 +130,7 @@ public class DingData {
             relationList.add(relation);
         }
 
-        Long item_image_id = 3000021062L;
+        Long item_image_id = 3000020617L;
         StringBuilder sb = new StringBuilder();
         for (Relation relation : relationList) {
             if (group.containsKey(relation.getMaster())) {
@@ -179,9 +179,9 @@ public class DingData {
             }
         }
 
-        System.out.println("item_image_id: " + item_image_id);//3000019917
+        System.out.println("item_image_id: " + item_image_id);//3000019216
 
-        FileWriter writer = new FileWriter("Insert（copy+master）.text");
+        FileWriter writer = new FileWriter("item（copy+master）.text");
         BufferedWriter bufferedWriter = new BufferedWriter(writer);
         bufferedWriter.write(sb.toString());
         bufferedWriter.close();
