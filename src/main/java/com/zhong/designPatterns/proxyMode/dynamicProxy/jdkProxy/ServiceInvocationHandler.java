@@ -1,4 +1,4 @@
-package com.zhong.designPatterns.proxyMode.dynamicProxy;
+package com.zhong.designPatterns.proxyMode.dynamicProxy.jdkProxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -19,10 +19,10 @@ public class ServiceInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxyObj, Method method, Object[] args) throws Throwable {
-        System.out.println("开始执行" + method.getName() + "方法");
+        System.out.println("动态代理 开始执行" + method.getName() + "方法");
         //执行原对象的相关操作，容易忘记
         Object returnObj = method.invoke(srcObject, args);
-        System.out.println(method.getName() + "方法执行完毕");
+        System.out.println(method.getName() + "方法执行完毕 动态代理");
         return returnObj;
     }
 }

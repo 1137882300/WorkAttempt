@@ -29,8 +29,8 @@ public class ProxyService implements IService {
 
     @Override
     public void service() {
-        System.out.println("代理类执行的方法 start");
+        System.out.println("静态代理类执行的方法 start");
         service.service();
-        System.out.println("代理类执行的方法 end");
+        System.out.println("静态代理类执行的方法 end");
     }
 }
