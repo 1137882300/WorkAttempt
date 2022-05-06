@@ -6,10 +6,7 @@ import com.google.common.collect.Sets;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -18,7 +15,19 @@ import java.util.stream.Collectors;
 public class CollectionTest {
 
     @Test
-    public void setT(){
+    public void single() {
+        List<String> list = Collections.singletonList("nihao");
+        System.out.println(list);
+
+        List<String> list2 = Collections.singletonList(null);
+        System.out.println(list2);
+
+
+    }
+
+
+    @Test
+    public void setT() {
         List<Long> hashSet = Lists.newArrayList(
                 3000003460L,
                 3000008796L,
@@ -23064,6 +23073,29 @@ public class CollectionTest {
 //
 //    }
 
+
+    @Test
+    public void end() {
+        List<Integer> list = new ArrayList<>();
+
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        int i = 0;
+        for (Integer integer : list) {
+            i++;
+
+            if (list.size() == i) {
+                System.out.println("最后一次" + integer);
+            }
+
+
+        }
+
+
+    }
 
 
 }

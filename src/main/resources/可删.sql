@@ -1,13 +1,20 @@
-insert into `t_item_image_copy` (item_image_id, item_id, image_url, is_master, shop_id, image_order, is_deleted,
-                                 create_time, version, creator_id, type)
-values (3000026317, 3000006256,
-        'https://bbmallun.oss-accelerate.aliyuncs.com/bbmallun//bbmallun/20220120/b1bc5cec-060d-4b91-a82b-1fd3f35b0eae.jpg',
-        1, 3000000442, null, 0, 1649926410000, 1, -1, 1);
-
-
-
-INSERT INTO `t_item_image_copy` (`item_image_id`, `item_id`, `shop_id`, `image_url`, `is_master`, `image_order`,
-                                 `is_deleted`, `create_time`, `update_time`, `version`, `creator_id`, `modified_id`,
-                                 `type`)
-values (208306, 1775, 14823, 'https://img0.bbc.xyb2b.com/M00/00/44/wKgFZV4JYCCAX8ixAAPkMfm9Jfk701.jpg', 1, 1, 0,
-        1576807760000, 1645445643829, NULL, -1, NULL, 1);
+insert into t_spu_image
+(item_image_id, item_id, shop_id, image_url, is_master, image_order, is_deleted, create_time, version, creator_id, type)
+values (3000023072, 3000003240, -1,
+        'https://bbmallun.oss-accelerate.aliyuncs.com/bbmallun//bbmallun/20220121/71bfbb0d-b3a0-444b-8ca9-854904398bfc.jpg',
+        1, 0, 0, 16518160800001, -1, 1),
+       (3000023072, 3000003240, -1,
+        'https://bbmallun.oss-accelerate.aliyuncs.com/bbmallun//bbmallun/20220121/4c8be251-4536-4553-b936-75e6f97aee62.jpg',
+        0, 1, 0, 16518160800001, -1, 1),
+       (3000023072, 3000003240, -1,
+        'https://bbmallun.oss-accelerate.aliyuncs.com/bbmallun//bbmallun/20220121/33a4ecb1-2c09-4560-bc28-3d2061ea73ba.jpg',
+        0, 2, 0, 16518160800001, -1, 1),
+       (3000023072, 3000003240, -1,
+        'https://bbmallun.oss-accelerate.aliyuncs.com/bbmallun//bbmallun/20220121/12765a6c-2115-405e-9a5d-01ab82bccb7b.jpg',
+        0, 3, 0, 16518160800001, -1, 1),
+       (3000023072, 3000003240, -1,
+        'https://bbmallun.oss-accelerate.aliyuncs.com/bbmallun//bbmallun/20220121/3c9f6d8d-238b-4c34-9a9c-881857602094.jpg',
+        0, 4, 0, 16518160800001, -1, 1),
+       (3000023072, 3000003240, -1,
+        'https://bbmallun.oss-accelerate.aliyuncs.com/bbmallun//bbmallun/20220121/494c6e43-5b83-45b1-a205-ea05779756d8.jpg',
+        0, 5, 0, 16518160800001, -1, 1);
