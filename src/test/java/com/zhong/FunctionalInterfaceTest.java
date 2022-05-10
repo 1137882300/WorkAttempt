@@ -6,6 +6,7 @@ import org.junit.Test;
 import javax.sound.midi.Soundbank;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * @date 2022/4/22 17:29
@@ -77,5 +78,16 @@ public class FunctionalInterfaceTest {
 
 
     }
+
+    /*
+        Function<T, R>
+    */
+    @Test
+    public void functionTest() {
+        Function<String, String> function = s -> s;
+        String sss = function.apply("反参");
+        System.out.println(sss);
+    }
+
 
 }
