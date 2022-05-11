@@ -7,6 +7,7 @@ import cn.hutool.core.util.PageUtil;
 import cn.hutool.json.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.zhong.cache.CacheMap;
 import com.zhong.entity.*;
 import org.apache.commons.collections4.BidiMap;
@@ -462,6 +463,27 @@ public class BaseTest {
     public void listWenHao(List<?> list) {
         System.out.println(list);
         System.out.println("list ?");
+    }
+
+
+    @Test
+    public void setT() {
+        Set<Integer> set = new HashSet<>();
+
+        Set<Integer> set1 = Sets.newHashSet(1, 2, 3, 4);
+        set.addAll(set1);
+        Set<Integer> set2 = Sets.newHashSet(1, 5, 7);
+        set.addAll(set2);
+        Set<Integer> set3 = Sets.newHashSet(1, 2, 5);
+        set.addAll(set3);
+        Set<Integer> set4 = Sets.newHashSet(1, 3, 5);
+        set.addAll(set4);
+        Set<Integer> set5 = Sets.newHashSet(1, 6, 2);
+        set.addAll(set5);
+
+        System.out.println(set);
+
+
     }
 
 

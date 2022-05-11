@@ -25,7 +25,9 @@ public class LambdaTest {
     private List<User> list = Lists.newArrayList();
 
     /*
-        嵌套list 合成一个list
+        flatMap
+        1. 嵌套list 合成一个list
+        2. 去掉stream
      */
     @Test
     public void flatMap() {
@@ -39,8 +41,15 @@ public class LambdaTest {
 
 
         List<Integer> integerList = Stream.of(Arrays.asList(1, 2, 4), Arrays.asList(1, 2, 5)).flatMap(Collection::stream).collect(Collectors.toList());
+    }
+
+    @Test
+    public void stream() {
+        Stream<List<Integer>> stream;
+
 
     }
+
 
     @Before
     public void init() {
