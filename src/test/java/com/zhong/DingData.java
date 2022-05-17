@@ -1,14 +1,22 @@
 package com.zhong;
 
 import com.google.common.collect.Lists;
-import com.zhong.entity.ItemImg;
-import com.zhong.entity.Relation;
-import com.zhong.entity.SpuImg;
+import com.zhong.Utils.DateUtil;
+import com.zhong.entity.*;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.sequence.EditScript;
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -383,5 +391,114 @@ public class DingData {
         bufferedWriter.close();
     }
 
+//select id,parent_id,division_name,division_level,creator_id,modified_id,is_deleted,version,tenant_platform,create_time,update_time,has_children
+//from t_uic_division_info where id_deleted = 0
+
+    @Test
+    public void areaSql() throws IOException {
+        String path = "C:\\Users\\EDZ\\Downloads\\地区数据.csv";
+        BufferedReader reader = new BufferedReader(new FileReader(path));
+        reader.readLine();
+        String line = null;
+
+        List<DivisionInfoPO> list = Lists.newLinkedList();
+        while ((line = reader.readLine()) != null) {
+            String[] split = line.split(",");
+            DivisionInfoPO divisionInfoPO = new DivisionInfoPO();
+            divisionInfoPO.setId(Long.valueOf(split[0]));
+            divisionInfoPO.setParentId(Long.valueOf(split[1]));
+            divisionInfoPO.setDivisionName(split[2]);
+            divisionInfoPO.setDivisionLevel(Integer.valueOf(split[3]));
+            if (StringUtils.isNotBlank(split[4])) {
+                divisionInfoPO.setCreatorId(Long.valueOf(split[4]));
+            }
+            if (StringUtils.isNotBlank(split[5])) {
+                divisionInfoPO.setModifierId(Long.valueOf(split[5]));
+            }
+            divisionInfoPO.setIsDeleted(Long.valueOf(split[6]));
+            divisionInfoPO.setVersion(0L);
+            divisionInfoPO.setTenantPlatform("product_GLO");
+            if (StringUtils.isNotBlank(split[9])) {
+                divisionInfoPO.setCreateTime(DateUtil.toEpochMilliZone8(split[9].substring(0, split[9].length() - 2)));//date转时间戳
+            } else {
+                divisionInfoPO.setCreateTime(1652450251000L);
+            }
+            if (StringUtils.isNotBlank(split[10])) {
+                divisionInfoPO.setUpdateTime(DateUtil.toEpochMilliZone8(split[10].substring(0, split[10].length() - 2)));
+            }
+            divisionInfoPO.setHasChildren(Integer.valueOf(split[11]));
+            list.add(divisionInfoPO);
+        }
+        reader.close();
+
+        StringBuilder sb = new StringBuilder();
+        StringBuilder languageSb = new StringBuilder();
+
+        Long lanId = 2000000010L;
+        //todo 要去掉第一条国家的数据
+        if (CollectionUtils.isNotEmpty(list)) {
+            for (DivisionInfoPO divisionInfoPO : list) {
+                sb.append("insert into t_area_info ( id, parent_id, country_id, area_level, platform, creator_id, modified_id, create_time, update_time, is_deleted, version, has_children ) ");
+                sb.append("values( ");
+                sb.append(divisionInfoPO.getId()).append(",");
+                if (divisionInfoPO.getParentId() == 1) {
+                    sb.append(0L).append(",");
+                } else {
+                    sb.append(divisionInfoPO.getParentId()).append(",");
+                }
+                sb.append(2000000021L).append(",");//国家id
+                sb.append(divisionInfoPO.getDivisionLevel()).append(",");
+                sb.append("\"").append("product_GLO").append("\"").append(",");
+                sb.append(divisionInfoPO.getCreatorId()).append(",");
+                sb.append(divisionInfoPO.getModifierId()).append(",");
+                sb.append(divisionInfoPO.getCreateTime()).append(",");
+                sb.append(divisionInfoPO.getUpdateTime()).append(",");
+                sb.append(0).append(",");
+                sb.append(0L).append(",");
+                sb.append(divisionInfoPO.getHasChildren());
+                sb.append(" );");
+                sb.append("\n");
+
+                languageSb.append("insert into t_area_info_language ( id, area_info_id, area_name, preferred_language, creator_id, modified_id, create_time, update_time, is_deleted, version )");
+                languageSb.append("values( ");
+                languageSb.append(lanId).append(",");//用最小的id往前走
+                languageSb.append(divisionInfoPO.getId()).append(",");
+                languageSb.append("\"").append(divisionInfoPO.getDivisionName()).append("\"").append(",");
+                languageSb.append("\"").append("in_ID").append("\"").append(",");
+                languageSb.append(divisionInfoPO.getCreatorId()).append(",");
+                languageSb.append(divisionInfoPO.getModifierId()).append(",");
+                languageSb.append(divisionInfoPO.getCreateTime()).append(",");
+                languageSb.append(divisionInfoPO.getUpdateTime()).append(",");
+                languageSb.append(0).append(",");
+                languageSb.append(0L);
+                languageSb.append(" );");
+                languageSb.append("\n");
+                lanId--;
+            }
+        }
+
+        FileWriter writer = new FileWriter("region.text");
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        bufferedWriter.write(sb.toString());
+        bufferedWriter.close();
+
+        FileWriter writer2 = new FileWriter("regionLan.text");
+        BufferedWriter bufferedWriter2 = new BufferedWriter(writer2);
+        bufferedWriter2.write(languageSb.toString());
+        bufferedWriter2.close();
+
+    }
+
+
+    @Test
+    public void dateToLong() {
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime parse = LocalDateTime.parse("2021-11-03 14:03:21", dateTimeFormatter);
+        long l = parse.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+
+        System.out.println(l);
+
+    }
 
 }
