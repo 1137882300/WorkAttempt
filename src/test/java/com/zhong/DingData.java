@@ -396,7 +396,7 @@ public class DingData {
 
     @Test
     public void areaSql() throws IOException {
-        String path = "C:\\Users\\EDZ\\Downloads\\地区数据.csv";
+        String path = "C:\\Users\\EDZ\\Downloads\\力宝.csv";
         BufferedReader reader = new BufferedReader(new FileReader(path));
         reader.readLine();
         String line = null;
@@ -419,12 +419,14 @@ public class DingData {
             divisionInfoPO.setVersion(0L);
             divisionInfoPO.setTenantPlatform("product_GLO");
             if (StringUtils.isNotBlank(split[9])) {
-                divisionInfoPO.setCreateTime(DateUtil.toEpochMilliZone8(split[9].substring(0, split[9].length() - 2)));//date转时间戳
+//                divisionInfoPO.setCreateTime(DateUtil.toEpochMilliZone8(split[9].substring(0, split[9].length() - 2)));//date转时间戳
+                divisionInfoPO.setCreateTime(DateUtil.toEpochMilliZone8(split[9]));
             } else {
                 divisionInfoPO.setCreateTime(1652450251000L);
             }
             if (StringUtils.isNotBlank(split[10])) {
-                divisionInfoPO.setUpdateTime(DateUtil.toEpochMilliZone8(split[10].substring(0, split[10].length() - 2)));
+//                divisionInfoPO.setUpdateTime(DateUtil.toEpochMilliZone8(split[10].substring(0, split[10].length() - 2)));
+                divisionInfoPO.setCreateTime(DateUtil.toEpochMilliZone8(split[10]));
             }
             divisionInfoPO.setHasChildren(Integer.valueOf(split[11]));
             list.add(divisionInfoPO);

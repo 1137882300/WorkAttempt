@@ -10,6 +10,8 @@ import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -127,5 +129,18 @@ public class GuavaTest {
         System.out.println(nanos);
     }
 
+    @Test
+    public void Lists() {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, 2);
+        map.put(2, 2);
+        map.put(3, 3);
+
+        //直接放map的values
+        List<Integer> list = Lists.newArrayList(map.values());
+        System.out.println(list);
+
+
+    }
 
 }

@@ -32,11 +32,19 @@ public class BaseTest {
 
 
     @Test
-    public void test(){
+    public void split() {
+        String ss = "sss 1654/*-/ ";
+        String[] split = ss.split(",");
+        System.out.println(Arrays.asList(split));//sss，没有指定符号是返回本身
+
+    }
+
+    @Test
+    public void test() {
         int k = 10;
-        if (k/5 == 2 ){
+        if (k / 5 == 2) {
             System.out.println(111);
-        }else if (k/2 == 5){
+        } else if (k / 2 == 5) {
             System.out.println(222);
         } else {
             System.out.println(333);
