@@ -3,6 +3,10 @@ package com.zhong;
 import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.C;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.zhong.entity.Dog;
+import com.zhong.entity.People;
+import com.zhong.entity.StateEnum;
+import com.zhong.entity.User;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
@@ -56,6 +60,29 @@ public class CollectionTest {
          */
         List<String> list = new ArrayList<>(CollectionUtils.union(set1, set2));
         System.out.println(list);
+
+    }
+
+    @Test
+    public void mutilFunctionMap(){
+        //满足几点
+        //1. 存md5
+        //2. 存不同类型的值
+
+        Map<StateEnum, List<Map<String, Object>>> map = new LinkedHashMap<>();
+
+        List<Map<String, Object>> list = Lists.newLinkedList();
+
+        Map<String, Object> innerMap = new HashMap<>();
+        innerMap.put("unitId1", new User(11,22));
+        innerMap.put("unitId2", new People(66));
+        innerMap.put("unitId3", new Dog(99, StateEnum.CLOSE));
+        list.add(innerMap);
+
+        map.put(StateEnum.OPEN, list);
+
+        System.out.println(map);
+
 
     }
 
