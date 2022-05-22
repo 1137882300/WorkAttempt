@@ -1,21 +1,24 @@
 package com.zhong.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 /**
- * @author zhong.zihan@xyb2b.com
- * @date 2021/10/8 17:55
+ * @date 2022/4/14 20:06
  */
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class People {
+public class Relation {
 
-    volatile Integer sex;
+
+    private Long master;
+
+    private Long slave;
+
+    private Long shopId;
 
 }

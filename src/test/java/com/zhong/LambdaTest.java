@@ -21,11 +21,38 @@ import java.util.stream.Stream;
  */
 public class LambdaTest {
 
-    private User u1,u2,u3,u4,u5,u6,u7;
+    private User u1, u2, u3, u4, u5, u6, u7;
     private List<User> list = Lists.newArrayList();
 
+    /*
+        flatMap
+        1. 嵌套list 合成一个list
+        2. 去掉stream
+     */
+    @Test
+    public void flatMap() {
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> list1 = Lists.newArrayList(1, 2, 23, 45);
+        list.add(list1);
+        list.add(Lists.newArrayList(2, 1, 4, 45));
+
+        List<Integer> collect = list.stream().flatMap(Collection::stream).distinct().collect(Collectors.toList());
+        System.out.println(collect);
+
+
+        List<Integer> integerList = Stream.of(Arrays.asList(1, 2, 4), Arrays.asList(1, 2, 5)).flatMap(Collection::stream).collect(Collectors.toList());
+    }
+
+    @Test
+    public void stream() {
+        Stream<List<Integer>> stream;
+
+
+    }
+
+
     @Before
-    public void init(){
+    public void init() {
         u1 = User.builder().id(1).age(4).build();
         u2 = User.builder().id(2).age(34).build();
         u3 = User.builder().id(4).age(15).build();

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.Lists;
+import com.zhong.Utils.JacksonUtils;
 import com.zhong.cache.AreaModel;
 import com.zhong.cache.PropertyModel;
 import com.zhong.cache.UnitModel;
@@ -69,9 +70,10 @@ public class JacksonTest {
         String content = FileUtils.readFileToString(file, "UTF-8");
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<AreaModel> areaModels = mapper.readValue(content, new TypeReference<List<AreaModel>>() {});
+        List<AreaModel> areaModels = mapper.readValue(content, new TypeReference<List<AreaModel>>() {
+        });
         System.out.println(areaModels.get(0).getAreaName().getAllLanguageString());
-        System.out.println("consume time: " + (System.currentTimeMillis() - time) +"::::"+ areaModels.size());
+        System.out.println("consume time: " + (System.currentTimeMillis() - time) + "::::" + areaModels.size());
 //        consume time: 1098::::147177
     }
 
@@ -87,13 +89,14 @@ public class JacksonTest {
         long time = System.currentTimeMillis();
         mapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, true);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<AreaModel> areaModels = mapper.readValue(content, new TypeReference<List<AreaModel>>() {});
-        System.out.println("consume time: " + (System.currentTimeMillis() - time) +"::::"+ areaModels.size());//consume time: 159::::15403
+        List<AreaModel> areaModels = mapper.readValue(content, new TypeReference<List<AreaModel>>() {
+        });
+        System.out.println("consume time: " + (System.currentTimeMillis() - time) + "::::" + areaModels.size());//consume time: 159::::15403
 
         System.out.println(mapper.writeValueAsString(areaModels.get(2)));
         Map<Locale, String> map = areaModels.get(2).getAreaName().getAllLanguageString();
         System.out.println(map.get(Locale.US));
-        map.forEach((k,v)-> System.out.println(k+",,,"+v));
+        map.forEach((k, v) -> System.out.println(k + ",,," + v));
 
     }
 
@@ -109,7 +112,7 @@ public class JacksonTest {
 //        List<PropertyModel> areaModels = mapper.readValue(content, new TypeReference<List<PropertyModel>>() {});
         JavaType type = mapper.getTypeFactory().constructParametricType(List.class, PropertyModel.class, Map.class);
         List<PropertyModel> areaModels = mapper.readValue(content, type);
-        System.out.println("consume time: " + (System.currentTimeMillis() - time) +"::::"+ areaModels.size());
+        System.out.println("consume time: " + (System.currentTimeMillis() - time) + "::::" + areaModels.size());
         System.out.println(areaModels.get(0).getPropertyName().getAllLanguageString());
 
     }
@@ -204,7 +207,7 @@ public class JacksonTest {
         Cat build2 = Cat.builder().id(222).state(3333).unitName(MultiLanguageString.of(map)).build();
         Cat build = Cat.builder().id(111).state(2222).unitName(MultiLanguageString.of(map)).build();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        String string = mapper.writeValueAsString(Lists.newArrayList(build,build2));
+        String string = mapper.writeValueAsString(Lists.newArrayList(build, build2));
 
         byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
         String newMd5 = MD5Utils.md5Hex(bytes);
@@ -309,7 +312,8 @@ public class JacksonTest {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        List<AreaModel> areaModels = mapper.readValue(content, new TypeReference<List<AreaModel>>() {});
+        List<AreaModel> areaModels = mapper.readValue(content, new TypeReference<List<AreaModel>>() {
+        });
         System.out.println(areaModels.get(0).getAreaName().getAllLanguageString());
     }
 
@@ -331,7 +335,7 @@ public class JacksonTest {
     }
 
     @Test
-    public void  ssss() throws JsonProcessingException {
+    public void ssss() throws JsonProcessingException {
         String ss = "{\"area\":\"c8220deb2c510e92dd5e08f7cb031c06\",\"country\":\"5a7dcc641e35a92f71e1ede89e738ae6\",\"unit\":\"19e00958b88e95e6fbf63032b51e144f\",\"property\":\"22222\",\"currency\":\"47e71fda82778b4f3223ee8dfe895fbb\",\"category\":\"7d08db3415372339b82935b09261b1cf\"}\n";
 
         ObjectMapper mapper = new ObjectMapper();
@@ -351,9 +355,34 @@ public class JacksonTest {
         System.out.println(jsonNode);
 
         String string = mapper.writeValueAsString(ss);
+    }
+
+    @Test
+    public void parse2() throws IOException {
+        long time = System.currentTimeMillis();
+        File file = new File("fastjsonTest.json");
+        String content = FileUtils.readFileToString(file, "UTF-8");
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        List<UnitModel> areaModels = mapper.readValue(content, new TypeReference<List<UnitModel>>() {
+        });
+        System.out.println(areaModels);
+    }
 
 
+    @Test
+    public void jacksonUtil() throws IOException {
+        File file = new File("fastjsonTest.json");
+        String content = FileUtils.readFileToString(file, "UTF-8");
 
+        List<UnitModel> unitModels = JacksonUtils.toObj(content, new TypeReference<List<UnitModel>>() {
+        });
+        System.out.println(unitModels);
+//[UnitModel(unitId=null, unitName=MultiLanguageString(super=com.zhong.entity.MultiLanguageString@419573e5, languageStringMap={$ref=$[0].unitName.allLanguageString}, defaultLocale=in_ID), unitCode=111, status=null, platform=null, createTime=null, updateTime=null, creatorId=null, modifiedId=null, version=null, extendMap={sss=aaaa})]
+//[UnitModel(unitId=null, unitName=MultiLanguageString(super=com.zhong.entity.MultiLanguageString@419573e5, languageStringMap={$ref=$[0].unitName.allLanguageString}, defaultLocale=in_ID), unitCode=111, status=null, platform=null, createTime=null, updateTime=null, creatorId=null, modifiedId=null, version=null, extendMap={sss=aaaa})]
+//[UnitModel(unitId=null, unitName=MultiLanguageString(super=com.zhong.entity.MultiLanguageString@419573e5, languageStringMap={$ref=$[0].unitName.allLanguageString}, defaultLocale=in_ID), unitCode=null, status=null, platform=null, createTime=null, updateTime=null, creatorId=null, modifiedId=null, version=null, extendMap={sss=aaaa})]
+//[UnitModel(unitId=null, unitName=MultiLanguageString(super=com.zhong.entity.MultiLanguageString@419573e5, languageStringMap={$ref=$[0].unitName.allLanguageString}, defaultLocale=in_ID), unitCode=null, status=null, platform=null, createTime=null, updateTime=null, creatorId=null, modifiedId=null, version=null, extendMap={sss=aaaa})]
     }
 
 

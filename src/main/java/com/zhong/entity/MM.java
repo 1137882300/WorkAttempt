@@ -4,18 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
- * @author zhong.zihan@xyb2b.com
- * @date 2021/10/8 17:55
+ * @date 2022/5/10 18:33
  */
 @Data
-@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class People {
+@Builder
+public class MM {
 
-    volatile Integer sex;
+    MultiLanguageString name;
 
 }

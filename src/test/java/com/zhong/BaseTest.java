@@ -7,6 +7,7 @@ import cn.hutool.core.util.PageUtil;
 import cn.hutool.json.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.zhong.cache.CacheMap;
 import com.zhong.entity.*;
 import org.apache.commons.collections4.BidiMap;
@@ -31,11 +32,19 @@ public class BaseTest {
 
 
     @Test
-    public void test(){
+    public void split() {
+        String ss = "sss 1654/*-/ ";
+        String[] split = ss.split(",");
+        System.out.println(Arrays.asList(split));//sss，没有指定符号是返回本身
+
+    }
+
+    @Test
+    public void test() {
         int k = 10;
-        if (k/5 == 2 ){
+        if (k / 5 == 2) {
             System.out.println(111);
-        }else if (k/2 == 5){
+        } else if (k / 2 == 5) {
             System.out.println(222);
         } else {
             System.out.println(333);
@@ -462,6 +471,27 @@ public class BaseTest {
     public void listWenHao(List<?> list) {
         System.out.println(list);
         System.out.println("list ?");
+    }
+
+
+    @Test
+    public void setT() {
+        Set<Integer> set = new HashSet<>();
+
+        Set<Integer> set1 = Sets.newHashSet(1, 2, 3, 4);
+        set.addAll(set1);
+        Set<Integer> set2 = Sets.newHashSet(1, 5, 7);
+        set.addAll(set2);
+        Set<Integer> set3 = Sets.newHashSet(1, 2, 5);
+        set.addAll(set3);
+        Set<Integer> set4 = Sets.newHashSet(1, 3, 5);
+        set.addAll(set4);
+        Set<Integer> set5 = Sets.newHashSet(1, 6, 2);
+        set.addAll(set5);
+
+        System.out.println(set);
+
+
     }
 
 

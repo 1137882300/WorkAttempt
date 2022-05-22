@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -56,10 +57,22 @@ public class OptionalTest {
      * Optional.ofNullable
      */
     @Test
-    public void test2(){
+    public void test2() {
         Integer k = null;
         Integer integer = Optional.ofNullable(k).orElse(11);
         System.out.println(integer);
 
     }
+
+    @Test
+    public void emptyList() {
+
+        List<User> list = new ArrayList<>();
+
+//        Optional.of(list).ifPresent(s -> s.stream().map(User::getAge).collect(Collectors.toList()));
+        Optional.of(list).ifPresent(s -> s.stream().filter(q -> q.getId() == 1).collect(Collectors.toList()));
+
+    }
+
+
 }
