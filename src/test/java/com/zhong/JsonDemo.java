@@ -373,11 +373,12 @@ public class JsonDemo {
     @Test
     public void parse2() throws IOException {
         long time = System.currentTimeMillis();
-        File file = new File("fastjsonTest.json");
+        File file = new File("jacksonTest.json");
         String content = FileUtils.readFileToString(file, "UTF-8");
 
         List<UnitModel> unitModels = JSONArray.parseObject(content, new TypeReference<List<UnitModel>>() {
         });
+        System.out.println(unitModels);
         System.out.println(unitModels.get(0).getUnitName().getAllLanguageString());
         System.out.println("consume time: " + (System.currentTimeMillis() - time) + "::::" + unitModels.size());
     }

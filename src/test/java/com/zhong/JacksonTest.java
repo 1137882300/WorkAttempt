@@ -40,6 +40,10 @@ import java.util.zip.ZipInputStream;
  */
 public class JacksonTest {
 
+    /*
+        jackson 不能解析 fastjson （没指定DisableCircularReferenceDetect）的数据
+        fastjson 解析 jackson
+     */
 
     @Test
     public void jacksonWrite() throws IOException {

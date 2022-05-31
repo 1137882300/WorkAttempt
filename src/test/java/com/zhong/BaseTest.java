@@ -494,5 +494,31 @@ public class BaseTest {
 
     }
 
+    @Test
+    public void tte() {
+        boolean ff = false;
+        this.booleanTest(ff);
+    }
+
+    //boolean 小写的 为必传的
+    private void booleanTest(boolean fa) {
+        System.out.println(fa);
+    }
+
+    @Test
+    public void MapPut() {
+        HashMap<String, String> map = new HashMap<String, String>() {{
+            put("ItemBasePO.TABLE_NAME", "sss");
+            put("ItemBaseLanguagePO.TABLE_NAME", "((sql, tableName) -> getTargetTableName(tableName))");
+            put("ItemImagePO.TABLE_NAME", "((sql, tableName) -> getTargetTableName(tableName))");
+            put("ItemDescPO.TABLE_NAME", "((sql, tableName) -> getTargetTableName(tableName))");
+            put("ItemExtendPO.TABLE_NAME", "((sql, tableName) -> getTargetTableName(tableName))");
+            put("SkuLanguagePO.TABLE_NAME", "((sql, tableName) -> getTargetTableName(tableName))");
+        }};
+        System.out.println(map.size());
+        System.out.println(map);
+
+        System.out.println(map.get("ItemDescPO.TABLE_NAME"));
+    }
 
 }
