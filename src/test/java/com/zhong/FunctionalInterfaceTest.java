@@ -84,7 +84,7 @@ public class FunctionalInterfaceTest {
     */
     @Test
     public void functionTest() {
-        Function<String, String> function = s -> s;
+        Function<String, String> function = s -> s + "ss";
         String sss = function.apply("反参");
         System.out.println(sss);
     }
