@@ -2,8 +2,10 @@ package com.zhong;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.math.MathUtil;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.PageUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -13,16 +15,19 @@ import com.zhong.entity.*;
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
 
+import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -52,8 +57,8 @@ public class BaseTest {
     }
 
     @Test
-    public void test2(){
-        String ss = "我是谁呀",qq = "zzqw";
+    public void test2() {
+        String ss = "我是谁呀", qq = "zzqw";
 
         System.out.println(ss.length());
         System.out.println(qq.length());
@@ -66,7 +71,7 @@ public class BaseTest {
 
 
     @Test
-    public void test3(){
+    public void test3() {
         Dog dog = Dog.builder().id(1).state(StateEnum.OPEN).build();
         Dog dog1 = new Dog();
         /**
@@ -86,7 +91,7 @@ public class BaseTest {
     }
 
     @Test
-    public void test4(){
+    public void test4() {
         String name = "TEST NAME";
         String s = name.toLowerCase(Locale.ROOT);
         System.out.println(s);
@@ -99,20 +104,20 @@ public class BaseTest {
 
 
     @Test
-    public void test5(){
+    public void test5() {
         Map<String, String> skuExtendMap = Maps.newHashMap();
 
-                skuExtendMap.put("orderType", "12");
-                skuExtendMap.put("goodsCode", "123");
-                skuExtendMap.put("guarantee", "13213");
-                skuExtendMap.put("isTaxIncluded", "0");
+        skuExtendMap.put("orderType", "12");
+        skuExtendMap.put("goodsCode", "123");
+        skuExtendMap.put("guarantee", "13213");
+        skuExtendMap.put("isTaxIncluded", "0");
         System.out.println(skuExtendMap.toString());
 
     }
 
 
     @Test
-    public void ssss(){
+    public void ssss() {
         String s = "qw";
         System.out.println(s.length());
         String upperCase = s.toUpperCase(Locale.ROOT);
@@ -122,7 +127,7 @@ public class BaseTest {
     }
 
     @Test
-    public void clearMap(){
+    public void clearMap() {
         Map<String, Integer> map = new HashMap<>();
         map.clear();
         System.out.println(map);
@@ -134,10 +139,10 @@ public class BaseTest {
 
 
     /**
-     *    %03d : 0表示填充的地方，3表示位数，d表示整型
+     * %03d : 0表示填充的地方，3表示位数，d表示整型
      */
     @Test
-    public void stringFormat(){
+    public void stringFormat() {
         int i1 = 3;
         int i2 = 13;
         int i3 = 33;
@@ -146,19 +151,19 @@ public class BaseTest {
         String format2 = String.format("%03d", i2);
         String format3 = String.format("%03d", i3);
 
-        System.out.println(format1 +" , "+ format2+" , "+  format3);
+        System.out.println(format1 + " , " + format2 + " , " + format3);
 
     }
 
     @Test
-    public void fin(){
+    public void fin() {
         System.out.println(StandardCharsets.UTF_8);
         System.out.println(StandardCharsets.UTF_8.canEncode());
         System.out.println(StandardCharsets.UTF_8.name());
     }
 
     @Test
-    public void replace(){
+    public void replace() {
         String ss = "bbmall\\home\\sdf";
         String replace = ss.replace(File.separator, "/");
         System.out.println(replace);
@@ -168,7 +173,7 @@ public class BaseTest {
 
 
     @Test
-    public void equals(){
+    public void equals() {
         String s1 = "nnnnn";
         Object s2 = "nnnnn";
 
@@ -177,7 +182,7 @@ public class BaseTest {
     }
 
     @Test
-    public void bytes(){
+    public void bytes() {
         String ss = "abcsdqiladlkjadji{}。，/，‘；’~#@！#@￥#￥……%&……（&*——+——";
         byte[] bytes = ss.getBytes();
         System.out.println(bytes.toString());
@@ -191,7 +196,7 @@ public class BaseTest {
 
 
     @Test
-    public void test43(){
+    public void test43() {
         Boolean b = null;
         System.out.println(b);//null
 
@@ -201,7 +206,7 @@ public class BaseTest {
     }
 
     @Test
-    public void testEqus(){
+    public void testEqus() {
         boolean equals = Objects.equals("", null);
         System.out.println(equals);
 
@@ -214,11 +219,11 @@ public class BaseTest {
     }
 
     @Test
-    public void testMap_value(){
+    public void testMap_value() {
         Map<Object, Object> map = new HashMap<>();
-        map.put(1,null);
-        map.put(2,null);
-        map.put(3,null);
+        map.put(1, null);
+        map.put(2, null);
+        map.put(3, null);
         map.put(null, null);
         //{null=null, 1=null, 2=null, 3=null}
         System.out.println(map);
@@ -229,7 +234,7 @@ public class BaseTest {
     }
 
     @Test
-    public void trs(){
+    public void trs() {
         Long ll = 4L;
         this.trs_to(ll);
         System.out.println(ll);
@@ -237,16 +242,16 @@ public class BaseTest {
         ll++;
         System.out.println(ll);
     }
-    private void trs_to(Long ll){
-        System.out.println("trs_to " + ll );
+
+    private void trs_to(Long ll) {
+        System.out.println("trs_to " + ll);
         ll++;
-        System.out.println("trs_to " + ll );
+        System.out.println("trs_to " + ll);
     }
 
 
-
     @Test
-    public void oo(){
+    public void oo() {
         ArrayList<Object> objects = Lists.newArrayList();
         objects.add(null);
         Object o = objects.get(0);
@@ -258,9 +263,8 @@ public class BaseTest {
     }
 
 
-
     @Test
-    public void BidiMap(){
+    public void BidiMap() {
         HashMap<Long, String> map = new HashMap<>();
         map.put(1L, "nihao");
         map.put(2L, "nihao2");
@@ -276,20 +280,19 @@ public class BaseTest {
     }
 
     @Test
-    public void enums(){
+    public void enums() {
         StateEnum stateEnum = StateEnum.getByCode(200);
-        if (Objects.isNull(stateEnum)){
+        if (Objects.isNull(stateEnum)) {
             System.out.println("is null");
-        }else {
+        } else {
             System.out.println("non null");
         }
         System.out.println(stateEnum);
     }
 
 
-
     @Test
-    public void findAnyAndMap(){
+    public void findAnyAndMap() {
 
         List<Integer> ids = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
 
@@ -307,7 +310,7 @@ public class BaseTest {
 
 
     @Test
-    public void stringM(){
+    public void stringM() {
         String ss = "1231asd,asd";
         boolean contains = ss.contains("!");
         System.out.println(contains);
@@ -316,9 +319,8 @@ public class BaseTest {
     }
 
 
-
     @Test
-    public void overMap(){
+    public void overMap() {
         Map<Long, String> copy = new HashMap<>();
         copy.put(1L, "111");
         copy.put(2L, "222");
@@ -338,10 +340,10 @@ public class BaseTest {
 
 
     @Test
-    public void Stringbuffer(){
-       StringBuffer stringBuffer = new StringBuffer();
-       stringBuffer.append("1231321");
-       stringBuffer.setLength(0);
+    public void Stringbuffer() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("1231321");
+        stringBuffer.setLength(0);
         System.out.println(stringBuffer.toString());
 
         stringBuffer.append("asdasdasd");
@@ -356,15 +358,14 @@ public class BaseTest {
         List<Long> three = Lists.newArrayList();
         List<Long> four = Lists.newArrayList();
 
-        IOUtils.readLines(Objects.requireNonNull(BaseTest.class.getClassLoader().getResourceAsStream("Yearning_Data (21).csv")),"UTF-8").forEach(x->{
+        IOUtils.readLines(Objects.requireNonNull(BaseTest.class.getClassLoader().getResourceAsStream("Yearning_Data (21).csv")), "UTF-8").forEach(x -> {
 
         });
     }
 
 
-
     @Test
-    public void enum2List(){
+    public void enum2List() {
 
         Set<String> stateSet = StateEnum.getStateSet();
         System.out.println(stateSet);
@@ -373,7 +374,7 @@ public class BaseTest {
 
 
     @Test
-    public void div(){
+    public void div() {
         int aaa = 49;
         int bbb = 23;
 //        for (int i = 0; i < aaa / bbb+1; i++) {
@@ -392,7 +393,7 @@ public class BaseTest {
         int ceil = (int) Math.ceil(aaa / bbb);
         System.out.println(ceil);
 
-        int ccc = aaa%bbb == 0 ? (aaa/bbb) : (aaa/bbb)+1;
+        int ccc = aaa % bbb == 0 ? (aaa / bbb) : (aaa / bbb) + 1;
         System.out.println(ccc);
 
 
@@ -400,7 +401,7 @@ public class BaseTest {
 
 
     @Test
-    public void exc(){
+    public void exc() {
         try {
             int k = 10 / 0;
             System.out.println("会执行吗？");
@@ -520,5 +521,51 @@ public class BaseTest {
 
         System.out.println(map.get("ItemDescPO.TABLE_NAME"));
     }
+
+    @Test
+    public void ArrTest() {
+        String ss = ",123 , 12312 , , 123 , ";
+        String[] split = ss.split(",");
+        List<String> collect = Arrays.stream(split).filter(StringUtils::isNotBlank).collect(Collectors.toList());
+        System.out.println(collect);
+        System.out.println(Arrays.asList(split));
+//        0:[123, 12312, , 123]
+//       -1:[123, 12312, , 123, ]
+//        1:[123,12312,,123,]
+        List<String> strings = Lists.newArrayList(Arrays.asList(split));
+        System.out.println(strings);
+
+        String rr = "asd,1312 ,123e a, a,sd ,as,da,a ,d,,,as dad ,,";
+        System.out.println(rr);
+        Arrays.stream(rr.split(Character.toString(StrUtil.C_COMMA))).filter(StringUtils::isNotBlank).forEach(System.out::print);
+
+    }
+
+    @Test
+    public void str() {
+        String sss = " , ,11, 202, , 33 ,000 ,";
+        List<String> collect = Arrays.stream(sss.split(Character.toString(StrUtil.C_COMMA))).filter(StringUtils::isNotBlank).collect(Collectors.toList());
+        System.out.println(collect);
+        collect.forEach(x -> System.out.println(Long.valueOf(x.trim())));//转long类型 有空格会报错
+
+
+        System.out.println("ss:" + Character.toString(StrUtil.C_SPACE) + "aa");
+
+
+    }
+
+    @Test
+    public void getLong() {
+        Long sd = Long.getLong("lang");//null
+        System.out.println(sd);
+        String oop = "20 0";
+        for (char c : oop.toCharArray()) {
+            //if 是空格
+            if (StrUtil.C_SPACE == c) {
+                System.out.println("is" + c + "space");
+            }
+        }
+    }
+
 
 }
