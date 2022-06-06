@@ -379,10 +379,16 @@ public class JacksonTest {
     public void jacksonUtil() throws IOException {
         File file = new File("fastjsonTest.json");
         String content = FileUtils.readFileToString(file, "UTF-8");
+        content = null;
+        try {
+            List<UnitModel> unitModels = JacksonUtils.toObj(content, new TypeReference<List<UnitModel>>() {
+            });
+            System.out.println(unitModels);
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+        System.out.println("sssss");
 
-        List<UnitModel> unitModels = JacksonUtils.toObj(content, new TypeReference<List<UnitModel>>() {
-        });
-        System.out.println(unitModels);
 //[UnitModel(unitId=null, unitName=MultiLanguageString(super=com.zhong.entity.MultiLanguageString@419573e5, languageStringMap={$ref=$[0].unitName.allLanguageString}, defaultLocale=in_ID), unitCode=111, status=null, platform=null, createTime=null, updateTime=null, creatorId=null, modifiedId=null, version=null, extendMap={sss=aaaa})]
 //[UnitModel(unitId=null, unitName=MultiLanguageString(super=com.zhong.entity.MultiLanguageString@419573e5, languageStringMap={$ref=$[0].unitName.allLanguageString}, defaultLocale=in_ID), unitCode=111, status=null, platform=null, createTime=null, updateTime=null, creatorId=null, modifiedId=null, version=null, extendMap={sss=aaaa})]
 //[UnitModel(unitId=null, unitName=MultiLanguageString(super=com.zhong.entity.MultiLanguageString@419573e5, languageStringMap={$ref=$[0].unitName.allLanguageString}, defaultLocale=in_ID), unitCode=null, status=null, platform=null, createTime=null, updateTime=null, creatorId=null, modifiedId=null, version=null, extendMap={sss=aaaa})]
