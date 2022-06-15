@@ -35,6 +35,15 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
 
+    @Test
+    public void LongT() {
+        Long num = null;
+
+//        NullPointerException
+        System.out.println(num.intValue());
+
+    }
+
 
     @Test
     public void split() {
