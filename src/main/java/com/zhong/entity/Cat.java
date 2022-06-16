@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -25,5 +26,7 @@ public class Cat implements Serializable {
     private MultiLanguageString unitName;
 
     private int state;
+
+    List<Cat> catList;
 
 }

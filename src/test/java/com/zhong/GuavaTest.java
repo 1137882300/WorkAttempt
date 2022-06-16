@@ -110,7 +110,7 @@ public class GuavaTest {
      */
     @Test
     public void MoreObjects() {
-        Cat cat = new Cat(22, MultiLanguageString.of(Maps.newHashMap()), 11);
+        Cat cat = new Cat(22, MultiLanguageString.of(Maps.newHashMap()), 11, null);
         String str = MoreObjects.toStringHelper("catxxxx").add("state", cat.getState()).toString();
         System.out.println(str);
 //输出Person{age=11}
