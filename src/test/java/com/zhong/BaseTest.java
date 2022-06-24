@@ -576,5 +576,18 @@ public class BaseTest {
         }
     }
 
+    /**
+     * 空.trim() :NullPointerException
+     */
+    @Test
+    public void trimE() {
+        String ss = "";
+        String trim = ss.trim();
+        System.out.println(trim);
+
+        String dd = null;
+        String trim1 = dd.trim();
+        System.out.println(trim1);
+    }
 
 }
