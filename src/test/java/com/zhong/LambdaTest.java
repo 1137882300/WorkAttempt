@@ -192,8 +192,25 @@ public class LambdaTest {
         groupMap.forEach((k, v) -> {
             System.out.println(k + "---" + v);
         });
+    }
 
+    /**
+     * 测试 .stream().distinct() 是否报空指针
+     * - 空集合就不报错
+     * - 是null的就报错
+     */
+    @Test
+    public void nullTest() {
+        Cat cat2 = Cat.builder().id(22).state(22).build();
+        Cat cat = Cat.builder().state(22).catList(Lists.newArrayList(cat2)).build();
 
+        cat.getCatList().removeIf(x -> x.getId() == 22);
+
+        List<Cat> collect = cat.getCatList()
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(collect);
     }
 
 
