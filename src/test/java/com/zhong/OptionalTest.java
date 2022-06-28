@@ -37,6 +37,21 @@ public class OptionalTest {
         u8 = People.builder().sex(22).build();
     }
 
+    /**
+     * 区别
+     * .flatMap：返回的不是Optional，需要自己包装成Optional
+     * .map：返回的就是Optional
+     */
+    @Test
+    public void flatMap_pk_map() {
+//        Optional.ofNullable(u8).flatMap(People::getSex);//报错
+        Optional<Integer> flatMap = Optional.ofNullable(u8).flatMap(x -> Optional.ofNullable(x.getSex()));
+        System.out.println(flatMap);
+        Optional<Integer> map = Optional.ofNullable(u8).map(People::getSex);
+        System.out.println(map);
+    }
+
+
     @Test
     public void test() {
         List<User> list = Lists.newArrayList(u1, u2);
@@ -88,24 +103,24 @@ public class OptionalTest {
                 "  file:\n" +
                 "    aliyun:\n" +
                 "      oss:\n" +
-                "        access-key-id: xxxx\n" +
-                "        access-key-secret: xxx\n" +
+                "        access-key-id: 11111111111111\n" +
+                "        access-key-secret: 2222222222222\n" +
                 "        expired-minutes: 30\n" +
-                "        bucket-name: xxx\n" +
-                "        endpoint: xxxx\n" +
+                "        bucket-name: 5555555555\n" +
+                "        endpoint: 333333333333333\n" +
                 "        internet-file-url: xxxx/\n" +
-                "        uploadPath: bbmall/\n" +
+                "        uploadPath: 44444444444444444\n" +
                 "        maxSize: 10000000\n"
                 + "    suffix: JPG,PNG,PDF,XLS,XLSX,JPEG,DOC,DOCX,ZIP,PPT,PPTX,JSON";
 
         Yaml yaml = new Yaml();
         Map map = yaml.loadAs(ss, Map.class);
-        System.out.println(map);
-        Optional.ofNullable((Map) map.get("tero"))
-                .flatMap(x -> Optional.ofNullable((Map) x.get("file"))
-                        .filter(t -> BooleanUtils.toBoolean(String.valueOf(t.remove("suffix"))))
-                        .flatMap(o -> Optional.ofNullable((Map) o.get("aliyun"))
-                                .flatMap(p -> Optional.ofNullable((Map) p.get("oss")))))
+
+        Optional.ofNullable(map)
+                .map(tero -> (Map) map.get("tero"))
+                .map(file -> (Map) file.get("file"))
+                .map(aliyun -> (Map) aliyun.get("aliyun"))
+                .map(oss -> (Map) oss.get("oss"))
                 .ifPresent(r -> {
                     System.out.println(
                             "1: " + r.get("endpoint") + "\n" +
@@ -114,6 +129,22 @@ public class OptionalTest {
                                     "4: " + r.get("bucket-name") + "\n" +
                                     "5: " + r.get("uploadPath"));
                 });
+
+
+//        System.out.println(map);
+//        Optional.ofNullable((Map) map.get("tero"))
+//                .flatMap(x -> Optional.ofNullable((Map) x.get("file"))
+//                        .filter(t -> BooleanUtils.toBoolean(String.valueOf(t.remove("suffix"))))
+//                        .flatMap(o -> Optional.ofNullable((Map) o.get("aliyun"))
+//                                .flatMap(p -> Optional.ofNullable((Map) p.get("oss")))))
+//                .ifPresent(r -> {
+//                    System.out.println(
+//                            "1: " + r.get("endpoint") + "\n" +
+//                                    "2: " + r.get("access-key-id") + "\n" +
+//                                    "3: " + r.get("access-key-secret") + "\n" +
+//                                    "4: " + r.get("bucket-name") + "\n" +
+//                                    "5: " + r.get("uploadPath"));
+//                });
 
 
     }
