@@ -70,7 +70,7 @@ public class BeanExample {
      */
 
     // 组序列
-    @GroupSequence({VerifyName.class, VerifyDesc.class})
+    @GroupSequence({VerifyDesc.class, VerifyName.class})
     public interface Group {
     }
 
@@ -95,7 +95,7 @@ public class BeanExample {
         beanExample.setEmail("sxxx");
         beanExample.setMobile("ssxxx");
         beanExample.setSize(500);
-        Set<ConstraintViolation<BeanExample>> result = Validation.buildDefaultValidatorFactory().getValidator().validate(beanExample, VerifyName.class);
+        Set<ConstraintViolation<BeanExample>> result = Validation.buildDefaultValidatorFactory().getValidator().validate(beanExample, Group.class);
         result.forEach(System.out::println);
     }
 
