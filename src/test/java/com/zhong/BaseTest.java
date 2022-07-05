@@ -7,11 +7,13 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.PageUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSON;
+import com.alibaba.nacos.common.utils.ByteUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.zhong.cache.CacheMap;
 import com.zhong.entity.*;
+import lombok.var;
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.apache.commons.io.IOUtils;
@@ -588,6 +590,21 @@ public class BaseTest {
         String dd = null;
         String trim1 = dd.trim();
         System.out.println(trim1);
+    }
+
+    /**
+     * 测试 byte[0] 是否为空：为空
+     */
+    @Test
+    public void byteTest() {
+        int n = 0;
+        byte[] bytes = new byte[n];
+        if (ByteUtils.isEmpty(bytes)) {
+            System.out.println("byte[" + n + "] 是空的");
+        } else {
+            System.out.println("byte[" + n + "] 不是空的,bytes=" + Arrays.toString(bytes));
+        }
+
     }
 
 }
