@@ -1,5 +1,6 @@
 package com.zhong;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.zhong.entity.Cat;
 import com.zhong.entity.User;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -213,6 +215,23 @@ public class LambdaTest {
         System.out.println(collect);
     }
 
+    /**
+     * 测试 parallelStream 并发,线程不安全
+     */
+    @Test
+    public void parallelStream() {
+        List<Integer> list = Lists.newArrayList();
+        for (int i = 0; i < 100; i++) {
+            list.add(i);
+        }
+        System.out.println("list= " + list.size());//list= 100
+
+        List<Integer> result = Lists.newArrayList();
+        list.parallelStream().forEach(result::add);//result= 96,偶尔存在null
+
+        System.out.println("result= " + result.size());
+        System.out.println(JSON.toJSONString(result));
+    }
 
 }
 
