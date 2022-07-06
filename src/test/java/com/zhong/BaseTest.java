@@ -1,6 +1,7 @@
 package com.zhong;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.math.MathUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NumberUtil;
@@ -77,6 +78,28 @@ public class BaseTest {
         System.out.println(qq.getBytes().length);
         System.out.println(ss.getBytes(StandardCharsets.UTF_8).length);
         System.out.println(qq.getBytes(StandardCharsets.UTF_8).length);
+
+    }
+
+    /**
+     * hutool
+     * 测试枚举的 BeanUtil.copyProperties();
+     * 枚举最好单独拿出来赋值，不要copy容易出错
+     */
+    @Test
+    public void copy() {
+        // 枚举 -> int
+        Dog dog = Dog.builder().id(1).state(StateEnum.OPEN).build();
+        Cat cat = new Cat();
+        BeanUtil.copyProperties(dog, cat, CopyOptions.create().ignoreError());
+        System.out.println(cat);//不行，是错误的
+        //int -> 枚举
+        Cat cat2 = Cat.builder().id(22).state(200).build();
+//        Cat cat2 = Cat.builder().id(22).state(50).build();//会出错
+        Dog dog2 = new Dog();
+        BeanUtil.copyProperties(cat2, dog2, CopyOptions.create().ignoreError());
+        System.out.println(dog2);
+        System.out.println(dog2.getState().getCode() + "--" + dog2.getState().getMessage());
 
     }
 
