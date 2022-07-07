@@ -37,6 +37,14 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+    /**
+     * null的不能用方法
+     */
+    @Test
+    public void emptyForeach() {
+        List<Long> list = null;
+        list.forEach(System.out::println);
+    }
 
     @Test
     public void LongT() {
