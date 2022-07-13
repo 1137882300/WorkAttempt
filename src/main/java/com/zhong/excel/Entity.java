@@ -1,5 +1,6 @@
 package com.zhong.excel;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
 import lombok.Data;
@@ -38,4 +39,7 @@ public class Entity extends BaseRowModel {
 
     @ExcelProperty(value = "第9列", index = 8)
     private String column9;
+
+    @ExcelIgnore
+    private Long Id;
 }

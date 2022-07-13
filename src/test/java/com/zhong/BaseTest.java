@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
 
+import javax.annotation.Resource;
 import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,6 +38,29 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+
+    /**
+     * final，第一次增加，第二次是原始值还是变化的值
+     * final 不能加减
+     */
+    public static final Long finalNum = 10L;
+
+    @Test
+    public void finalTest() {
+        for (int i = 0; i < 5; i++) {
+//            finalNum++;
+        }
+        System.out.println(finalNum);
+
+    }
+
+    @Test
+    public void LocaleTest() {
+        String string = Locale.SIMPLIFIED_CHINESE.toString();
+        System.out.println(string);
+    }
+
+
     /**
      * null的不能用方法
      */
