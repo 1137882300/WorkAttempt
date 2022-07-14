@@ -45,6 +45,29 @@ public class BaseTest {
      */
     public static final Long finalNum = 10L;
 
+    /**
+     * 占位符
+     * String.format
+     * 来填充字符串
+     */
+    @Test
+    public void format() {
+        String format = String.format("http/%s/copy", "你好");//http/你好/copy
+        System.out.println(format);
+
+        //应用本地化
+        String s = String.format(Locale.SIMPLIFIED_CHINESE, "you are very good %s and %S", "boy", "girl");
+        System.out.println(s);
+
+        //单字符
+        String format1 = String.format("ni hao ya %C", 'b');
+        System.out.println(format1);
+        //boolean 类型
+        String format2 = String.format("%b or %B", "false", "false");
+        System.out.println(format2);
+    }
+
+
     @Test
     public void finalTest() {
         for (int i = 0; i < 5; i++) {
