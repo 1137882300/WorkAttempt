@@ -46,6 +46,33 @@ public class BaseTest {
     public static final Long finalNum = 10L;
 
     /**
+     * String的方法测试
+     */
+    @Test
+    public void StringTest() {
+        //取出最后匹配的字符串后面的所有
+        String s = StringUtils.substringAfterLast("hi.shop.name.good.hello.shop.name.end", "shop.name.");//end
+        System.out.println(s);
+
+        String after = StringUtils.substringAfter("hi.shop.name.good.hello.shop.name.end", "shop.name.");//good.hello.shop.name.end
+        System.out.println(after);
+
+        String substringBefore = StringUtils.substringBefore("start.hi.shop.name.good.hello.shop.name.end", "shop.name.");//start.hi.
+        System.out.println(substringBefore);
+
+        //取最后匹配到的前面的字符串
+        String beforeLast = StringUtils.substringBeforeLast("start.hi.shop.name.good.hello.shop.name.end", "shop.name.");//start.hi.shop.name.good.hello.
+        System.out.println(beforeLast);
+
+        String substringBetween = StringUtils.substringBetween("start.hi.shop.name.good.hello.shop.name.end", "shop.name.");//good.hello.
+        System.out.println(substringBetween);
+
+        String[] strings = StringUtils.substringsBetween("start.hi.shop.name.hi.good.hello.shop.name.wo.hi.end", "name", "hi");
+        System.out.println(Arrays.asList(strings));
+
+    }
+
+    /**
      * 占位符
      * String.format
      * 来填充字符串
