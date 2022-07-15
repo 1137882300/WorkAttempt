@@ -15,6 +15,19 @@
 
     <dependencies>
 
+        <!--gaodeha-->
+        <dependency>
+            <groupId>com.github.gaodeha.common</groupId>
+            <artifactId>common-tools</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <!--chinese-->
+        <dependency>
+            <groupId>gq.jingwei</groupId>
+            <artifactId>chinese-word-checker</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
         <!--校验-->
         <dependency>
             <groupId>javax.validation</groupId>
