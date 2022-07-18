@@ -26,6 +26,19 @@ public class LambdaTest {
     private User u1, u2, u3, u4, u5, u6, u7;
     private List<User> list = Lists.newArrayList();
 
+    /**
+     * 集合包含另一个集合
+     */
+    @Test
+    public void contain() {
+        List<Long> aa = Lists.newArrayList(1L, 2L, 3L, 4L, 5L);
+        List<Long> bb = Lists.newArrayList(1L, 2L, 4L, 5L, 6L);
+
+        System.out.println(aa.containsAll(bb));//true
+        System.out.println(bb.containsAll(aa));//false
+    }
+
+
     /*
         flatMap
         1. 嵌套list 合成一个list
