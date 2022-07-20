@@ -25,11 +25,17 @@ public class PropertyUpdateSql {
 
     public static Long update_time = 1657677211000L;
 
+    /**
+     * SELECT property_id FROM t_property where is_deleted = 0;
+     * <p>
+     * SELECT property_id, property_name FROM t_property_language
+     * WHERE is_deleted = 0 and preferred_language ='en_US';
+     */
     @SneakyThrows
     public static void main(String[] args) {
 
-        String propertyPath = "C:\\Users\\EDZ\\Documents\\初始化\\商货品模型优化\\属性表-dev.xlsx";
-        String languagePath = "C:\\Users\\EDZ\\Documents\\初始化\\商货品模型优化\\属性语言表-dev.xlsx";
+        String propertyPath = "C:\\Users\\EDZ\\Documents\\初始化\\商货品模型优化\\属性表-test.xlsx";
+        String languagePath = "C:\\Users\\EDZ\\Documents\\初始化\\商货品模型优化\\属性语言表-test.xlsx";
 
         List<String> propertyList = readProperty(propertyPath);
         Map<String, String> languageMap = readLanguage(languagePath);

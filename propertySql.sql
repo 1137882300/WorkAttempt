@@ -1,390 +1,515 @@
 update t_property
 set version       = version + 1,
     update_time   = 1657677211000,
-    property_code = '1'
-where property_id = 172801;
+    property_code = 'hah2aqq'
+where property_id = 20201;
 update t_property
 set version       = version + 1,
     update_time   = 1657677211000,
-    property_code = '净含量'
-where property_id = 172802;
+    property_code = 'h2qq'
+where property_id = 21701;
 update t_property
 set version       = version + 1,
     update_time   = 1657677211000,
-    property_code = '适合肤质'
-where property_id = 172803;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'zuofa'
-where property_id = 172804;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'product_specifications'
-where property_id = 173201;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'colour'
-where property_id = 182601;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'specification'
-where property_id = 182602;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'size'
-where property_id = 182603;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'scent'
-where property_id = 182604;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'use'
-where property_id = 182605;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'set'
-where property_id = 182606;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'spf'
-where property_id = 182607;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'skin_type'
-where property_id = 182608;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'flavour'
-where property_id = 182609;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'color'
-where property_id = 182610;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'wattage'
-where property_id = 182611;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'storage'
-where property_id = 182612;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'model'
-where property_id = 182613;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'edition'
-where property_id = 182614;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'a'
-where property_id = 225701;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'ceshi4'
-where property_id = 242901;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = '英文'
-where property_id = 242902;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = '变动了'
-where property_id = 292701;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = '测试属性新增'
-where property_id = 301101;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'colour'
-where property_id = 2000000001;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'sizsizse'
-where property_id = 2000000002;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'specification'
-where property_id = 2000000003;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'color'
-where property_id = 2000000004;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'flavour'
-where property_id = 2000000005;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'scent'
-where property_id = 2000000006;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'wattage'
-where property_id = 2000000007;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'model'
-where property_id = 2000000008;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'weight'
-where property_id = 2000000009;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'version'
-where property_id = 2000000010;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'style'
-where property_id = 2000000011;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'type'
-where property_id = 2000000012;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'combo'
-where property_id = 2000000013;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'material'
-where property_id = 2000000014;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'warranty_service'
-where property_id = 2000000015;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'storage'
-where property_id = 2000000016;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'series'
-where property_id = 2000000017;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'curtain_width_(cm)'
-where property_id = 2000000018;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'skin_type'
-where property_id = 2000000019;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'spf'
-where property_id = 2000000020;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'use'
-where property_id = 2000000021;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'hard_disk_size'
-where property_id = 2000000022;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'battery_capacity'
-where property_id = 2000000023;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'brand_type'
-where property_id = 2000000024;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'packing_specification'
-where property_id = 2000000025;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'packing_weight'
-where property_id = 2000000026;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'packing_size'
-where property_id = 2000000027;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'pattern'
-where property_id = 2000000028;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'function'
-where property_id = 2000000029;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'input_voltage'
-where property_id = 2000000030;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'thickness'
-where property_id = 2000000031;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'scope_of_application'
-where property_id = 2000000032;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'overall_length_specification'
-where property_id = 2000000033;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'applicable_crowd'
-where property_id = 2000000034;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'applicable_scene'
-where property_id = 2000000035;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'storage_scene'
-where property_id = 2000000036;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'application_range'
-where property_id = 2000000037;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'package'
-where property_id = 2000000038;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'effects'
-where property_id = 2000000039;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'product_category'
-where property_id = 2000000040;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'applicable_range'
-where property_id = 2000000041;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'maximum_load-bearing'
-where property_id = 2000000042;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'purpose'
-where property_id = 2000000043;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'product_features'
-where property_id = 2000000044;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'battery_voltage'
-where property_id = 2000000045;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'multi_function'
-where property_id = 2000000046;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'power'
-where property_id = 2000000047;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'voltage'
-where property_id = 2000000048;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'fragrance'
-where property_id = 2000000049;
+    property_code = '颜色-宋'
+where property_id = 36404;
 update t_property
 set version       = version + 1,
     update_time   = 1657677211000,
     property_code = 'shelf_life'
-where property_id = 2000000050;
+where property_id = 43801;
 update t_property
 set version       = version + 1,
     update_time   = 1657677211000,
-    property_code = 'power_supply_mode'
-where property_id = 2000000051;
+    property_code = '个数1'
+where property_id = 45701;
 update t_property
 set version       = version + 1,
     update_time   = 1657677211000,
-    property_code = 'formula'
-where property_id = 2000000052;
-update t_property
-set version       = version + 1,
-    update_time   = 1657677211000,
-    property_code = 'service_life'
-where property_id = 2000000053;
+    property_code = 'specification'
+where property_id = 48201;
 update t_property
 set version       = version + 1,
     update_time   = 1657677211000,
     property_code = '样式'
-where property_id = 2000004051;
+where property_id = 48501;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'model'
+where property_id = 49301;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '444'
+where property_id = 49501;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'test属性（英文）'
+where property_id = 56708;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '测试英文'
+where property_id = 64001;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '没有英文'
+where property_id = 68201;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'hhh'
+where property_id = 68501;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '字符过长显示'
+where property_id = 71001;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '宋长字符'
+where property_id = 71002;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '测试变体值'
+where property_id = 73601;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '英文'
+where property_id = 73602;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'color'
+where property_id = 74501;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'color;_specification'
+where property_id = 74502;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'material;color'
+where property_id = 74503;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'material'
+where property_id = 74507;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'style'
+where property_id = 74508;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'size'
+where property_id = 74509;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'type'
+where property_id = 74510;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'colour'
+where property_id = 77402;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'colour'
+where property_id = 77801;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'specification'
+where property_id = 77802;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'size'
+where property_id = 77803;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'scent'
+where property_id = 77804;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'use'
+where property_id = 77805;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'set'
+where property_id = 77806;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'spf'
+where property_id = 77807;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'skin_type'
+where property_id = 77808;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'flavour'
+where property_id = 77809;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'color'
+where property_id = 77810;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'wattage'
+where property_id = 77811;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'storage'
+where property_id = 77812;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'model'
+where property_id = 77813;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'edition'
+where property_id = 77814;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'flavour'
+where property_id = 79815;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'scent'
+where property_id = 79816;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'wattage'
+where property_id = 79817;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'weight'
+where property_id = 79818;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'version'
+where property_id = 79819;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'combo'
+where property_id = 79825;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'storage'
+where property_id = 79830;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'curtain_width_(cm)'
+where property_id = 79831;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'skin_type'
+where property_id = 79832;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'spf'
+where property_id = 79833;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'use'
+where property_id = 79834;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'hard_disk_size'
+where property_id = 79835;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'battery_capacity'
+where property_id = 79836;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'capacity'
+where property_id = 82201;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '无'
+where property_id = 84001;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '新一英文'
+where property_id = 103401;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'ceshi'
+where property_id = 128801;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '测试1'
+where property_id = 129101;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '存储条件'
+where property_id = 130801;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '测试属性'
+where property_id = 131901;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '测试一个'
+where property_id = 133501;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '集成测试工程测试属性1658295618886'
+where property_id = 133704;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'jichengceshigongcheng1658295722138'
+where property_id = 133705;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'jichengceshigongcheng1658295821073'
+where property_id = 133706;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'jichengceshigongcheng1658296645750'
+where property_id = 133707;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'jichengceshigongcheng1658298569629'
+where property_id = 133801;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'jichengceshigongcheng1658298572004'
+where property_id = 133803;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'jichengceshigongcheng1658298645680'
+where property_id = 133804;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'jichengceshigongcheng1658298647884'
+where property_id = 133806;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '测试'
+where property_id = 133807;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '功能'
+where property_id = 231702;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '材质'
+where property_id = 231703;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '商品属性'
+where property_id = 231704;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '境内货源地'
+where property_id = 231801;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '原理'
+where property_id = 231802;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'size-力宝'
+where property_id = 100000302;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'color-力宝'
+where property_id = 100000303;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'weight-力宝'
+where property_id = 100000602;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'material-力宝'
+where property_id = 100006303;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'colour-力宝'
+where property_id = 100120006;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'specification-力宝'
+where property_id = 100120007;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'size-力宝'
+where property_id = 100120011;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'color-力宝'
+where property_id = 100120012;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'flavour-力宝'
+where property_id = 100120013;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'scent-力宝'
+where property_id = 100120014;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'wattage-力宝'
+where property_id = 100120015;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'model-力宝'
+where property_id = 100120016;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'weight-力宝'
+where property_id = 100120017;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'version-力宝'
+where property_id = 100120018;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'style-力宝'
+where property_id = 100120019;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'type-力宝'
+where property_id = 100120020;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'combo-力宝'
+where property_id = 100120021;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'material-力宝'
+where property_id = 100120022;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'warranty_service-力宝'
+where property_id = 100120023;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'storage-力宝'
+where property_id = 100120024;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'series-力宝'
+where property_id = 100120025;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'skin_type-力宝'
+where property_id = 100120026;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'spf-力宝'
+where property_id = 100120027;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'use-力宝'
+where property_id = 100120028;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'style-力宝'
+where property_id = 200002303;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'battery_capacity-力宝'
+where property_id = 200002401;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'tyle-力宝'
+where property_id = 200002402;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = 'trtds-力宝'
+where property_id = 1100011501;
+update t_property
+set version       = version + 1,
+    update_time   = 1657677211000,
+    property_code = '规格-迁移'
+where property_id = 2000000003;
