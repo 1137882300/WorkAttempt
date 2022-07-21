@@ -8,15 +8,32 @@ import com.zhong.entity.People;
 import com.zhong.entity.StateEnum;
 import com.zhong.entity.User;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.xmlbeans.impl.xb.substwsdl.TImport;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    /**
+     * 初始化list的写法
+     */
+    @Test
+    public void ListTT() {
+        List<Integer> integers = new ArrayList<Integer>() {{
+            add(1);
+            add(2);
+            add(3);
+        }};
+
+        System.out.println(integers);
+
+    }
 
     @Test
     public void single() {
