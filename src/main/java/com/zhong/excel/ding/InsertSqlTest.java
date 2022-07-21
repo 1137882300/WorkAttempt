@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
+ * 属性值的初始化<br>
+ *
  * @date 2022/7/12 20:03
  */
 public class InsertSqlTest {

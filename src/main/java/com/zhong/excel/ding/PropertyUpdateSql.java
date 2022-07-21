@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * 属性类型的初始化<br>
+ *
  * @date 2022/7/15 9:42
  */
 public class PropertyUpdateSql {
