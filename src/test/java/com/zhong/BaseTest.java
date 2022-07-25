@@ -19,6 +19,7 @@ import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
@@ -38,6 +39,22 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+
+
+    @Test
+    public void localeTest() {
+        Locale locale = LocaleUtils.toLocale("id");
+//        in
+        System.out.println(locale);
+
+        String language = Locale.CHINA.getLanguage();
+//        zh
+        System.out.println(language);
+
+//        zh
+        System.out.println(LocaleUtils.toLocale(Locale.CHINA.getLanguage()));
+    }
+
 
     /**
      * final，第一次增加，第二次是原始值还是变化的值
