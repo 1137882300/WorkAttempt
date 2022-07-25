@@ -54,10 +54,35 @@ public class BaseTest {
 //        zh
         System.out.println(LocaleUtils.toLocale(Locale.CHINA.getLanguage()));
 
+        Locale locale1 = new Locale("in_ID");
+        System.out.println(locale1);
+        String language1 = locale1.getLanguage();
+        System.out.println(language1);
+        String country = locale1.getCountry();
+        System.out.println(country);
+
+        Locale locale2 = LocaleUtils.toLocale("in_ID");
+        System.out.println(locale2.getLanguage());
+        String country1 = locale2.getCountry();
+        System.out.println(country1);
+
+
         Locale forLanguageTag = Locale.forLanguageTag("id");//语言环境
         System.out.println(forLanguageTag);//in
     }
 
+    @Test
+    public void localeTest2() {
+        Locale locale = LocaleUtils.toLocale("hy");
+        String string = locale.getLanguage();
+        System.out.println(string);
+
+        List<Locale> en = LocaleUtils.countriesByLanguage("hy");
+        System.out.println(en);
+
+        List<Locale> hy = LocaleUtils.languagesByCountry("hy");
+        System.out.println(hy);
+    }
 
     /**
      * final，第一次增加，第二次是原始值还是变化的值
