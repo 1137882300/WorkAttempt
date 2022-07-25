@@ -53,6 +53,9 @@ public class BaseTest {
 
 //        zh
         System.out.println(LocaleUtils.toLocale(Locale.CHINA.getLanguage()));
+
+        Locale forLanguageTag = Locale.forLanguageTag("id");//语言环境
+        System.out.println(forLanguageTag);//in
     }
 
 
