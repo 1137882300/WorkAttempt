@@ -8,6 +8,7 @@ import com.zhong.entity.People;
 import com.zhong.entity.StateEnum;
 import com.zhong.entity.User;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.map.CaseInsensitiveMap;
 import org.apache.xmlbeans.impl.xb.substwsdl.TImport;
 import org.junit.Test;
 
@@ -19,6 +20,44 @@ import java.util.stream.Collectors;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+    /**
+     * collections4 的 CaseInsensitiveMap 不区分大小写
+     */
+    @Test
+    public void CaseInsensitiveMap() {
+        Map<String, String> hashMap = new HashMap<String, String>() {{
+            put("asdsd", "1");
+            put("sd sd", "2");
+            put("sd Asd", "3");
+        }};
+
+        CaseInsensitiveMap<String, String> caseInsensitiveMap = new CaseInsensitiveMap<String, String>(hashMap);
+
+
+        String s1 = "ASDSD";
+        String s2 = "SD ASD";
+        String s = caseInsensitiveMap.get(s2);
+        System.out.println(s);
+
+    }
+
+    /**
+     * 测试map的 containsKey 是否忽略大小写 ? 没有忽略！
+     */
+    @Test
+    public void MapTest() {
+        Map<String, String> hashMap = new HashMap<String, String>() {{
+            put("asdsd", "1");
+            put("sd asd", "2");
+            put("sd Asd", "3");
+        }};
+
+        String s1 = "ASDSD";
+        String s2 = "asdsd";
+        String s = hashMap.get(s1);
+        System.out.println(s);
+
+    }
 
     /**
      * 初始化list的写法

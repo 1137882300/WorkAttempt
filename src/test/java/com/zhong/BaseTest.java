@@ -472,7 +472,7 @@ public class BaseTest {
 
     @Test
     public void stringM() {
-        String ss = "1231asd,asd";
+        String ss = "1231asd,Thailand_britain_Address";
         boolean contains = ss.contains("!");
         System.out.println(contains);
 
@@ -696,7 +696,7 @@ public class BaseTest {
         List<String> strings = Lists.newArrayList(Arrays.asList(split));
         System.out.println(strings);
 
-        String rr = "asd,1312 ,123e a, a,sd ,as,da,a ,d,,,as dad ,,";
+        String rr = "Thailand_britain_Address,1312 ,123e a, a,sd ,as,da,a ,d,,,as dad ,,";
         System.out.println(rr);
         Arrays.stream(rr.split(Character.toString(StrUtil.C_COMMA))).filter(StringUtils::isNotBlank).forEach(System.out::print);
 

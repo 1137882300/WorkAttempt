@@ -1,11 +1,13 @@
 package com.zhong.Utils;
 
-import com.zhong.excel.Entity;
-import com.zhong.excel.ExcelUtil;
+import com.google.common.collect.Lists;
+import com.zhong.ding.excel.Entity;
+import com.zhong.ding.excel.ExcelUtil;
+import lombok.SneakyThrows;
 
 import java.io.*;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 
 /**
  * @date 2022/6/29 15:15
@@ -38,4 +40,21 @@ public class FileUtils {
         }
     }
 
+    @SneakyThrows
+    public static List<Entity> readLineCSV(String path) {
+        BufferedReader reader = new BufferedReader(new FileReader(path));
+        reader.readLine();//先读取第一行(过滤第一行)
+        String line;
+        List<Entity> list = Lists.newLinkedList();
+        while ((line = reader.readLine()) != null) {
+            String[] split = line.split(",");
+            Entity entity = new Entity();
+            entity.setColumn1(split[0]);
+            entity.setColumn2(split[1]);
+            entity.setColumn3(split[2]);
+            entity.setColumn4(split[3]);
+            list.add(entity);
+        }
+        return list;
+    }
 }
