@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 /**
  * @date 2022/7/26 14:18
  */
-public class Thailand_britain_Address {
+public class Thailand_Address {
 
     /**
      * -- 查询泰国下的地区数据
