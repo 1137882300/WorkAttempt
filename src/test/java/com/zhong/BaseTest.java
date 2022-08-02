@@ -40,6 +40,20 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
 
+    /**
+     * 某个字符在字符串里的个数
+     */
+    @Test
+    public void judge() {
+        String ss = "[EX14 0AG, Yes, 50.799352, -3.187295, 316424, 100649, ST164006, \"Devon\", \"East Devon\", \"Honiton St Paul's\", E07000040, E05011798, England, E10000008, \"Tiverton and Honiton\", 2016-08-01, , \"Honiton\", \"\", , , \"Honiton\", \"\", \"East Devon 002B\", \"Urban city and town\", South West, 99, , E01019932, Devon, E02004130, \"Honiton North & East\", E04002967, E00100896, E14000996, 11603, 1, 1, 2022-05-26, \"Honiton\", 0.310163, EX, EX14, \"Devon & Cornwall\", \"South West Water\", 9C2RQRX7+P3, 35000, \"\", \"Exeter\", \"Devon\", \"Devon CC\", \"10092788332\", 12.8701]";
+        String s2 = "[EX14 1AA, Yes, 50.798191, -3.190036, 316229, 100523, ST162005, \"Devon\", \"East Devon\", \"Honiton St Michael's\", E07000040, E05011797, England, E10000008, \"Tiverton and Honiton\", 1999-12-01, , \"Honiton\", \"\", 30, 27, \"Honiton\", \"\", \"East Devon 002A\", \"Urban city and town\", South West, 109, , E01019927, Devon, E02004130, \"Honiton North & East\", E04002967, E00100864, E14000996, 11056, 1, 0, 2022-05-26, \"Honiton\", 0.293523, EX, EX14, \"Devon & Cornwall\", \"South West Water\", 9C2RQRX5+7X, 35000, \"\", \"Exeter\", \"Devon\", \"Devon CC\", \"10000264310, 10025072959, 10090911023, 100040181221, 100040181222, 100040181223, 100040181224, 100040181225, 100040181226, 100040181227, 100040181228, 100040181229, 100040181230, 100040181231, 100040181232, 100040181233, 100040181234, 100040181235, 100040181236, 100040181237, 100040181238, 100040181239, 100040181240, 100040181241, 100040181242, 100040181243, 100040181244, 100040181245, 100040181246, 100040181247, 100040181248, 100040181249, 100040181250, 100040181251, 100040181252, 100041223272\", 12.7701]";
+        String s3 = "[EX14 1AL, Yes, 50.796704, -3.198314, 315643, 100367, ST156003, \"Devon\", \"East Devon\", \"Honiton St Michael's\", E07000040, E05011797, England, E10000008, \"Tiverton and Honiton\", 1999-12-01, , \"Honiton\", \"\", 62, 22, \"Honiton\", \"\", \"East Devon 003A\", \"Urban city and town\", South West, 107, , E01019928, Devon, E02004131, \"Honiton South & West\", E04002967, E00100861, E14000996, 19116, 1, 0, 2022-05-26, \"Honiton\", 0.814538, EX, EX14, \"Devon & Cornwall\", \"South West Water\", 9C2RQRW2+MM, 39600, \"\", \"Exeter\", \"Devon\", \"Devon CC\", \"10000250573, 10000278338, 10023094622, 10023094637, 10024073107, 10024726305, 10093676580, 100040179917, 100040179921, 100040179922, 100040179923, 100040179925, 100040179931, 100040179941, 100040179946, 100040179950, 100040179955, 100040179958, 100040179961, 100040179962, 100040179963, 100040179964, 100040179966, 100040179967, 100040179982, 100040179983, 100041128499, 100041128766, 100041128812, 100041223240, 100041223241\", 12.691]";
+
+        System.out.println(ss.split(",").length - 1);
+        System.out.println(s2.split(",").length - 1);
+        System.out.println(s3.split(",").length - 1);
+
+    }
 
     @Test
     public void localeTest() {

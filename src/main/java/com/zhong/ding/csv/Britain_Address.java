@@ -1,5 +1,6 @@
 package com.zhong.ding.csv;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.zhong.Utils.FileUtils;
 import com.zhong.ding.excel.Entity;
@@ -78,7 +79,7 @@ public class Britain_Address {
             String one = entity.getColumn1().replace("\"", "");
             String two = entity.getColumn2().replace("\"", "");
             String three = entity.getColumn3().replace("\"", "");
-            String postalCode = entity.getColumn4();
+            String postalCode = entity.getColumn4().replace("\"", "");
             if (caseInsensitiveMap.containsKey(one)) {
                 String firstId = caseInsensitiveMap.get(one);
                 if (caseInsensitiveMap2.containsKey(two)) {
@@ -95,7 +96,7 @@ public class Britain_Address {
                                     sb.append("version = version + 1").append(", ");
                                     sb.append("update_time = ").append(update_time).append(", ");
                                     sb.append("modified_id = ").append(creator_id).append(", ");
-                                    sb.append("post_code = ").append("\"").append(postalCode).append("\"").append(" ");
+                                    sb.append("features = ").append("'{\"post_code\":\"").append(postalCode).append("\"}'").append(" ");
                                     sb.append("where id = ").append(areaId).append(" ");
                                     sb.append(";\n");
                                 }
@@ -121,11 +122,11 @@ public class Britain_Address {
                 continue;
             }
             if (StringUtils.isBlank(split[12]) || StringUtils.isBlank(split[7])
-                    || StringUtils.isBlank(split[8]) || StringUtils.isBlank(split[42])) {
+                    || StringUtils.isBlank(split[8]) || StringUtils.isBlank(split[0])) {
                 continue;
             }
             if (split[12].equals("\"\"") || split[7].equals("\"\"")
-                    || split[8].equals("\"\"") || split[42].equals("\"\"")) {
+                    || split[8].equals("\"\"") || split[0].equals("\"\"")) {
                 continue;
             }
 
@@ -133,13 +134,16 @@ public class Britain_Address {
             entity.setColumn1(split[12]);//一级
             entity.setColumn2(split[7]);//二级
             entity.setColumn3(split[8]);//三级
-            entity.setColumn4(split[42]);//邮编
+            entity.setColumn4(split[0].substring(0, split[0].indexOf(" ")));//邮编
             if (Objects.nonNull(entity.getColumn1()) && Objects.nonNull(entity.getColumn2())
                     && Objects.nonNull(entity.getColumn3()) && Objects.nonNull(entity.getColumn4())) {
-                if ("0.409385".equals(split[42])) {
-                    System.out.println(Arrays.toString(split));
-                }
                 list.add(entity);
+//                if ("0.409385".equals(split[42])) {
+//                    System.out.println(Arrays.toString(split));
+//                }
+//                if ("EX14".equals(split[42])){
+//                    System.out.println(Arrays.toString(split));
+//                }
             }
         }
 
@@ -149,15 +153,9 @@ public class Britain_Address {
         ), ArrayList::new));
 
 
-        System.out.println("list.size=" + list.size());
-        System.out.println("list.去重后=" + duplicate.size());
-
-        System.out.println(list.get(1555));
-        System.out.println(list.get(20));
-        System.out.println(list.get(2000));
-        System.out.println(list.get(1560000));
-        System.out.println(list.get(500));
-
+//        System.out.println("list.size=" + list.size());
+//        System.out.println("list.去重后=" + duplicate.size());
+//        System.out.println(JSON.toJSONString(duplicate));
         return duplicate;
     }
 

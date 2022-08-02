@@ -55,10 +55,8 @@ public class Thailand_Address {
 //忽略大小写比较
 
         String thailandAddressPath = "C:\\Users\\EDZ\\Documents\\0订数据\\补全地区邮编\\泰国下的地区.xls";
-        String britainAddressPath = "C:\\Users\\EDZ\\Documents\\0订数据\\补全地区邮编\\英国下的地区.xls";
 
         String thailandAddressPostCodePath = "C:\\Users\\EDZ\\Documents\\0订数据\\补全地区邮编\\泰国地址20220617.csv";
-        String britainAddressPostCodePath = "C:\\Users\\EDZ\\Documents\\0订数据\\补全地区邮编\\postcodes.csv";
 
         List<Entity> entityList = FileUtils.readExcelByPath(thailandAddressPath, 1, 1);
         List<Entity> csvList = FileUtils.readLineCSV(thailandAddressPostCodePath);
@@ -105,7 +103,7 @@ public class Thailand_Address {
                 String province = x.getColumn1().replace("\"", "");
                 String city = x.getColumn2().replace("\"", "");
                 String district = x.getColumn3().replace("\"", "");
-                String postalCode = x.getColumn4();
+                String postalCode = x.getColumn4().replace("\"", "");
                 if (caseInsensitiveMap.containsKey(province)) {
                     String firstId = caseInsensitiveMap.get(province);
                     if (caseInsensitiveMap2.containsKey(city)) {
@@ -120,14 +118,14 @@ public class Thailand_Address {
                                     sbUpdate.append("version = version + 1").append(", ");
                                     sbUpdate.append("update_time = ").append(update_time).append(", ");
                                     sbUpdate.append("modified_id = ").append(creator_id).append(", ");
-                                    sbUpdate.append("post_code = ").append(postalCode).append(" ");
+                                    sbUpdate.append("features = ").append("'{\"post_code\":\"").append(postalCode).append("\"}'").append(" ");
                                     sbUpdate.append("where id = ").append(threeEntity.getColumn1()).append(" ");
                                     sbUpdate.append(";\n");
                                 }
                             } else {
                                 //不存在走插入
                                 if (entity.getColumn2().equals(firstId)) {
-                                    sb.append("insert into t_area_info (`id`, `parent_id`, `country_id`, `area_level`, `platform`, `creator_id`, `modified_id`, `create_time`, `update_time`, `has_children`, `post_code`) ");
+                                    sb.append("insert into t_area_info (`id`, `parent_id`, `country_id`, `area_level`, `platform`, `creator_id`, `modified_id`, `create_time`, `update_time`, `has_children`, `features`) ");
                                     sb.append("values ( ");
                                     sb.append(areaId).append(", ");
                                     sb.append(entity.getColumn1()).append(", ");
@@ -139,7 +137,7 @@ public class Thailand_Address {
                                     sb.append(update_time).append(", ");
                                     sb.append(update_time).append(", ");
                                     sb.append(0).append(", ");
-                                    sb.append(postalCode).append(" ");
+                                    sb.append("'{\"post_code\":\"").append(postalCode).append("\"}'").append(" ");
                                     sb.append("); ").append("\n");
 
                                     sb.append("insert into t_area_info_language (`id`, `area_info_id`, `preferred_language`, `creator_id`, `modified_id`, `create_time`, `update_time`, `area_name`) ");
