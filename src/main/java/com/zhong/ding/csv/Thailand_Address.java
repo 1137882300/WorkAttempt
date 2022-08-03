@@ -42,7 +42,7 @@ public class Thailand_Address {
     public static Long update_time = 1658827003000L;
     public static Long creator_id = -19L;
     public static Long areaId = 100015310L;//要递减
-    public static Long areaLanId = 1999837532L;//要递减
+    public static Long areaLanId = 1999836570L;//要递减1999836575
     public static Long thailandId = 2000000045L;//泰国ID
     public static String platform = "product_GLO";//泰国ID
 

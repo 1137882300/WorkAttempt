@@ -21,9 +21,9 @@ public class InsertSqlTest {
     /*
         确认线上ID起始
      */
-    public static final Long propertyId = 172802L;
-    public static Long valueId = 4000L;
-    public static Long languageId = 4000L;
+    public static final Long propertyId = 2000009111L;
+    public static Long valueId = 2000001260L;
+    public static Long languageId = 2000000210L;//2000000211
 
     public static Long is_deleted = 0L;
     public static Long create_time = 1657677211000L;
@@ -41,7 +41,7 @@ public class InsertSqlTest {
     @SneakyThrows
     public static void main(String[] args) {
 
-        String propertyValuePath = "C:\\Users\\EDZ\\Documents\\初始化\\产品预归类\\境内货源地代码表.xlsx";
+        String propertyValuePath = "C:\\Users\\EDZ\\Documents\\0初始化\\产品预归类\\境内货源地代码表.xlsx";
 
         List<Entity> list = readValue(propertyValuePath);
 
@@ -67,7 +67,7 @@ public class InsertSqlTest {
                 String code = entity.getColumn2();
                 Long valueId = entity.getId();
                 sb.append(" ( ");
-                sb.append(++languageId).append(",");
+                sb.append(--languageId).append(",");
                 sb.append(valueId).append(",");
                 sb.append("'").append(Locale.SIMPLIFIED_CHINESE.toString()).append("'").append(",");
                 sb.append(is_deleted).append(",");
@@ -98,7 +98,7 @@ public class InsertSqlTest {
             for (Entity entity : list) {
                 i++;
                 sb.append(" ( ");
-                sb.append(++valueId).append(",");
+                sb.append(--valueId).append(",");
                 sb.append(propertyId).append(",");
                 sb.append(is_deleted).append(",");
                 sb.append(create_time).append(",");

@@ -29,8 +29,8 @@ public class PropertyUpdateSql {
     @SneakyThrows
     public static void main(String[] args) {
 
-        String propertyPath = "C:\\Users\\EDZ\\Documents\\初始化\\商货品模型优化\\属性表-test.xlsx";
-        String languagePath = "C:\\Users\\EDZ\\Documents\\初始化\\商货品模型优化\\属性语言表-test.xlsx";
+        String propertyPath = "C:\\Users\\EDZ\\Documents\\0初始化\\商货品模型优化\\属性code-pre.xls";
+        String languagePath = "C:\\Users\\EDZ\\Documents\\0初始化\\商货品模型优化\\属性语言-pre.xls";
 
         List<String> propertyList = readProperty(propertyPath);
         Map<String, String> languageMap = readLanguage(languagePath);
@@ -80,7 +80,7 @@ public class PropertyUpdateSql {
 
 
     public static void main2(String[] args) {
-        String name = " asd oip asd 中文";
+        String name = " asd oip asd 中文 ";
         String code = name
                 .trim()
                 .replace(" ", "_")

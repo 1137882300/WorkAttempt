@@ -40,6 +40,14 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
 
+
+    @Test
+    public void replaceT() {
+        String ss = " asd dsa fjd ";
+        String replace = ss.replace(" ", "");
+        System.out.println(replace);
+    }
+
     /**
      * 某个字符在字符串里的个数
      */
