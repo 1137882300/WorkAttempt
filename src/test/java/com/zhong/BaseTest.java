@@ -40,6 +40,16 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
 
+    @Test
+    public void sqlString() {
+        int a = 11;
+        int b = 33;
+        int c = 44;
+        String ss = "INSERT INTO `t_area_info_language` " +
+                "(`id`, `area_info_id`, `preferred_language`, `creator_id`, `modified_id`, `create_time`, `update_time`, `is_deleted`, `version`, `area_name`) " +
+                "VALUES (" + a + ", " + b + ", 'zh_CN', -10, -10, 1659597815000, 1659597815000, 0, 0, '" + c + "');";
+        System.out.println(ss);
+    }
 
     @Test
     public void replaceT() {

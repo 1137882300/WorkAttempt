@@ -1,12 +1,10 @@
 package com.zhong;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.C;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.zhong.entity.Dog;
-import com.zhong.entity.People;
-import com.zhong.entity.StateEnum;
-import com.zhong.entity.User;
+import com.zhong.entity.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 import org.apache.xmlbeans.impl.xb.substwsdl.TImport;
@@ -20,6 +18,23 @@ import java.util.stream.Collectors;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    /**
+     * 不变集合处理元素数据
+     */
+    @Test
+    public void deal() {
+        List<TestEntity> list = new ArrayList<TestEntity>() {{
+            add(new TestEntity("Bob rR", 23));
+            add(new TestEntity("aLex TT", 88));
+            add(new TestEntity("meaL PP", 66));
+        }};
+
+        list.forEach(x -> x.setName(x.getName().toLowerCase().replace(" ", "")));
+
+        System.out.println(JSON.toJSONString(list));
+    }
+
     /**
      * collections4 的 CaseInsensitiveMap 不区分大小写
      */

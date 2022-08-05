@@ -39,7 +39,7 @@ public class Britain_Address {
     public static void main(String[] args) {
 
         String sourcePath = "C:\\Users\\EDZ\\Downloads\\英国所有地区（全）.csv";
-        String prodPath = "C:\\Users\\EDZ\\Documents\\0订数据\\补全地区邮编\\英国下的地区.xls";
+        String prodPath = "C:\\Users\\EDZ\\Documents\\0订数据\\补全地区邮编\\英国下的地区2.xls";
 
         List<Entity> entityList = FileUtils.readExcelByPath(prodPath, 1, 1);
         List<Entity> list = readLineCSV(sourcePath);
@@ -51,11 +51,13 @@ public class Britain_Address {
         StringBuilder sqlBritainAddress = convertToUpdateBritainAddressSql(entityList, list);
 
         FileUtils.writeFile(sqlBritainAddress, "sqlBritainAddress.sql");
-
+        System.out.println("写入sql完成sqlBritainAddress.sql");
     }
 
     private static StringBuilder convertToUpdateBritainAddressSql(List<Entity> entityList, List<Entity> list) {
         //同一级会有相同的name，但parent不同
+
+        entityList.forEach(x -> x.setColumn4(x.getColumn4().toLowerCase().replace(" ", "")));
 
 //            k:name,v:firstId
         Map<String, String> oneMap = entityList.stream()
@@ -70,24 +72,24 @@ public class Britain_Address {
                 .filter(x -> x.getColumn3().equals(Integer.toString(3)))
                 .collect(Collectors.groupingBy(Entity::getColumn4));
 
-        CaseInsensitiveMap<String, String> caseInsensitiveMap = new CaseInsensitiveMap<>(oneMap);
-        CaseInsensitiveMap<String, Entity> caseInsensitiveMap2 = new CaseInsensitiveMap<>(twoGroupMap);
-        CaseInsensitiveMap<String, List<Entity>> caseInsensitiveMap3 = new CaseInsensitiveMap<>(threeGroupMap);
+//        CaseInsensitiveMap<String, String> caseInsensitiveMap = new CaseInsensitiveMap<>(oneMap);
+//        CaseInsensitiveMap<String, Entity> caseInsensitiveMap2 = new CaseInsensitiveMap<>(twoGroupMap);
+//        CaseInsensitiveMap<String, List<Entity>> caseInsensitiveMap3 = new CaseInsensitiveMap<>(threeGroupMap);
 
         StringBuilder sb = new StringBuilder();
         for (Entity entity : list) {
-            String one = entity.getColumn1().replace("\"", "");
-            String two = entity.getColumn2().replace("\"", "");
-            String three = entity.getColumn3().replace("\"", "");
+            String one = entity.getColumn1().toLowerCase().replace("\"", "").replace(" ", "");
+            String two = entity.getColumn2().toLowerCase().replace("\"", "").replace(" ", "");
+            String three = entity.getColumn3().toLowerCase().replace("\"", "").replace(" ", "");
             String postalCode = entity.getColumn4().replace("\"", "");
-            if (caseInsensitiveMap.containsKey(one)) {
-                String firstId = caseInsensitiveMap.get(one);
-                if (caseInsensitiveMap2.containsKey(two)) {
-                    Entity entityTwo = caseInsensitiveMap2.get(two);
+            if (oneMap.containsKey(one)) {
+                String firstId = oneMap.get(one);
+                if (twoGroupMap.containsKey(two)) {
+                    Entity entityTwo = twoGroupMap.get(two);
                     if (entityTwo.getColumn2().equals(firstId)) {
                         //匹配到一级和二级。二级的parentID == 一级的ID
-                        if (caseInsensitiveMap3.containsKey(three)) {
-                            List<Entity> list1 = caseInsensitiveMap3.get(three);
+                        if (threeGroupMap.containsKey(three)) {
+                            List<Entity> list1 = threeGroupMap.get(three);
                             for (Entity entityThree : list1) {
                                 if (entityThree.getColumn2().equals(entityTwo.getColumn1())) {
                                     //一二三级都匹配到。三级的parentID == 二级的ID
