@@ -30,7 +30,7 @@ public class Test {
                 .header("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36")
                 .get();
 
-        List<Element> list = Lists.newArrayList();
+        List<String> list = Lists.newArrayList();
 
 //        System.out.println(document);
         Elements table = document.select("table");
@@ -41,8 +41,13 @@ public class Test {
                 .ifPresent(x -> {
                     x.forEach(o -> {
                         Elements elements = o.select("td");
-                        Element one = elements.get(0);
-                        Element two = elements.get(1);
+                        String one = elements.get(0).text();
+                        String two = elements.get(1).text();
+
+                        if (one.matches("^\\-$")) {
+                            System.out.println(one);
+                        }
+
                         list.add(one);
                     });
                 });
