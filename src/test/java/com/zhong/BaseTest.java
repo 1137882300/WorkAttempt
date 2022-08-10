@@ -41,6 +41,12 @@ import java.util.stream.Collectors;
 public class BaseTest {
 
     @Test
+    public void localeTT() {
+        Locale locale = new Locale("syr-SY");
+        System.out.println(locale);
+    }
+
+    @Test
     public void sqlString() {
         int a = 11;
         int b = 33;

@@ -44,6 +44,7 @@ public class Test {
                         String one = elements.get(0).text();
                         String two = elements.get(1).text();
 
+                        System.out.printf("\"%s\":\"%s\",%n", one, two);
                         if (one.matches("^\\-$")) {
                             System.out.println(one);
                         }
