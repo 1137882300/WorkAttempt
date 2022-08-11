@@ -1,5 +1,9 @@
 package com.zhong.Utils;
 
+import cn.hutool.core.io.FileUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.google.common.collect.Lists;
 import com.zhong.ding.excel.Entity;
 import com.zhong.ding.excel.ExcelUtil;
@@ -56,5 +60,12 @@ public class FileUtils {
             list.add(entity);
         }
         return list;
+    }
+
+    public static List<Entity> readJson(String path) {
+        File file = new File(path);
+        String string = FileUtil.readUtf8String(file);
+        return JSON.parseObject(string, new TypeReference<List<Entity>>() {
+        });
     }
 }
