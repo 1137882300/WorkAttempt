@@ -41,8 +41,9 @@ public class UpdateCountrySql {
 
         String prodPath = "C:\\Users\\EDZ\\Documents\\0订数据\\补全国家邮编和区号\\国家邮编和区号（prod导出）.xls";
 //        String testPath = "C:\\Users\\EDZ\\Desktop\\meta查询.xlsx";
+        String devPath = "C:\\Users\\EDZ\\Desktop\\meta查询.xlsx";
 
-        List<Entity> list = FileUtils.readExcelByPath(prodPath, 1, 1);
+        List<Entity> list = FileUtils.readExcelByPath(devPath, 1, 1);
         List<Entity> json = FileUtils.readJson("country.json");
 
         if (CollectionUtils.isEmpty(list) || CollectionUtils.isEmpty(json)) {
