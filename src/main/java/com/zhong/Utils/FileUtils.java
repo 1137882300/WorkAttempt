@@ -8,8 +8,12 @@ import com.google.common.collect.Lists;
 import com.zhong.ding.excel.Entity;
 import com.zhong.ding.excel.ExcelUtil;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.function.Function;
 
@@ -68,4 +72,47 @@ public class FileUtils {
         return JSON.parseObject(string, new TypeReference<List<Entity>>() {
         });
     }
+
+    @SneakyThrows
+    public static void downImages(String filePath, String imgUrl, String fileName) {
+        File dir = new File(filePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        String name = "";
+        if (StringUtils.isBlank(fileName)) {
+            name = imgUrl.substring(imgUrl.lastIndexOf('/') + 1);
+        } else {
+            name = fileName;
+        }
+        // 文件名里面可能有中文或者空格，所以这里要进行处理。但空格又会被URLEncoder转义为加号
+        String urlTail = URLEncoder.encode(name, "UTF-8");
+        imgUrl = imgUrl.substring(0, imgUrl.lastIndexOf('/') + 1) + urlTail.replaceAll("\\+", "\\%20");
+
+        File file = new File(filePath + File.separator + name);
+        // 获取图片URL
+        URL url = new URL(imgUrl);
+        URLConnection connection = url.openConnection();
+//        connection.setRequestProperty("accept-encoding", "gzip, deflate, br");
+//        connection.setRequestProperty("accept-language", "zh-CN,zh;q=0.9");
+//        connection.setRequestProperty("accept-encoding", "gzip, deflate, br");
+//        connection.setRequestProperty("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+//        connection.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36");
+//        connection.setRequestProperty("User-Agent", "Mozilla/4.76");
+        connection.setConnectTimeout(10 * 1000);
+        // 获得输入流
+        InputStream in = connection.getInputStream();
+        // 获得输出流
+        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+        // 构建缓冲区
+        byte[] buf = new byte[1024];
+        int size;
+        // 写入到文件
+        while (-1 != (size = in.read(buf))) {
+            out.write(buf, 0, size);
+        }
+        out.close();
+        in.close();
+    }
+
 }
