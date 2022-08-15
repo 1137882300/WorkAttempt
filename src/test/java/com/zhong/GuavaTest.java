@@ -4,16 +4,14 @@ import com.google.common.base.Joiner;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Splitter;
 import com.google.common.base.Stopwatch;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,6 +19,27 @@ import java.util.concurrent.TimeUnit;
  * @date 2022/1/21 11:34
  */
 public class GuavaTest {
+
+    /**
+     * hashMultiMap，一个key，多个value
+     * value 的 类型是set
+     */
+    @Test
+    public void hashMultiMap() {
+        HashMultimap<Integer, Integer> hashMultimap = HashMultimap.create();
+        hashMultimap.put(1, 2);
+        hashMultimap.put(1, 2);
+        hashMultimap.put(1, 32);
+        hashMultimap.put(1, 32);
+        hashMultimap.put(1, 24);
+        hashMultimap.put(1, 24);
+
+        System.out.println(hashMultimap);
+
+        Set<Integer> set = hashMultimap.get(1);
+        System.out.println(set);
+
+    }
 
     /**
      * Lists.partition用法
