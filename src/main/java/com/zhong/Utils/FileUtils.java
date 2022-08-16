@@ -9,11 +9,13 @@ import com.zhong.ding.excel.Entity;
 import com.zhong.ding.excel.ExcelUtil;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 
@@ -21,6 +23,10 @@ import java.util.function.Function;
  * @date 2022/6/29 15:15
  */
 public class FileUtils {
+
+    public static void writeFile(Collection<T> list, String fileName) {
+        FileUtil.writeUtf8Lines(list, new File(fileName));
+    }
 
     public static void writeFile(StringBuilder sb, String fileName) {
         FileWriter writer = null;
