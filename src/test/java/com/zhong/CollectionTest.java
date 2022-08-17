@@ -3,6 +3,7 @@ package com.zhong;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.C;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.zhong.entity.*;
 import org.apache.commons.collections4.CollectionUtils;
@@ -18,6 +19,16 @@ import java.util.stream.Collectors;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    /**
+     *
+     */
+    @Test
+    public void mapTT() {
+        HashMap<Object, List<Cat>> map = Maps.newHashMap();
+        List<Integer> collect = map.values().stream().flatMap(Collection::stream).map(Cat::getId).collect(Collectors.toList());
+        System.out.println(collect);
+    }
 
     /**
      * 不变集合处理元素数据
