@@ -76,12 +76,13 @@ public class TTRelationSql {
      * -- 最后还需要排除掉item里是tmp的数据
      */
     //30000000359
-    private static Long id = 30000170000L;
+    private static Long id = 30000000333L;
 
     @SneakyThrows
     public static void main(String[] args) {
 //     ITEMTMP_ITEM 一对多
-        String tmp2item = "C:\\Users\\EDZ\\Documents\\0订数据\\TT\\tmp对item（V2）.xls";
+        String tmp2item = "C:\\Users\\EDZ\\Downloads\\sql查询数据 (45).xls";
+//        String tmp2item = "C:\\Users\\EDZ\\Documents\\0订数据\\TT\\tmp对item（V2）.xls";
 
         List<Entity> list = FileUtils.readExcelByPath(tmp2item, 1, 1);
         //去重
@@ -119,7 +120,7 @@ public class TTRelationSql {
                     "insert into `t_global_relation` " +
                             "(`create_time`, `creator_id`, `features`, `id`, `is_deleted`, `master`, `modified_id`, `platform`, `slave`, `status`, `system_update_time`, `type`, `update_time`, `version`) " +
                             "values " +
-                            "('1660637968000', '-1', NULL, '" + id++ + "', 0, '" + master + "', '-1', 'bbmall_GLO', '" + slave + "', 0, '1660637968000', 'ITEMTMP_ITEM', '1660637968000', '1');"
+                            "('1660912555000', '-1', NULL, '" + id-- + "', 0, '" + master + "', '-1', 'bbmall_GLO', '" + slave + "', 0, '1660912555000', 'ITEMTMP_ITEM', '1660912555000', '1');"
             );
         }
 
@@ -127,15 +128,27 @@ public class TTRelationSql {
         Set<String> includes = simplePropertyPreFilter.getIncludes();
         includes.add("column1");
         includes.add("column2");
-//        System.out.println(JSON.toJSONString(skip,simplePropertyPreFilter));
+        System.out.println(JSON.toJSONString(skip, simplePropertyPreFilter));
 
 
-//        FileUtil.writeUtf8Lines(sql,new File("relation.sql"));
-//        FileUtil.writeUtf8String(JSON.toJSONString(skip,simplePropertyPreFilter),new File("没有关联关系且itemID重复.json"));
+        FileUtil.writeUtf8Lines(sql, new File("relation.sql"));
+        FileUtil.writeUtf8String(JSON.toJSONString(skip, simplePropertyPreFilter), new File("没有关联关系且itemID重复.json"));
 
-//        System.out.println(JSON.toJSONString(skipMap));
-//        FileUtil.writeUtf8String(JSON.toJSONString(skipMap),new File("没有关联关系且itemID对用多个tmp.json"));
+        System.out.println(JSON.toJSONString(skipMap));
+        FileUtil.writeUtf8String(JSON.toJSONString(skipMap), new File("没有关联关系且itemID对用多个tmp.json"));
 
+    }
+
+    public static void main2(String[] args) {
+        String path = "C:\\Users\\EDZ\\Downloads\\sql查询数据 (45).xls";
+
+        List<Entity> list = FileUtils.readExcelByPath(path, 1, 1);
+        //去重
+        List<Entity> distinct = list.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(
+                () -> new TreeSet<>(Comparator.comparing(Entity::getColumn1).thenComparing(Entity::getColumn2))
+        ), ArrayList::new));
+
+        System.out.println("tmp和item联合去重：" + distinct.size());
     }
 
 }

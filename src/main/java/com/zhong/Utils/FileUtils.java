@@ -17,6 +17,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -48,7 +49,8 @@ public class FileUtils {
     }
 
 
-    public static List<Entity> readExcelByPath(String path, int sheetNo, int headLine) throws IOException {
+    @SneakyThrows
+    public static List<Entity> readExcelByPath(String path, int sheetNo, int headLine) {
         try (FileInputStream inputStream = new FileInputStream(path)) {
             return ExcelUtil.readExcelByHeadLine(new BufferedInputStream(inputStream), Entity.class, sheetNo, headLine);
         }
@@ -76,6 +78,13 @@ public class FileUtils {
         File file = new File(path);
         String string = FileUtil.readUtf8String(file);
         return JSON.parseObject(string, new TypeReference<List<Entity>>() {
+        });
+    }
+
+    public static Map<String, String> readJsonToMap(String path) {
+        File file = new File(path);
+        String string = FileUtil.readUtf8String(file);
+        return JSON.parseObject(string, new TypeReference<Map<String, String>>() {
         });
     }
 
