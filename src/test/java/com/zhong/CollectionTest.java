@@ -168,5 +168,32 @@ public class CollectionTest {
 
     }
 
+    @Test
+    public void addListEmpty() {
+        List<Object> list = Lists.newArrayList(1, 2);
+        List<Object> objects = Collections.emptyList();
+
+        List<Object> newArrayList = Lists.newArrayList();
+
+        Optional.of(list).ifPresent(newArrayList::addAll);
+        Optional.of(objects).ifPresent(newArrayList::addAll);
+
+        System.out.println(newArrayList);
+
+    }
+
+    @Test
+    public void setAddEmpty() {
+        Set<Object> hashSet = Sets.newHashSet();
+        ArrayList<Object> objects = Lists.newArrayList();
+        ArrayList<Object> list = Lists.newArrayList();
+        Collection<Object> subtract = CollectionUtils.intersection(objects, list);
+        System.out.println(subtract);
+        hashSet.addAll(subtract);
+        System.out.println(hashSet);
+        System.out.println(hashSet.size());
+
+    }
+
 
 }
