@@ -2,6 +2,7 @@ package com.zhong;
 
 import cn.hutool.core.util.ZipUtil;
 import com.alibaba.fastjson.*;
+import com.alibaba.fastjson.serializer.PropertyPreFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.google.common.collect.Lists;
@@ -11,8 +12,10 @@ import com.zhong.cache.CurrencyModel;
 import com.zhong.cache.UnitModel;
 import com.zhong.entity.*;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
+import org.springframework.web.bind.annotation.ValueConstants;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -38,12 +41,35 @@ public class JsonDemo {
         }};
 
         SimplePropertyPreFilter simplePropertyPreFilter = new SimplePropertyPreFilter();
-//        simplePropertyPreFilter.getIncludes().add("bb");
-        simplePropertyPreFilter.getExcludes().add("cc");
+        simplePropertyPreFilter.getIncludes().add("tt");
+//        simplePropertyPreFilter.getExcludes().add("rr");
         String string = JSON.toJSONString(hashMap, simplePropertyPreFilter);
         System.out.println(string);
 
 
+    }
+
+    @Test
+    public void jsonString2() {
+        HashMap<String, String> hashMap = new HashMap<String, String>() {{
+            put("aa", "11");
+            put("bb", "55");
+            put("vv", "22");
+            put("cc", "33");
+        }};
+
+        SimplePropertyPreFilter filter = new SimplePropertyPreFilter();
+        filter.getIncludes().add("aa");
+        String s = toJsonStr(hashMap, null);
+        System.out.println(s);
+    }
+
+
+    public static String toJsonStr(Map<String, String> featureMap, PropertyPreFilter filter) {
+        if (MapUtils.isNotEmpty(featureMap)) {
+            return JSON.toJSONString(featureMap, filter);
+        }
+        return null;
     }
 
     @Test
