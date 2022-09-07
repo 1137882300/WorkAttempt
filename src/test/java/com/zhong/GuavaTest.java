@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
 import java.util.*;
@@ -19,6 +20,24 @@ import java.util.concurrent.TimeUnit;
  * @date 2022/1/21 11:34
  */
 public class GuavaTest {
+
+    /**
+     * CollectionUtils 的方法不是指针
+     */
+    @Test
+    public void coTest() {
+        ArrayList<String> list1 = Lists.newArrayList("aa", "bb", "cc", "pp");
+        ArrayList<String> list2 = Lists.newArrayList("aa", "bb", "cc", "rr");
+
+        Collection<String> intersection = CollectionUtils.intersection(list2, list1);
+        System.out.println(intersection);//[aa, bb, cc]
+
+        Collection<String> subtract1 = CollectionUtils.subtract(list1, list2);
+        System.out.println(subtract1);//[pp]
+
+        Collection<String> subtract = CollectionUtils.subtract(list2, list1);
+        System.out.println(subtract);//[rr]
+    }
 
     /**
      * hashMultiMap，一个key，多个value
