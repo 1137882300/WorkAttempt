@@ -21,6 +21,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class GuavaTest {
 
+    @Test
+    public void one() {
+        ArrayList<String> exist = Lists.newArrayList("43682");
+        ArrayList<String> request = Lists.newArrayList("23910");
+
+        Collection<String> subtract = CollectionUtils.subtract(exist, request);
+        System.out.println(subtract);//[43682]
+    }
+
     /**
      * CollectionUtils 的方法不是指针
      */
