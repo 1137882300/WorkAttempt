@@ -3,6 +3,7 @@ package com.zhong;
 import cn.hutool.core.util.ZipUtil;
 import com.alibaba.fastjson.*;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.cache.AreaModel;
@@ -23,7 +24,27 @@ import java.util.*;
  * @date 2021/11/26 17:50
  */
 public class JsonDemo {
+    /**
+     * SimplePropertyPreFilter
+     * 序列化排除/包含某些字段
+     */
+    @Test
+    public void jsonString() {
+        HashMap<String, String> hashMap = new HashMap<String, String>() {{
+            put("aa", "11");
+            put("bb", "55");
+            put("vv", "22");
+            put("cc", "33");
+        }};
 
+        SimplePropertyPreFilter simplePropertyPreFilter = new SimplePropertyPreFilter();
+//        simplePropertyPreFilter.getIncludes().add("bb");
+        simplePropertyPreFilter.getExcludes().add("cc");
+        String string = JSON.toJSONString(hashMap, simplePropertyPreFilter);
+        System.out.println(string);
+
+
+    }
 
     @Test
     public void te() {
