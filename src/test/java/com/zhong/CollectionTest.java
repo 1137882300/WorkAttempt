@@ -14,11 +14,27 @@ import org.junit.Test;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+    /**
+     * 初始化 list
+     * Stream.of(xxx,xx)
+     */
+    @Test
+    public void initList() {
+        List<Integer> collect = Stream.of(
+                111,
+                222,
+                555,
+                777,
+                888
+        ).collect(Collectors.toList());
+        System.out.println(collect);
+    }
 
     @Test
     public void values() {
