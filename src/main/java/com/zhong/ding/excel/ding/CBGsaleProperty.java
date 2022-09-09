@@ -19,7 +19,11 @@ import java.util.stream.Collectors;
  * @date 2022/9/9 10:46
  */
 public class CBGsaleProperty {
-
+    /**
+     * 订正销售属性
+     *
+     * @param args
+     */
     @SneakyThrows
     public static void main(String[] args) {
 
