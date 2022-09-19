@@ -39,6 +39,15 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+    /**
+     * 只提取末尾的 数字开头到结尾
+     */
+    @Test
+    public void findNumByString() {
+        String str = "1案例qweq4weqw2qwe";
+        String str2 = str.replaceAll(".*[^\\d](?=(\\d+))", "");
+        System.out.println(str2);//2qwe
+    }
 
     @Test
     public void localeTT() {
