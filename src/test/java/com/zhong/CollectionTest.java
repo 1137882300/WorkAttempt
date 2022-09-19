@@ -20,6 +20,18 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    /**
+     * list 排序
+     * nullsLast ：null的大于非null的
+     */
+    @Test
+    public void sort() {
+        ArrayList<Integer> list = Lists.newArrayList(3, 5, 6, 1, 8, 2, null, 6, null);
+        list.sort(Comparator.nullsLast(Comparator.naturalOrder()));
+        System.out.println(list);
+    }
+
     /**
      * 初始化 list
      * Stream.of(xxx,xx)
