@@ -24,12 +24,33 @@ public class CollectionTest {
     /**
      * list 排序
      * nullsLast ：null的大于非null的
+     * 对象可以为空，以及对象内的属性
      */
     @Test
     public void sort() {
         ArrayList<Integer> list = Lists.newArrayList(3, 5, 6, 1, 8, 2, null, 6, null);
         list.sort(Comparator.nullsLast(Comparator.naturalOrder()));
-        System.out.println(list);
+//        System.out.println(list);
+
+
+        Dog dog5 = new Dog(null, StateEnum.OPEN);
+        Dog dog1 = new Dog(9, StateEnum.OPEN);
+        Dog dog4 = new Dog(null, StateEnum.OPEN);
+        Dog dog2 = new Dog(4, StateEnum.OPEN);
+        Dog dog3 = new Dog(6, StateEnum.OPEN);
+        Dog dog6 = new Dog(11, StateEnum.OPEN);
+        ArrayList<Dog> arrayList = Lists.newArrayList(dog1, dog2, dog3, dog4, dog5, dog6);
+        List<Dog> collect = arrayList.stream()
+//                .filter(x -> x.getId() != null)
+//                .sorted(Comparator.nullsLast(Comparator.comparing(Dog::getId)))
+                .sorted(Comparator.comparing(Dog::getId, Comparator.nullsLast(Integer::compareTo)))
+                .collect(Collectors.toList());
+//        collect.addAll(arrayList.stream().filter(x -> x.getId() == null).collect(Collectors.toList()));
+        System.out.println(collect);
+
+
+//        arrayList.stream().sorted(Comparator.comparing(Dog::getId, Comparator.nullsLast(Long::compareTo))).collect(Collectors.toList());
+
     }
 
     /**
@@ -184,7 +205,7 @@ public class CollectionTest {
     }
 
     @Test
-    public void mutilFunctionMap(){
+    public void mutilFunctionMap() {
         //满足几点
         //1. 存md5
         //2. 存不同类型的值
@@ -194,7 +215,7 @@ public class CollectionTest {
         List<Map<String, Object>> list = Lists.newLinkedList();
 
         Map<String, Object> innerMap = new HashMap<>();
-        innerMap.put("unitId1", new User(11,22));
+        innerMap.put("unitId1", new User(11, 22));
         innerMap.put("unitId2", new People(66));
         innerMap.put("unitId3", new Dog(99, StateEnum.CLOSE));
         list.add(innerMap);

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Dog {
 
-    private int id;
+    private Integer id;
 
     private StateEnum state;
 
