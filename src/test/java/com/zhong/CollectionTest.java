@@ -22,6 +22,32 @@ import java.util.stream.Stream;
 public class CollectionTest {
 
     /**
+     * map.merge
+     * 1. 替换value
+     * 2. 没有key的可以新增上
+     */
+    @Test
+    public void merge() {
+        HashMap<String, String> oldMap = new HashMap<String, String>() {{
+            put("1", "旧的1");
+            put("2", "旧的2");
+            put("3", "旧的3");
+        }};
+
+        HashMap<String, String> newMap = new HashMap<String, String>() {{
+            put("1", "新的1");
+            put("4", "新的4");
+            put("5", "新的5");
+        }};
+
+        Optional.of(oldMap).ifPresent(x -> x.forEach((k, v) -> {
+            newMap.merge(k, v, (v1, v2) -> v1);//v1是新的
+        }));
+
+        System.out.println(newMap);
+    }
+
+    /**
      * list 排序
      * nullsLast ：null的大于非null的
      * 对象可以为空，以及对象内的属性
