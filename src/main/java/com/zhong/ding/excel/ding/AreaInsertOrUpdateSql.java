@@ -158,7 +158,7 @@ public class AreaInsertOrUpdateSql {
             }
         }
 
-        FileUtil.writeUtf8Lines(sql, new File("test_th_area.sql"));
+        FileUtil.writeUtf8Lines(sql, new File("segment.sql"));
 
         System.out.println(sql.size());
     }
