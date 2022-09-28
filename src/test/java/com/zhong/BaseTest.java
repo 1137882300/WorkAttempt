@@ -40,6 +40,19 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
     /**
+     * 可以为null
+     */
+    @Test
+    public void stringUtil() {
+        String ss = null;
+        String ff = "ss";
+        String rr = "ss";
+        boolean equals = StringUtils.equals(ff, rr);
+        System.out.println(equals);
+
+    }
+
+    /**
      * 只提取末尾的 数字开头到结尾
      */
     @Test
