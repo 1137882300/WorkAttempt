@@ -20,6 +20,22 @@ import java.util.concurrent.TimeUnit;
  * @date 2022/1/21 11:34
  */
 public class GuavaTest {
+    /**
+     * Maps.filterKeys
+     * 过滤指定 key 的map
+     */
+    @Test
+    public void filterKeys() {
+        HashMap<String, String> hashMap = new HashMap<String, String>() {{
+            put("1", "qq");
+            put("2", "rr");
+            put("3", "yy");
+            put("4", "oo");
+            put("5", "hh");
+        }};
+        Map<String, String> map = Maps.filterKeys(hashMap, x -> x.equals("3"));
+        System.out.println(map);
+    }
 
     @Test
     public void one() {

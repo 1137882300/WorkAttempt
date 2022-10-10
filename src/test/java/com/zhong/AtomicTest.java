@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @date 2022/9/20 15:55
@@ -35,6 +36,13 @@ public class AtomicTest {
             });
         });
 
+
+    }
+
+
+    @Test
+    public void ee() {
+        AtomicReference<String> atomicReference = new AtomicReference<>();
 
     }
 
