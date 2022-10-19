@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.zhong.cache.CacheMap;
+import com.zhong.ding.excel.Entity;
 import com.zhong.entity.*;
 import lombok.var;
 import org.apache.commons.collections4.BidiMap;
@@ -40,6 +41,30 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+
+    /**
+     * 多个字段联合去重
+     */
+    @Test
+    public void duplicateRemoval() {
+        List<User> list = new ArrayList<User>() {{
+            add(new User(1, 1));
+            add(new User(2, 3));
+            add(new User(3, 4));
+            add(new User(6, 5));
+            add(new User(6, 1));
+            add(new User(6, 1));
+            add(new User(6, 6));
+//            add(new User(6,6));
+        }};
+        ArrayList<User> collect = list.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(
+                () -> new TreeSet<>(Comparator.comparing(o -> o.getId() + ";" + o.getAge()))
+        ), ArrayList::new));
+
+        System.out.println(collect);
+    }
+
+
     /**
      * 集合 引用
      * 集合里的值跟着变了
