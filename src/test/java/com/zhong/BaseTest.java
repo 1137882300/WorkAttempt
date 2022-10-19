@@ -41,6 +41,30 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
     /**
+     * 集合 引用
+     * 集合里的值跟着变了
+     */
+    @Test
+    public void aggregateQuote() {
+        List<User> userList = Lists.newArrayList(new User(1, 111));
+        userList.add(new User(2, 222));
+        userList.add(new User(3, 333));
+        userList.add(new User(4, 444));
+        userList.add(new User(5, 555));
+
+        Map<Integer, List<User>> groupMap = userList.stream().collect(Collectors.groupingBy(User::getId));
+
+        userList.forEach(x -> {
+            x.setAge(666);
+        });
+
+        groupMap.forEach((k, v) -> {
+            System.out.printf("k=%s ; v=%s %n", k, v);
+        });
+
+    }
+
+    /**
      * 位运算,
      * & : 两个都是1，则为 1
      * ~ : 取反,0变1，1变0

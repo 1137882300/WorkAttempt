@@ -4,9 +4,7 @@ import com.google.common.base.Joiner;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Splitter;
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import com.google.common.collect.*;
 import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
 import org.apache.commons.collections4.CollectionUtils;
@@ -20,6 +18,37 @@ import java.util.concurrent.TimeUnit;
  * @date 2022/1/21 11:34
  */
 public class GuavaTest {
+    /**
+     * 双向Map
+     * 注意：不能存储多对一的关系
+     */
+    @Test
+    public void biMap() {
+        BiMap<String, Integer> biMap = HashBiMap.create();
+        biMap.put("A", 1);
+        biMap.put("B", 2);
+        biMap.put("C", null);
+        biMap.put("D", 4);
+        biMap.put("t", 4);
+        biMap.put("u", 4);
+        BiMap<Integer, String> inverse = biMap.inverse();
+        String s = inverse.get(4);
+        System.out.println(s);//value already present: 4
+    }
+
+    @Test
+    public void map() {
+        HashMap<String, Integer> hashMap = new HashMap<String, Integer>() {{
+            put("a", 1);
+            put("b", 2);
+            put("c", 3);
+            put("d", 4);
+            put("e", 4);
+        }};
+        Map<String, Integer> map = Maps.filterValues(hashMap, x -> x.equals(4));
+        System.out.println();
+    }
+
     /**
      * Maps.filterKeys
      * 过滤指定 key 的map
