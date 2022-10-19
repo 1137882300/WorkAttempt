@@ -29,6 +29,7 @@ import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -39,6 +40,20 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+    /**
+     * 位运算,
+     * & : 两个都是1，则为 1
+     * ~ : 取反,0变1，1变0
+     */
+    @Test
+    public void bitwiseOperation() {
+        int ss = 1 & ~Modifier.FINAL;
+        System.out.println(ss);
+
+        int dd = 1 & ~1;
+        System.out.println(dd);
+    }
+
     /**
      * 可以为null
      */
