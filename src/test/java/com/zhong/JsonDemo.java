@@ -45,9 +45,18 @@ public class JsonDemo {
 //        simplePropertyPreFilter.getExcludes().add("rr");
         String string = JSON.toJSONString(hashMap, simplePropertyPreFilter);
         System.out.println(string);
-
-
     }
+
+    /**
+     * json arr ，直接list
+     */
+    @Test
+    public void jsonList() {
+        ArrayList<User> integers = Lists.newArrayList(new User(1, 2));
+        String string = JSON.toJSONString(integers);
+        System.out.println(string);
+    }
+
 
     @Test
     public void jsonString2() {
