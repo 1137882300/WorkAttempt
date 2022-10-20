@@ -19,7 +19,7 @@ public class EasyExcelApplication {
 
 
     public static void main(String[] args) {
-        try (FileInputStream inputStream = new FileInputStream("C:\\Users\\EDZ\\Documents\\0订数据\\订正G B G\\缺少relation关系\\aaa.xlsx")) {
+        try (FileInputStream inputStream = new FileInputStream("C:\\Users\\EDZ\\Documents\\0订数据\\订正G B G\\缺少relation关系\\源文件2.xlsx")) {
             List<Entity> list = ExcelUtil.readExcel(new BufferedInputStream(inputStream), Entity.class, 1);
             String s = JSON.toJSONString(list);
             System.out.println(s);
@@ -28,7 +28,7 @@ public class EasyExcelApplication {
             ArrayList<Entity> collect = list.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(
                     () -> new TreeSet<>(Comparator.comparing(o -> o.getColumn1() + ";" + o.getColumn2()))
             ), ArrayList::new));
-
+            System.out.println("collect.size= " + collect.size());
             for (Entity entity : collect) {
                 String column1 = entity.getColumn1();
                 String column2 = entity.getColumn2();
