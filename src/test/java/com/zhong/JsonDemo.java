@@ -27,6 +27,28 @@ import java.util.*;
  * @date 2021/11/26 17:50
  */
 public class JsonDemo {
+
+    @Test
+    public void toStringV2() {
+        String ss = "{\"1\":[{\"age\":11,\"id\":11}]}";
+        Map<String, List<User>> map = new HashMap<String, List<User>>() {{
+            put("1", Collections.singletonList(new User(11, 11)));
+        }};
+
+        String string = JSON.toJSONString(map);//{"1":[{"age":11,"id":11}]}
+        System.out.println(string);
+
+
+//        output_tax_rate -> [{"countryId":1,"taxRate":0.22}]
+
+        Map<String, String> mapV2 = new HashMap<String, String>() {{
+            put("output_tax_rate", "[{\"countryId\":1,\"taxRate\":0.22}]");
+        }};
+        String jsonString = JSON.toJSONString(mapV2);
+        System.out.println(jsonString);
+
+    }
+
     /**
      * SimplePropertyPreFilter
      * 序列化排除/包含某些字段
