@@ -42,6 +42,12 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
 
+    @Test
+    public void move() {
+        System.out.println(1 << 30);//1073741824
+        System.out.println(1 << 4);//16
+    }
+
     /**
      * 多个字段联合去重
      */
