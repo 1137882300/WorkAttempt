@@ -12,6 +12,7 @@ import org.apache.xmlbeans.impl.xb.substwsdl.TImport;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,6 +21,18 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    /**
+     * ConcurrentHashMap
+     */
+    @Test
+    public void concurrentHashMap() {
+        ConcurrentHashMap<Integer, Integer> concurrentHashMap = new ConcurrentHashMap<>();
+        Integer put = concurrentHashMap.put(1, 2);
+        System.out.println(put);
+        Integer integer = concurrentHashMap.get(1);
+        System.out.println(integer);
+    }
 
     /**
      * map.merge
