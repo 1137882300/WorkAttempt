@@ -44,7 +44,9 @@ public class CspuAndSkuImg {
         List<String> skuImgMasterSql = Lists.newArrayList();
 
         //k:cspuId, value:sku
-        Map<String, List<String>> cspuSkuMap = skuImgList.stream().collect(Collectors.groupingBy(Entity::getColumn1, Collectors.mapping(Entity::getColumn2, Collectors.toList())));
+//        Map<String, List<String>> cspuSkuMap = skuImgList.stream().collect(Collectors.groupingBy(Entity::getColumn1, Collectors.mapping(Entity::getColumn2, Collectors.toList())));
+
+        Map<String, List<Entity>> cspuSkuImgMap = skuImgList.stream().collect(Collectors.groupingBy(Entity::getColumn1));
 
         List<Container> containerList = Lists.newArrayList();
         sourceList.forEach(x -> {
@@ -71,17 +73,33 @@ public class CspuAndSkuImg {
                                 "update t_cspu set version=version+1, system_update_time=1666703573000, image_url='" + oldNew.getNewStr() + "' where  cspu_id= " + cspuId + ";"
                         );
                     }
-                    if (cspuSkuMap.containsKey(cspuId)) {
-                        List<String> skuList = cspuSkuMap.get(cspuId);
-                        skuList.forEach(skuId -> {
-                            skuImgSql.add(
-                                    "update t_sku_copy set version=version+1, system_update_time=1666703573000, image_url='" + oldNew.getNewStr() + "' where sku_id= " + skuId + ";"
-                            );
-                            skuImgMasterSql.add(
-                                    "update t_sku_master set version=version+1, system_update_time=1666703573000, image_url='" + oldNew.getNewStr() + "' where sku_id= " + skuId + ";"
-                            );
+                    if (cspuSkuImgMap.containsKey(cspuId)) {
+                        List<Entity> list = cspuSkuImgMap.get(cspuId);
+                        list.forEach(o -> {
+                            String skuId = o.getColumn2();
+                            String imag = o.getColumn3();
+                            if (!StringUtils.equals(oldNew.getNewStr(), imag)) {
+                                skuImgSql.add(
+                                        "update t_sku_copy set version=version+1, system_update_time=1666703573000, image_url='" + oldNew.getNewStr() + "' where sku_id= " + skuId + ";"
+                                );
+                                skuImgMasterSql.add(
+                                        "update t_sku_master set version=version+1, system_update_time=1666703573000, image_url='" + oldNew.getNewStr() + "' where sku_id= " + skuId + ";"
+                                );
+                            }
                         });
                     }
+
+//                    if (cspuSkuMap.containsKey(cspuId)) {
+//                        List<String> skuList = cspuSkuMap.get(cspuId);
+//                        skuList.forEach(skuId -> {
+//                            skuImgSql.add(
+//                                    "update t_sku_copy set version=version+1, system_update_time=1666703573000, image_url='" + oldNew.getNewStr() + "' where sku_id= " + skuId + ";"
+//                            );
+//                            skuImgMasterSql.add(
+//                                    "update t_sku_master set version=version+1, system_update_time=1666703573000, image_url='" + oldNew.getNewStr() + "' where sku_id= " + skuId + ";"
+//                            );
+//                        });
+//                    }
                 }
             }
         });
