@@ -23,6 +23,17 @@ import java.util.stream.Stream;
  */
 public class CollectionTest {
 
+    /**
+     * map的key是对象，对象里的属性是空的
+     */
+    @Test
+    public void mapObj() {
+        Map<Dog, List<String>> map = Maps.newHashMap();
+        Dog cat = new Dog();
+        map.put(cat, Lists.newArrayList());
+        System.out.println(map);
+    }
+
     @Test
     public void linkedHashSet() {
         Set<List<String>> propertySources = new LinkedHashSet<>();
