@@ -66,6 +66,21 @@ public class GuavaTest {
         System.out.println(map);
     }
 
+    /**
+     * CollectionUtils.subtract
+     * 减法
+     * 保留自身不同的
+     */
+    @Test
+    public void subtract() {
+        List<String> list1 = new ArrayList<>();
+        list1.add("aa");
+        list1.add("hh");
+        List<String> list2 = Lists.newArrayList("aa", "55");
+        Collection<String> subtract = CollectionUtils.subtract(list1, list2);
+        System.out.println(subtract);
+    }
+
     @Test
     public void one() {
         ArrayList<String> exist = Lists.newArrayList("43682");
