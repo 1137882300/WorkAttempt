@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 import org.apache.xmlbeans.impl.xb.substwsdl.TImport;
 import org.junit.Test;
+import org.springframework.core.env.PropertySource;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,6 +22,27 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    @Test
+    public void linkedHashSet() {
+        Set<List<String>> propertySources = new LinkedHashSet<>();
+        List<String> list = new ArrayList<>();
+        list.add("aa");
+        list.add("bb");
+        list.add("cc");
+        list.add("aa");
+        propertySources.add(list);
+
+        List<String> list2 = new ArrayList<>();
+        list2.add("dd");
+        list2.add("ff");
+        list2.add("gg");
+        list2.add("aa");
+        propertySources.add(list2);
+        System.out.println(propertySources);
+
+
+    }
 
     /**
      * ConcurrentHashMap
