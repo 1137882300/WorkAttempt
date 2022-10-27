@@ -57,6 +57,13 @@ public class FileUtils {
     }
 
     @SneakyThrows
+    public static List<Entity> readExcel(String path) {
+        try (FileInputStream inputStream = new FileInputStream(path)) {
+            return ExcelUtil.readExcel(new BufferedInputStream(inputStream), Entity.class, 1);
+        }
+    }
+
+    @SneakyThrows
     public static List<Entity> readLineCSV(String path) {
         BufferedReader reader = new BufferedReader(new FileReader(path));
         reader.readLine();//先读取第一行(过滤第一行)
