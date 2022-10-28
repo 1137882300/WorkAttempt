@@ -15,6 +15,19 @@ import java.util.concurrent.atomic.AtomicReference;
  * @date 2022/9/20 15:55
  */
 public class AtomicTest {
+    /**
+     * AtomicInteger getAndAdd
+     * 先get 再 add
+     */
+    @Test
+    public void atomicInteger() {
+        AtomicInteger maxSize = new AtomicInteger(0);
+        maxSize.getAndAdd(11);
+        final int i1 = maxSize.addAndGet(22);
+        System.out.println(i1);
+        final int i = maxSize.get();
+        System.out.println(i);//11
+    }
 
     @Test
     public void ss() {
