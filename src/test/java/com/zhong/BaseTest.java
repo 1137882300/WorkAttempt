@@ -43,12 +43,25 @@ import java.util.stream.Collectors;
 public class BaseTest {
 
     @Test
+    public void percent() {
+        String ss = "+++++";
+        final String replaceAll = ss.replaceAll("\\+", "%20");
+        System.out.println(replaceAll);
+    }
+
+    /**
+     * boolean
+     */
+    @Test
     public void and() {
         boolean ff = false && false;
         System.out.println(ff);//false
 
     }
 
+    /**
+     * 位运算
+     */
     @Test
     public void move() {
         System.out.println(1 << 30);//1073741824
