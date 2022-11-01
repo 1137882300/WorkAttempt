@@ -28,7 +28,7 @@ public class CollectionTest {
      * collect 多参数
      * collect(ArrayList::new, ArrayList::add, ArrayList::addAll)
      * <p>
-     * List<List>类型  DTO1 对应类型，转成里面的另一个对象类型 DTO2
+     * xxxMap.values() = List<List>类型  DTO1 对应类型，转成里面的另一个对象类型 DTO2
      * List<DTO2> DTO2List = xxxMap.values().stream()
      * .map(QueryItemInfoDTO::getSkuList)
      * .filter(CollectionUtils::isNotEmpty)
