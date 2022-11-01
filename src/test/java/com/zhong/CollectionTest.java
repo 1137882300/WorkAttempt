@@ -12,6 +12,8 @@ import org.apache.xmlbeans.impl.xb.substwsdl.TImport;
 import org.junit.Test;
 import org.springframework.core.env.PropertySource;
 
+import javax.xml.crypto.Data;
+import java.beans.Transient;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +24,18 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+    /**
+     * collect 多参数
+     * collect(ArrayList::new, ArrayList::add, ArrayList::addAll)
+     */
+    @Test
+    public void collect() {
+        List<String> list = Lists.newArrayList("aaa", "fff", "vvv");
+        Stream<String> stringStream = Stream.of("xxx", "ooo");
+        ArrayList<Object> collect = stringStream.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        System.out.println(collect);
+    }
+
 
     /**
      * map的key是对象，对象里的属性是空的
