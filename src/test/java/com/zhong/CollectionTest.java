@@ -27,6 +27,12 @@ public class CollectionTest {
     /**
      * collect 多参数
      * collect(ArrayList::new, ArrayList::add, ArrayList::addAll)
+     * <p>
+     * xxxMap.values() DTO1 对应类型，转成里面的另一个对象类型 DTO2
+     * List<DTO2> skus = xxxMap.values().stream()
+     * .map(QueryItemInfoDTO::getSkuList)
+     * .filter(CollectionUtils::isNotEmpty)
+     * .collect(Lists::newArrayList, List::addAll, List::addAll);
      */
     @Test
     public void collect() {
