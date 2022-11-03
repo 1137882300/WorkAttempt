@@ -41,6 +41,14 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+    /**
+     * Long.parseLong, 空字符串也不行
+     */
+    @Test
+    public void toTong() {
+        long l = Long.parseLong("11aa1");
+        System.out.println(l);
+    }
 
     @Test
     public void percent() {
