@@ -22,6 +22,25 @@ import java.util.stream.Stream;
  * @date 2021/10/8 14:53
  */
 public class LambdaTest {
+    /**
+     * max 比较
+     * .max(Comparator.comparing(User::getId).thenComparing(User::getAge))
+     * 第一个比较有相同的，再比较第二个
+     */
+    @Test
+    public void max() {
+        User user = new User();
+        user.setId(3);
+        user.setAge(50);
+        User user1 = new User();
+        user1.setId(3);
+        user1.setAge(2);
+        List<User> list = new ArrayList<>();
+        list.add(user);
+        list.add(user1);
+        Optional<User> userOptional = list.stream().max(Comparator.comparing(User::getId).thenComparing(User::getAge));
+        System.out.println(userOptional.get());
+    }
 
     private User u1, u2, u3, u4, u5, u6, u7;
     private List<User> list = Lists.newArrayList();
