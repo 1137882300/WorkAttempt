@@ -42,6 +42,18 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
     /**
+     * String
+     */
+    @Test
+    public void split2() {
+        String ss = "true";
+        String[] split = ss.split(";");
+        System.out.println(split);
+        List<String> list = Arrays.asList(split[0].split(","));
+        System.out.println(list);
+    }
+
+    /**
      * Long.parseLong, 空字符串也不行
      */
     @Test
