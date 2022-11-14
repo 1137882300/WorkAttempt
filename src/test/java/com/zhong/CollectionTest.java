@@ -25,6 +25,32 @@ import java.util.stream.Stream;
  */
 public class CollectionTest {
     /**
+     * map的computeIfAbsent方法
+     * 1. 不存在key,则新增key/value
+     * 2. 存在key,则保持原样
+     */
+    @Test
+    public void computeIfAbsent() {
+        HashMap<String, Integer> prices = new HashMap<>();
+
+        prices.put("Shoes", 200);
+        prices.put("Bag", 300);
+        prices.put("Pant", 150);
+        System.out.println("HashMap: " + prices);
+
+        int shirtPrice = prices.computeIfAbsent("Shirt", key -> 280);
+        System.out.println("Price of Sihrt: " + shirtPrice);
+
+        System.out.println("Updated HashMap: " + prices);
+
+        Integer aaa = prices.computeIfAbsent("Bag", key -> 100);
+        System.out.println(aaa);//300
+
+        System.out.println("Updated HashMap: " + prices);
+
+    }
+
+    /**
      * collect 多参数
      * collect(ArrayList::new, ArrayList::add, ArrayList::addAll)
      * <p>
