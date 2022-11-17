@@ -14,6 +14,7 @@ import com.zhong.entity.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.ValueConstants;
 
@@ -27,6 +28,20 @@ import java.util.*;
  * @date 2021/11/26 17:50
  */
 public class JsonDemo {
+    /**
+     * 带斜杠的str 可以转成 json
+     */
+    @Test
+    public void strToJson() {
+        String ss = "[{\"locale\": \"zh_CN\", \"propertyExtend\": null, \"salePropertyExtend\": \"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"plug\\\"}}]\"}, {\"locale\": \"ja_JP\", \"propertyExtend\": null, \"salePropertyExtend\": \"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"plug\\\"}}]\"}, {\"locale\": \"in_ID\", \"propertyExtend\": null, \"salePropertyExtend\": \"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"plug\\\"}}]\"}, {\"locale\": \"en_US\", \"propertyExtend\": null, \"salePropertyExtend\": \"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"plug\\\"}}]\"}]";
+        JSONArray jsonArray = JSON.parseArray(ss);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+        System.out.println(jsonObject);
+        String jsonObjectString = jsonObject.getString("salePropertyExtend");
+        System.out.println(jsonObjectString);
+        JSONArray objects = JSONObject.parseArray(jsonObjectString);
+        System.out.println(objects);
+    }
 
     @Test
     public void toStringV2() {
