@@ -22,12 +22,32 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author zhong.zihan@xyb2b.com
  * @date 2021/11/26 17:50
  */
 public class JsonDemo {
+
+    @Test
+    public void jsonArr() {
+        String ss = "[{\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"custom\\\":\\\"Spesifikasi\\\",\\\"propertyId\\\":48201},\\\"value\\\":{\\\"custom\\\":\\\"40 pon\\\\t\\\",\\\"relationId\\\":5862}},{\\\"key\\\":{\\\"custom\\\":\\\"model\\\",\\\"propertyId\\\":49301},\\\"value\\\":{\\\"custom\\\":\\\"For iPhone 13mini \\\",\\\"relationId\\\":6964}}]\"}]";
+        JSONArray array = JSONObject.parseArray(ss);
+        JSONArray jsonArray = array.getJSONArray(Integer.parseInt("salePropertyExtend"));
+        Map<Long, Object> objectMap = jsonArray.stream().collect(Collectors.toMap(obj -> {
+            JSONObject jsonObject = (JSONObject) obj;
+            Long propertyId = jsonObject.getLong("propertyId");
+            if (Objects.nonNull(propertyId)) {
+                return propertyId;
+            }
+            return null;
+        }, Function.identity(), (s, e) -> s));
+
+        System.out.println(objectMap);
+    }
+
     /**
      * 带斜杠的str 可以转成 json
      */

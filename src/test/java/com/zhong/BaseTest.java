@@ -279,6 +279,11 @@ public class BaseTest {
         String beforeLast = StringUtils.substringBeforeLast("start.hi.shop.name.good.hello.shop.name.end", "shop.name.");//start.hi.shop.name.good.hello.
         System.out.println(beforeLast);
 
+        String beforeLast1 = StringUtils.substringBeforeLast("gmp-dev.t_cspu.cspu_id", ".");
+        System.out.println("beforeLast1:" + beforeLast1);
+        String afterLast = StringUtils.substringAfterLast("gmp-dev.t_cspu.cspu_id", ".");
+        System.out.println("afterLast: " + afterLast);
+
         String substringBetween = StringUtils.substringBetween("start.hi.shop.name.good.hello.shop.name.end", "shop.name.");//good.hello.
         System.out.println(substringBetween);
 
