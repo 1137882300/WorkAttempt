@@ -25,6 +25,28 @@ import java.util.stream.Stream;
  */
 public class CollectionTest {
     /**
+     * computeIfAbsent 可以接着 put
+     */
+    @Test
+    public void computeIfAbsent2() {
+        Map<String, Map<String, String>> map = Maps.newHashMap();
+
+        map.put("aaa", new HashMap<String, String>() {{
+            put("a1", "11");
+        }});
+
+        Map<String, String> computeIfAbsent = map.computeIfAbsent("bbb", (key) -> Maps.newHashMap());
+        computeIfAbsent.put("a2", "22");
+
+        Map<String, String> computeIfAbsent2 = map.computeIfAbsent("aaa", (key) -> Maps.newHashMap());
+        computeIfAbsent2.put("a3", "33");
+
+
+        System.out.println(map);//{aaa={a1=11, a3=33}, bbb={a2=22}}
+
+    }
+
+    /**
      * map的computeIfAbsent方法
      * 1. 不存在key,则新增key/value
      * 2. 存在key,则保持原样
