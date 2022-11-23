@@ -1,6 +1,7 @@
 package com.zhong;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.C;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -24,6 +25,30 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    @Test
+    public void testMap() {
+        Map<String, Map<String, JSONObject>> map = Maps.newHashMap();
+        HashMap<String, JSONObject> hashMap = new HashMap<String, JSONObject>() {{
+            put("aa", new JSONObject().fluentPut("a1", "a11"));
+        }};
+        map.put("a", hashMap);
+        // a, aa ,a1 a11
+        // a, bb ,b1 b11
+
+        //o 会死循环
+        map.values().forEach(o -> o.values().forEach(v -> {
+            String belowParentId = v.getString("a1");
+            if (belowParentId.equals("a11")) {
+                o.put("bb", new JSONObject().fluentPut("b1", "b11"));
+            }
+        }));
+
+
+        System.out.println(map);
+
+    }
+
     /**
      * computeIfAbsent 可以接着 put
      */
