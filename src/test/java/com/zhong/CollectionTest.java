@@ -6,11 +6,13 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.zhong.entity.*;
+import jdk.nashorn.internal.objects.annotations.Where;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -21,6 +23,15 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    @Test
+    public void stringTest() {
+        String sql = "select category_backend_id, parent_id, outer_category_id ,level from t_category_backend where is_deleted=0";
+        String sql2 = "select category_backend_id, parent_id, outer_category_id ,level from t_category_backend basdasd";
+        String substringBetween = StringUtils.substringBetween(sql, "from", "where");//t_category_backend
+        String substringBetween2 = StringUtils.substringBetween(sql2, "from", "where");//null
+        System.out.println(substringBetween2);
+    }
 
     @Test
     public void testMap() {
