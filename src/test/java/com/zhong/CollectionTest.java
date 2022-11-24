@@ -2,22 +2,18 @@ package com.zhong;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.C;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.zhong.entity.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
-import org.apache.xmlbeans.impl.xb.substwsdl.TImport;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import org.springframework.core.env.PropertySource;
 
-import javax.xml.crypto.Data;
-import java.beans.Transient;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,21 +27,26 @@ public class CollectionTest {
         Map<String, Map<String, JSONObject>> map = Maps.newHashMap();
         HashMap<String, JSONObject> hashMap = new HashMap<String, JSONObject>() {{
             put("aa", new JSONObject().fluentPut("a1", "a11"));
+            put("cc", new JSONObject().fluentPut("c1", "c11"));
         }};
         map.put("a", hashMap);
         // a, aa ,a1 a11
         // a, bb ,b1 b11
 
-        //o 会死循环
+        AtomicBoolean flag = new AtomicBoolean(false);
+
+        //o 在自己的循环里put 会死循环
         map.values().forEach(o -> o.values().forEach(v -> {
             String belowParentId = v.getString("a1");
-            if (belowParentId.equals("a11")) {
-                o.put("bb", new JSONObject().fluentPut("b1", "b11"));
+            if (StringUtils.isNotBlank(belowParentId) && belowParentId.equals("a11")) {
+                flag.set(true);
             }
         }));
+        if (flag.get()) {
+            hashMap.put("bb", new JSONObject().fluentPut("b1", "b11"));
+        }
 
-
-        System.out.println(map);
+        System.out.println(map);//{a={aa={"a1":"a11"}, bb={"b1":"b11"}}}
 
     }
 
