@@ -26,11 +26,15 @@ public class CollectionTest {
 
     @Test
     public void stringTest() {
-        String sql = "select category_backend_id, parent_id, outer_category_id ,level from t_category_backend where is_deleted=0";
+        String sql = "select category_backend_id, parent_id, outer_category_id ,level from    t_category_backend     where is_deleted=0";
         String sql2 = "select category_backend_id, parent_id, outer_category_id ,level from t_category_backend basdasd";
         String substringBetween = StringUtils.substringBetween(sql, "from", "where");//t_category_backend
         String substringBetween2 = StringUtils.substringBetween(sql2, "from", "where");//null
+        System.out.println(substringBetween.trim());
         System.out.println(substringBetween2);
+
+        boolean aaa = Objects.equals("aaa", "  aaa  ");
+        System.out.println(aaa);//false
     }
 
     @Test
