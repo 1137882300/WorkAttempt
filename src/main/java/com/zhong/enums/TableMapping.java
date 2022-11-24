@@ -37,16 +37,18 @@ public enum TableMapping {
 
     public static void main(String[] args) {
         String sql = "select item_id,spu_id,brand_id,category_backend_id,spu_code,country_id,shop_id,is_mixed,status,is_deleted,first_sale_time,create_time,system_update_time,update_time,version,features,first_sale_user_id,creator_id,modified_id,last_sale_time,last_sale_user_id, platform " +
-                "from t_global_relation where is_deleted=0";
+                "from T_ITEM_BASE_INFO_COPY ";
+        //where is_deleted=0
         String table = changeTable(sql);
         System.out.println(table);
     }
 
     private static String changeTable(String sql) {
         if (true) {
-            String copy = StringUtils.substringBetween(sql, "from", "where");
+            String copy = "";
+            copy = StringUtils.substringBetween(sql, "from", "where");
             if (StringUtils.isBlank(copy)) {
-                return sql;
+                copy = StringUtils.substringAfter(sql, "from");
             }
             TableMapping master = TableMapping.getMaster(copy.trim());
             if (Objects.isNull(master)) {
