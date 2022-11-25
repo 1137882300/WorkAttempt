@@ -19,7 +19,10 @@ import java.util.Map;
 public class BrandImg {
 
     public static void main(String[] args) {
-        String path = "C:\\Users\\EDZ\\Documents\\0订数据\\订正ＣＢＧ\\订正品牌图片\\第二次\\源文件\\品牌.xlsx";
+
+        long time = 1669375625000L;
+
+        String path = "C:\\Users\\EDZ\\Documents\\0订数据\\订正ＣＢＧ\\订正品牌图片\\第三次\\源文件\\品牌.xlsx";
         List<Entity> list = FileUtils.readExcel(path);
 
         if (CollectionUtils.isEmpty(list)) {
@@ -31,16 +34,16 @@ public class BrandImg {
         ArrayList<String> sql = Lists.newArrayList();
         int k = 1;
         for (Entity entity : list) {
-            String brandId = entity.getColumn3();
+            String brandId = entity.getColumn2();
             //String handle = entity.getColumn5();
-            String newImg = entity.getColumn2();
+            String newImg = entity.getColumn5();
             //if (StringUtils.equals(handle, "否")) {
             //    System.out.println(handle + k++);
             //    continue;
             //}
 
             sql.add(
-                    "update t_brand set version=version+1, update_time=1669025304000, logo_url= 'https:" + newImg + "' " +
+                    "update t_brand set version=version+1, update_time=" + time + ", logo_url= 'https:" + newImg + "' " +
                             "where brand_id = " + brandId + " ;"
             );
 

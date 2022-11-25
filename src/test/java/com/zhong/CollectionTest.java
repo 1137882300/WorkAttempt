@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,6 +24,15 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    @Test
+    public void minStream() {
+        List<Integer> numList = Lists.newArrayList(3, 2, 5, 123, 6, 112);
+
+        Optional<Integer> min = numList.stream().min(Comparator.comparing(Function.identity()));
+        System.out.println(min);
+
+    }
 
     @Test
     public void stringTest() {
