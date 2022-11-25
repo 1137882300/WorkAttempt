@@ -48,13 +48,22 @@ public class BaseTest {
      */
     @Test
     public void booleanQuote() {
-        boolean boo = false;
-        testBooleanQuote(boo);
-        System.out.println(boo);
+        //boolean 类型
+        Boolean boo = Boolean.FALSE;
+        List<Boolean> booleanList = new ArrayList<>();
+        booleanList.add(boo);
+        //testBooleanQuote(booleanList, null);
+        System.out.println(booleanList);
+
+        //int 类型
+        Integer in = 100;
+        testBooleanQuote(booleanList, in);
+        System.out.println(in);
     }
 
-    private void testBooleanQuote(boolean boo) {
-        boo = true;
+    private void testBooleanQuote(List<Boolean> booleanList, Integer in) {
+        booleanList.forEach(x -> x = true);
+        in = 150;
     }
 
 
