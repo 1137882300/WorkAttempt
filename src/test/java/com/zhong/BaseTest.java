@@ -20,6 +20,7 @@ import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
@@ -41,6 +42,30 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+
+    /**
+     * boolean 类型引用 不行
+     */
+    @Test
+    public void booleanQuote() {
+        boolean boo = false;
+        testBooleanQuote(boo);
+        System.out.println(boo);
+    }
+
+    private void testBooleanQuote(boolean boo) {
+        boo = true;
+    }
+
+
+    @Test
+    public void booleanT() {
+        Boolean aa = null;
+        int jj = aa ? 1 : 2;//会空指针
+        System.out.println(jj);
+    }
+
+
     /**
      * String
      */
