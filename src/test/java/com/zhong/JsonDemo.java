@@ -32,6 +32,57 @@ import java.util.stream.Collectors;
 public class JsonDemo {
 
     @Test
+    public void convert() {
+        String ss = "[{\"locale\":\"zh_CN\",\"propertyExtend\":null,\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"Type 1\\\"}}]\"},{\"locale\":\"ja_JP\",\"propertyExtend\":null,\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"Type 1\\\"}}]\"},{\"locale\":\"in_ID\",\"propertyExtend\":null,\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"Type 1\\\"}}]\"},{\"locale\":\"en_US\",\"propertyExtend\":null,\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"Type 1\\\"}}]\"}]";
+        JSONObject jsonObject = new JSONObject().fluentPut("property", ss);
+        List<JSONObject> list = Lists.newArrayList(jsonObject);
+
+        Set<Long> collect = list.stream().map(property -> {
+            JSONArray propertyArr = property.getJSONArray("property");
+            return propertyArr.stream().map(o -> {
+                        JSONObject object = (JSONObject) o;
+                        String salePropertyExtendStr = object.getString("salePropertyExtend");
+                        System.out.println("salePropertyExtendStr==" + salePropertyExtendStr);
+                        List<SkuPropertyBO> skuPropertyBOS = JSON.parseArray(salePropertyExtendStr, SkuPropertyBO.class);
+                        System.out.println(skuPropertyBOS);
+                        return skuPropertyBOS;
+                    }).flatMap(Collection::stream).map(SkuPropertyBO::getKey).peek(System.out::println).filter(Objects::nonNull)
+                    .map(PropertyKeyBO::getPropertyId).peek(System.out::println).filter(Objects::nonNull).collect(Collectors.toSet());
+        }).flatMap(Collection::stream).collect(Collectors.toSet());
+        System.out.println(collect);
+
+        //Set<Long> propertyIds = list.stream().map(property -> {
+        //            String propertyStr = property.getString("property");
+        //            System.out.println("propertyStr ==" + propertyStr);
+        //            List<SkuPropertyBO> skuPropertyBOS = JSON.parseArray(propertyStr, SkuPropertyBO.class);
+        //            System.out.println("skuPropertyBOS==" + skuPropertyBOS);
+        //            return skuPropertyBOS;
+        //        }).flatMap(Collection::stream).map(SkuPropertyBO::getKey).peek(System.out::println).filter(Objects::nonNull)
+        //        .map(PropertyKeyBO::getPropertyId).peek(System.out::println).filter(Objects::nonNull).collect(Collectors.toSet());
+        //
+        //System.out.println(propertyIds);
+
+
+        //Set<String> collect = list.stream().map(property -> {
+        //            JSONObject object = property.getJSONObject("property");
+        //            System.out.println("property==" + object);
+        //            return object;
+        //        })
+        //        .map(property -> {
+        //            JSONObject key = property.getJSONObject("key");
+        //            System.out.println("key==" + key);
+        //            return key;
+        //        })
+        //        .map(propertyKey -> {
+        //            String propertyId = propertyKey.getString("propertyId");
+        //            System.out.println("propertyId==" + propertyId);
+        //            return propertyId;
+        //        })
+        //        .filter(Objects::nonNull).collect(Collectors.toSet());
+        //System.out.println(collect);
+    }
+
+    @Test
     public void jsonArr() {
         String ss = "[{\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"custom\\\":\\\"Spesifikasi\\\",\\\"propertyId\\\":48201},\\\"value\\\":{\\\"custom\\\":\\\"40 pon\\\\t\\\",\\\"relationId\\\":5862}},{\\\"key\\\":{\\\"custom\\\":\\\"model\\\",\\\"propertyId\\\":49301},\\\"value\\\":{\\\"custom\\\":\\\"For iPhone 13mini \\\",\\\"relationId\\\":6964}}]\"}]";
         JSONArray array = JSONObject.parseArray(ss);
