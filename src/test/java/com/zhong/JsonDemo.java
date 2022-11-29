@@ -15,6 +15,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.ValueConstants;
 
@@ -30,6 +31,18 @@ import java.util.stream.Collectors;
  * @date 2021/11/26 17:50
  */
 public class JsonDemo {
+
+    @Test
+    public void arr() {
+        String ss = "[{\"value\": \"新手\", \"locale\": \"zh_CN\"}, {\"value\": \"新手\", \"locale\": \"en_US\"}]";
+        List<SingleLanguageDTO> singleLanguageDTOList = JSON.parseArray(ss, SingleLanguageDTO.class);
+        String string = JSON.toJSONString(singleLanguageDTOList);
+        JSONArray jsonArray = JSONArray.parseArray(string);
+        System.out.println(Arrays.toString(jsonArray.toArray()));
+
+        //[{"locale":"zh_CN","value":"新手"},{"locale":"en_US","value":"新手"}]
+        //[{"locale":"zh_CN","value":"新手"},{"locale":"en_US","value":"新手"}]
+    }
 
     @Test
     public void convert2() {
@@ -77,8 +90,12 @@ public class JsonDemo {
                         List<SkuPropertyBO> skuPropertyBOS = JSON.parseArray(salePropertyExtendStr, SkuPropertyBO.class);
                         //System.out.println(skuPropertyBOS);
                         return skuPropertyBOS;
-                    }).flatMap(Collection::stream).map(SkuPropertyBO::getKey).peek(System.out::println).filter(Objects::nonNull)
-                    .map(PropertyKeyBO::getPropertyId).peek(System.out::println).filter(Objects::nonNull).collect(Collectors.toSet());
+                    }).flatMap(Collection::stream).map(SkuPropertyBO::getKey)
+                    //.peek(System.out::println)
+                    .filter(Objects::nonNull)
+                    .map(PropertyKeyBO::getPropertyId)
+                    //.peek(System.out::println)
+                    .filter(Objects::nonNull).collect(Collectors.toSet());
         }).flatMap(Collection::stream).collect(Collectors.toSet());
         //System.out.println(collect);
 
@@ -92,7 +109,26 @@ public class JsonDemo {
                     }).flatMap(Collection::stream).map(SkuPropertyBO::getValue).filter(Objects::nonNull)
                     .map(PropertyValuesBO::getRelationId).filter(Objects::nonNull).collect(Collectors.toSet());
         }).flatMap(Collection::stream).collect(Collectors.toSet());
-        System.out.println("valueIds==" + valueIds);
+        //System.out.println("valueIds==" + valueIds);
+
+        Set<Long> values = list.stream().map(property -> {
+            JSONArray propertyArr = property.getJSONArray("property");
+            return propertyArr.stream().map(o -> {
+                        JSONObject object = (JSONObject) o;
+                        String propertyExtend = object.getString("propertyExtend");
+                        if (StringUtils.isBlank(propertyExtend)) {
+                            return new ArrayList<ItemPropertyBO>();
+                        }
+                        List<ItemPropertyBO> itemPropertyBOS = JSON.parseArray(propertyExtend, ItemPropertyBO.class);
+                        return itemPropertyBOS;
+                    }).flatMap(Collection::stream)
+                    .map(ItemPropertyBO::getValues).peek(System.out::println)
+                    .flatMap(Collection::stream).peek(System.out::println)
+                    .map(PropertyValuesBO::getRelationId).peek(System.out::println)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toSet());
+        }).flatMap(Collection::stream).collect(Collectors.toSet());
+        System.out.println("values==" + values);
     }
 
     @Test
