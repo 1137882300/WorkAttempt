@@ -33,6 +33,16 @@ import java.util.stream.Collectors;
 public class JsonDemo {
 
     @Test
+    public void jsonObject() {
+        SingleLanguageDTO singleLanguageDTO = new SingleLanguageDTO();
+        singleLanguageDTO.setValue("zz");
+        singleLanguageDTO.setLocale(Locale.US);
+        String jsonString = JSONObject.toJSONString(singleLanguageDTO);
+        JSONObject jsonObject = JSONObject.parseObject(jsonString);
+        System.out.println(jsonObject);
+    }
+
+    @Test
     public void arr() {
         String ss = "[{\"value\": \"新手\", \"locale\": \"zh_CN\"}, {\"value\": \"新手\", \"locale\": \"en_US\"}]";
         List<SingleLanguageDTO> singleLanguageDTOList = JSON.parseArray(ss, SingleLanguageDTO.class);
