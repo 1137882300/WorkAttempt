@@ -24,6 +24,23 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+    /**
+     * 集合引用
+     * 操作原来的list,更新操作是引用的
+     * 删除原来的list里的元素，不是引用
+     */
+    @Test
+    public void quote() {
+        List<User> list = Lists.newArrayList(new User(1, 11), new User(2, 22), new User(3, null));
+        Map<Integer, List<User>> groupMap = list.stream().collect(Collectors.groupingBy(User::getId));
+        list.forEach(x -> {
+            x.setSex(0);
+            x.setAge(666);
+        });
+        //System.out.println(groupMap);
+        list.removeIf(x -> x.getId() == 1);
+        System.out.println(groupMap);
+    }
 
     @Test
     public void minStream() {

@@ -17,6 +17,6 @@ import lombok.experimental.SuperBuilder;
 public class User extends People{
 
     private int id;
-    private int age;
+    private Integer age;
 
 }
