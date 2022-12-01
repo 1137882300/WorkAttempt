@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ValueConstants;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Function;
@@ -31,6 +32,44 @@ import java.util.stream.Collectors;
  * @date 2021/11/26 17:50
  */
 public class JsonDemo {
+
+    @Test
+    public void Test3() {
+        List<JSONObject> list = Lists.newArrayList(
+                new JSONObject().fluentPut("category_backend_id", 111).fluentPut("category", "[{\"value\": \"母婴ttt\", \"locale\": \"zh_CN\"}]"),
+                new JSONObject().fluentPut("category_backend_id", 222).fluentPut("category", "[{\"value\": \"DHA\", \"locale\": \"zh_CN\"}]"),
+                new JSONObject().fluentPut("category_backend_id", 333).fluentPut("category", "[{\"value\": \"钙铁锌\", \"locale\": \"zh_CN\"}]")
+        );
+        Map<String, JSONArray> categoryLanMap = list.stream().collect(Collectors.toMap(jsonObject -> jsonObject.getString("category_backend_id"),
+                jsonObject -> jsonObject.getJSONArray("category"), (s, e) -> s));
+
+        //{111=[{"locale":"zh_CN","value":"母婴ttt"}], 222=[{"locale":"zh_CN","value":"DHA"}], 333=[{"locale":"zh_CN","value":"钙铁锌"}]}
+        System.out.println(categoryLanMap);
+    }
+
+    /**
+     * Optional包装了一层，不能直接用
+     */
+    @Test
+    public void one() {
+        List<JSONObject> skuJsonObjectList = Lists.newArrayList(
+                new JSONObject()
+                        .fluentPut("minPrice", Optional.of(7))
+                        .fluentPut("hh", "ss"),
+                new JSONObject().fluentPut("minPrice", Optional.of(6)),
+                new JSONObject()
+        );
+
+        BigDecimal minPrice = skuJsonObjectList.stream()
+                .map(jsonObject -> {
+                    return jsonObject.getBigDecimal("minPrice");
+                })
+                .peek(System.out::println)
+                .filter(Objects::nonNull)
+                .min(Comparator.comparing(Function.identity()))
+                .orElse(new BigDecimal(0));
+        System.out.println(minPrice);
+    }
 
     @Test
     public void jsonObject() {

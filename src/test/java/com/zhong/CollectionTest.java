@@ -32,13 +32,13 @@ public class CollectionTest {
     @Test
     public void quote() {
         List<User> list = Lists.newArrayList(new User(1, 11), new User(2, 22), new User(3, null));
-        Map<Integer, List<User>> groupMap = list.stream().collect(Collectors.groupingBy(User::getId));
         list.forEach(x -> {
             x.setSex(0);
             x.setAge(666);
         });
         //System.out.println(groupMap);
         list.removeIf(x -> x.getId() == 1);
+        Map<Integer, List<User>> groupMap = list.stream().collect(Collectors.groupingBy(User::getId));
         System.out.println(groupMap);
     }
 
