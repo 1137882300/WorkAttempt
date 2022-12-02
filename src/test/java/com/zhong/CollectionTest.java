@@ -24,6 +24,20 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    @Test
+    public void emptySet() {
+        HashSet<String> hashSet = Sets.newHashSet();
+        hashSet.add(null);
+        hashSet.add("123");
+        hashSet.add("456");
+
+        System.out.println(JSONObject.toJSONString(hashSet));
+
+        Set<String> collect = hashSet.stream().filter(Objects::nonNull).collect(Collectors.toSet());
+        System.out.println(collect);
+    }
+
     /**
      * 集合引用
      * 操作原来的list,更新操作是引用的
