@@ -56,13 +56,19 @@ public class CollectionTest {
         System.out.println(groupMap);
     }
 
+    /**
+     * min
+     */
     @Test
     public void minStream() {
         List<Integer> numList = Lists.newArrayList(3, 2, 5, 123, 6, 112);
-
         Optional<Integer> min = numList.stream().min(Comparator.comparing(Function.identity()));
         System.out.println(min);
 
+        List<User> list = Lists.newArrayList(new User(1, 11), new User(2, 22), new User(3, null));
+        //这种方式可以过滤null
+        Optional<Integer> integer = list.stream().map(User::getAge).filter(Objects::nonNull).min(Comparator.comparing(Function.identity()));
+        System.out.println(integer.get());
     }
 
     @Test
