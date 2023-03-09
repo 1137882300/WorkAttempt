@@ -32,11 +32,11 @@ public class BaseTest {
 
     @Test
     public void yu() {
-        Integer k = 10000;
+        Integer k = 200;
         int o = k % 1000;
         int p = k / 1000;
-        System.out.println(" % :" + o);
-        System.out.println(" / :" + p);
+        System.out.println(" % : " + o);
+        System.out.println(" / : " + p);
     }
 
     @Test
