@@ -1,5 +1,6 @@
 package com.zhong.entity;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * @since 2021-11-22
  */
 @Data
+@Builder
 @EqualsAndHashCode(callSuper = false)
 public class AreaInfoPO implements Serializable {
 

@@ -2,7 +2,9 @@ package com.zhong;
 
 import cn.hutool.core.util.ZipUtil;
 import com.alibaba.fastjson.*;
+import com.alibaba.fastjson.serializer.PropertyPreFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.cache.AreaModel;
@@ -10,13 +12,20 @@ import com.zhong.cache.CurrencyModel;
 import com.zhong.cache.UnitModel;
 import com.zhong.entity.*;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import org.springframework.web.bind.annotation.ValueConstants;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -24,6 +33,259 @@ import java.util.*;
  */
 public class JsonDemo {
 
+    @Test
+    public void Test3() {
+        List<JSONObject> list = Lists.newArrayList(
+                new JSONObject().fluentPut("category_backend_id", 111).fluentPut("category", "[{\"value\": \"母婴ttt\", \"locale\": \"zh_CN\"}]"),
+                new JSONObject().fluentPut("category_backend_id", 222).fluentPut("category", "[{\"value\": \"DHA\", \"locale\": \"zh_CN\"}]"),
+                new JSONObject().fluentPut("category_backend_id", 333).fluentPut("category", "[{\"value\": \"钙铁锌\", \"locale\": \"zh_CN\"}]")
+        );
+        Map<String, JSONArray> categoryLanMap = list.stream().collect(Collectors.toMap(jsonObject -> jsonObject.getString("category_backend_id"),
+                jsonObject -> jsonObject.getJSONArray("category"), (s, e) -> s));
+
+        //{111=[{"locale":"zh_CN","value":"母婴ttt"}], 222=[{"locale":"zh_CN","value":"DHA"}], 333=[{"locale":"zh_CN","value":"钙铁锌"}]}
+        System.out.println(categoryLanMap);
+    }
+
+    /**
+     * Optional包装了一层，不能直接用
+     */
+    @Test
+    public void one() {
+        List<JSONObject> skuJsonObjectList = Lists.newArrayList(
+                new JSONObject()
+                        .fluentPut("minPrice", Optional.of(7))
+                        .fluentPut("hh", "ss"),
+                new JSONObject().fluentPut("minPrice", Optional.of(6)),
+                new JSONObject()
+        );
+
+        BigDecimal minPrice = skuJsonObjectList.stream()
+                .map(jsonObject -> {
+                    return jsonObject.getBigDecimal("minPrice");
+                })
+                .peek(System.out::println)
+                .filter(Objects::nonNull)
+                .min(Comparator.comparing(Function.identity()))
+                .orElse(new BigDecimal(0));
+        System.out.println(minPrice);
+    }
+
+    @Test
+    public void jsonObject() {
+        SingleLanguageDTO singleLanguageDTO = new SingleLanguageDTO();
+        singleLanguageDTO.setValue("zz");
+        singleLanguageDTO.setLocale(Locale.US);
+        String jsonString = JSONObject.toJSONString(singleLanguageDTO);
+        JSONObject jsonObject = JSONObject.parseObject(jsonString);
+        System.out.println(jsonObject);
+    }
+
+    @Test
+    public void arr() {
+        String ss = "[{\"value\": \"新手\", \"locale\": \"zh_CN\"}, {\"value\": \"新手\", \"locale\": \"en_US\"}]";
+        List<SingleLanguageDTO> singleLanguageDTOList = JSON.parseArray(ss, SingleLanguageDTO.class);
+        String string = JSON.toJSONString(singleLanguageDTOList);
+        JSONArray jsonArray = JSONArray.parseArray(string);
+        System.out.println(Arrays.toString(jsonArray.toArray()));
+
+        //[{"locale":"zh_CN","value":"新手"},{"locale":"en_US","value":"新手"}]
+        //[{"locale":"zh_CN","value":"新手"},{"locale":"en_US","value":"新手"}]
+    }
+
+    @Test
+    public void convert2() {
+        String ss = "[{\"locale\":\"en_US\",\"propertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":231704},\\\"values\\\":[{\\\"relationId\\\":1231},{\\\"relationId\\\":4566}]}]\"},{\"locale\":\"zh_CN\",\"propertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":231704},\\\"values\\\":[{\\\"relationId\\\":99461},{\\\"relationId\\\":99561}]}]\"},{\"locale\":\"ja_JP\",\"propertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":231704},\\\"values\\\":[{\\\"relationId\\\":99461},{\\\"relationId\\\":99561}]}]\"},{\"locale\":\"in_ID\",\"propertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":231704},\\\"values\\\":[{\\\"relationId\\\":99461},{\\\"relationId\\\":99561}]}]\"}]";
+        JSONObject jsonObject = new JSONObject().fluentPut("property", ss);
+        List<JSONObject> list = Lists.newArrayList(jsonObject);
+        Set<Long> collect = list.stream().map(property -> {
+            JSONArray propertyArr = property.getJSONArray("property");
+            return propertyArr.stream().map(o -> {
+                JSONObject object = (JSONObject) o;
+                String propertyExtend = object.getString("propertyExtend");
+                List<ItemPropertyBO> itemPropertyBOS = JSON.parseArray(propertyExtend, ItemPropertyBO.class);
+                //System.out.println("itemPropertyBOS==" + itemPropertyBOS);
+                return itemPropertyBOS;
+            }).flatMap(Collection::stream).map(ItemPropertyBO::getKey).map(PropertyKeyBO::getPropertyId).collect(Collectors.toSet());
+        }).flatMap(Collection::stream).collect(Collectors.toSet());
+        //System.out.println(collect);
+
+        Set<Long> values = list.stream().map(property -> {
+            JSONArray propertyArr = property.getJSONArray("property");
+            return propertyArr.stream().map(o -> {
+                        JSONObject object = (JSONObject) o;
+                        String propertyExtend = object.getString("propertyExtend");
+                        List<ItemPropertyBO> itemPropertyBOS = JSON.parseArray(propertyExtend, ItemPropertyBO.class);
+                        return itemPropertyBOS;
+                    }).flatMap(Collection::stream).map(ItemPropertyBO::getValues)
+                    .flatMap(Collection::stream).map(PropertyValuesBO::getRelationId).collect(Collectors.toSet());
+        }).flatMap(Collection::stream).collect(Collectors.toSet());
+        System.out.println("values==" + values);
+    }
+
+
+    @Test
+    public void convert() {
+        String ss = "[{\"locale\":\"zh_CN\",\"propertyExtend\":null,\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"relationId\\\":99561}}]\"},{\"locale\":\"ja_JP\",\"propertyExtend\":null,\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"Type 1\\\"}}]\"},{\"locale\":\"in_ID\",\"propertyExtend\":null,\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"Type 1\\\"}}]\"},{\"locale\":\"en_US\",\"propertyExtend\":null,\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"Type 1\\\"}}]\"}]";
+        JSONObject jsonObject = new JSONObject().fluentPut("property", ss);
+        List<JSONObject> list = Lists.newArrayList(jsonObject);
+
+        Set<Long> collect = list.stream().map(property -> {
+            JSONArray propertyArr = property.getJSONArray("property");
+            return propertyArr.stream().map(o -> {
+                        JSONObject object = (JSONObject) o;
+                        String salePropertyExtendStr = object.getString("salePropertyExtend");
+                        //System.out.println("salePropertyExtendStr==" + salePropertyExtendStr);
+                        List<SkuPropertyBO> skuPropertyBOS = JSON.parseArray(salePropertyExtendStr, SkuPropertyBO.class);
+                        //System.out.println(skuPropertyBOS);
+                        return skuPropertyBOS;
+                    }).flatMap(Collection::stream).map(SkuPropertyBO::getKey)
+                    //.peek(System.out::println)
+                    .filter(Objects::nonNull)
+                    .map(PropertyKeyBO::getPropertyId)
+                    //.peek(System.out::println)
+                    .filter(Objects::nonNull).collect(Collectors.toSet());
+        }).flatMap(Collection::stream).collect(Collectors.toSet());
+        //System.out.println(collect);
+
+        Set<Long> valueIds = list.stream().map(property -> {
+            JSONArray propertyArr = property.getJSONArray("property");
+            return propertyArr.stream().map(o -> {
+                        JSONObject object = (JSONObject) o;
+                        String salePropertyExtendStr = object.getString("salePropertyExtend");
+                        List<SkuPropertyBO> skuPropertyBOS = JSON.parseArray(salePropertyExtendStr, SkuPropertyBO.class);
+                        return skuPropertyBOS;
+                    }).flatMap(Collection::stream).map(SkuPropertyBO::getValue).filter(Objects::nonNull)
+                    .map(PropertyValuesBO::getRelationId).filter(Objects::nonNull).collect(Collectors.toSet());
+        }).flatMap(Collection::stream).collect(Collectors.toSet());
+        //System.out.println("valueIds==" + valueIds);
+
+        Set<Long> values = list.stream().map(property -> {
+            JSONArray propertyArr = property.getJSONArray("property");
+            return propertyArr.stream().map(o -> {
+                        JSONObject object = (JSONObject) o;
+                        String propertyExtend = object.getString("propertyExtend");
+                        if (StringUtils.isBlank(propertyExtend)) {
+                            return new ArrayList<ItemPropertyBO>();
+                        }
+                        List<ItemPropertyBO> itemPropertyBOS = JSON.parseArray(propertyExtend, ItemPropertyBO.class);
+                        return itemPropertyBOS;
+                    }).flatMap(Collection::stream)
+                    .map(ItemPropertyBO::getValues).peek(System.out::println)
+                    .flatMap(Collection::stream).peek(System.out::println)
+                    .map(PropertyValuesBO::getRelationId).peek(System.out::println)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toSet());
+        }).flatMap(Collection::stream).collect(Collectors.toSet());
+        System.out.println("values==" + values);
+    }
+
+    @Test
+    public void jsonArr() {
+        String ss = "[{\"salePropertyExtend\":\"[{\\\"key\\\":{\\\"custom\\\":\\\"Spesifikasi\\\",\\\"propertyId\\\":48201},\\\"value\\\":{\\\"custom\\\":\\\"40 pon\\\\t\\\",\\\"relationId\\\":5862}},{\\\"key\\\":{\\\"custom\\\":\\\"model\\\",\\\"propertyId\\\":49301},\\\"value\\\":{\\\"custom\\\":\\\"For iPhone 13mini \\\",\\\"relationId\\\":6964}}]\"}]";
+        JSONArray array = JSONObject.parseArray(ss);
+        JSONArray jsonArray = array.getJSONArray(Integer.parseInt("salePropertyExtend"));
+        Map<Long, Object> objectMap = jsonArray.stream().collect(Collectors.toMap(obj -> {
+            JSONObject jsonObject = (JSONObject) obj;
+            Long propertyId = jsonObject.getLong("propertyId");
+            if (Objects.nonNull(propertyId)) {
+                return propertyId;
+            }
+            return null;
+        }, Function.identity(), (s, e) -> s));
+
+        System.out.println(objectMap);
+    }
+
+    /**
+     * 带斜杠的str 可以转成 json
+     */
+    @Test
+    public void strToJson() {
+        String ss = "[{\"locale\": \"zh_CN\", \"propertyExtend\": null, \"salePropertyExtend\": \"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"plug\\\"}}]\"}, {\"locale\": \"ja_JP\", \"propertyExtend\": null, \"salePropertyExtend\": \"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"plug\\\"}}]\"}, {\"locale\": \"in_ID\", \"propertyExtend\": null, \"salePropertyExtend\": \"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"plug\\\"}}]\"}, {\"locale\": \"en_US\", \"propertyExtend\": null, \"salePropertyExtend\": \"[{\\\"key\\\":{\\\"propertyId\\\":2000000003},\\\"value\\\":{\\\"custom\\\":\\\"plug\\\"}}]\"}]";
+        JSONArray jsonArray = JSON.parseArray(ss);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+        System.out.println(jsonObject);
+        String jsonObjectString = jsonObject.getString("salePropertyExtend");
+        System.out.println(jsonObjectString);
+        JSONArray objects = JSONObject.parseArray(jsonObjectString);
+        System.out.println(objects);
+    }
+
+    @Test
+    public void toStringV2() {
+        String ss = "{\"1\":[{\"age\":11,\"id\":11}]}";
+        Map<String, List<User>> map = new HashMap<String, List<User>>() {{
+            put("1", Collections.singletonList(new User(11, 11)));
+        }};
+
+        String string = JSON.toJSONString(map);//{"1":[{"age":11,"id":11}]}
+        System.out.println(string);
+
+
+//        output_tax_rate -> [{"countryId":1,"taxRate":0.22}]
+
+        Map<String, String> mapV2 = new HashMap<String, String>() {{
+            put("output_tax_rate", "[{\"countryId\":1,\"taxRate\":0.22}]");
+        }};
+        String jsonString = JSON.toJSONString(mapV2);
+        System.out.println(jsonString);
+
+    }
+
+    /**
+     * SimplePropertyPreFilter
+     * 序列化排除/包含某些字段
+     */
+    @Test
+    public void jsonString() {
+        HashMap<String, String> hashMap = new HashMap<String, String>() {{
+            put("aa", "11");
+            put("bb", "55");
+            put("vv", "22");
+            put("cc", "33");
+        }};
+
+        SimplePropertyPreFilter simplePropertyPreFilter = new SimplePropertyPreFilter();
+        simplePropertyPreFilter.getIncludes().add("tt");
+//        simplePropertyPreFilter.getExcludes().add("rr");
+        String string = JSON.toJSONString(hashMap, simplePropertyPreFilter);
+        System.out.println(string);
+    }
+
+    /**
+     * json arr ，直接list
+     */
+    @Test
+    public void jsonList() {
+        ArrayList<User> integers = Lists.newArrayList(new User(1, 2));
+        String string = JSON.toJSONString(integers);
+        System.out.println(string);
+    }
+
+
+    @Test
+    public void jsonString2() {
+        HashMap<String, String> hashMap = new HashMap<String, String>() {{
+            put("aa", "11");
+            put("bb", "55");
+            put("vv", "22");
+            put("cc", "33");
+        }};
+
+        SimplePropertyPreFilter filter = new SimplePropertyPreFilter();
+        filter.getIncludes().add("aa");
+        String s = toJsonStr(hashMap, null);
+        System.out.println(s);
+    }
+
+
+    public static String toJsonStr(Map<String, String> featureMap, PropertyPreFilter filter) {
+        if (MapUtils.isNotEmpty(featureMap)) {
+            return JSON.toJSONString(featureMap, filter);
+        }
+        return null;
+    }
 
     @Test
     public void te() {
@@ -373,11 +635,12 @@ public class JsonDemo {
     @Test
     public void parse2() throws IOException {
         long time = System.currentTimeMillis();
-        File file = new File("fastjsonTest.json");
+        File file = new File("jacksonTest.json");
         String content = FileUtils.readFileToString(file, "UTF-8");
 
         List<UnitModel> unitModels = JSONArray.parseObject(content, new TypeReference<List<UnitModel>>() {
         });
+        System.out.println(unitModels);
         System.out.println(unitModels.get(0).getUnitName().getAllLanguageString());
         System.out.println("consume time: " + (System.currentTimeMillis() - time) + "::::" + unitModels.size());
     }

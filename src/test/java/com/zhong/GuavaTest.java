@@ -4,16 +4,13 @@ import com.google.common.base.Joiner;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Splitter;
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import com.google.common.collect.*;
 import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,6 +18,116 @@ import java.util.concurrent.TimeUnit;
  * @date 2022/1/21 11:34
  */
 public class GuavaTest {
+    /**
+     * 双向Map
+     * 注意：不能存储多对一的关系
+     */
+    @Test
+    public void biMap() {
+        BiMap<String, Integer> biMap = HashBiMap.create();
+        biMap.put("A", 1);
+        biMap.put("B", 2);
+        biMap.put("C", null);
+        biMap.put("D", 4);
+        biMap.put("t", 4);
+        biMap.put("u", 4);
+        BiMap<Integer, String> inverse = biMap.inverse();
+        String s = inverse.get(4);
+        System.out.println(s);//value already present: 4
+    }
+
+    @Test
+    public void map() {
+        HashMap<String, Integer> hashMap = new HashMap<String, Integer>() {{
+            put("a", 1);
+            put("b", 2);
+            put("c", 3);
+            put("d", 4);
+            put("e", 4);
+        }};
+        Map<String, Integer> map = Maps.filterValues(hashMap, x -> x.equals(4));
+        System.out.println();
+    }
+
+    /**
+     * Maps.filterKeys
+     * 过滤指定 key 的map
+     */
+    @Test
+    public void filterKeys() {
+        HashMap<String, String> hashMap = new HashMap<String, String>() {{
+            put("1", "qq");
+            put("2", "rr");
+            put("3", "yy");
+            put("4", "oo");
+            put("5", "hh");
+        }};
+        Map<String, String> map = Maps.filterKeys(hashMap, x -> x.equals("3"));
+        System.out.println(map);
+    }
+
+    /**
+     * CollectionUtils.subtract
+     * 减法
+     * 保留自身不同的
+     */
+    @Test
+    public void subtract() {
+        List<String> list1 = new ArrayList<>();
+        list1.add("aa");
+        list1.add("hh");
+        List<String> list2 = Lists.newArrayList("aa", "55");
+        Collection<String> subtract = CollectionUtils.subtract(list1, list2);
+        System.out.println(subtract);
+    }
+
+    @Test
+    public void one() {
+        ArrayList<String> exist = Lists.newArrayList("43682");
+        ArrayList<String> request = Lists.newArrayList("23910");
+
+        Collection<String> subtract = CollectionUtils.subtract(exist, request);
+        System.out.println(subtract);//[43682]
+    }
+
+    /**
+     * CollectionUtils 的方法不是指针
+     */
+    @Test
+    public void coTest() {
+        ArrayList<String> list1 = Lists.newArrayList("aa", "bb", "cc", "pp");
+        ArrayList<String> list2 = Lists.newArrayList("aa", "bb", "cc", "rr");
+
+        Collection<String> intersection = CollectionUtils.intersection(list2, list1);
+        System.out.println(intersection);//[aa, bb, cc]
+
+        Collection<String> subtract1 = CollectionUtils.subtract(list1, list2);
+        System.out.println(subtract1);//[pp]
+
+        Collection<String> subtract = CollectionUtils.subtract(list2, list1);
+        System.out.println(subtract);//[rr]
+    }
+
+    /**
+     * hashMultiMap，一个key，多个value
+     * value 的 类型是set
+     */
+    @Test
+    public void hashMultiMap() {
+        HashMultimap<Integer, Integer> hashMultimap = HashMultimap.create();
+        hashMultimap.put(1, 2);
+        hashMultimap.put(1, 2);
+        hashMultimap.put(1, 32);
+        hashMultimap.put(1, 32);
+        hashMultimap.put(1, 24);
+        hashMultimap.put(1, 24);
+
+        System.out.println(hashMultimap);
+
+        Set<Integer> set = hashMultimap.get(1);
+        System.out.println(set);
+
+    }
 
     /**
      * Lists.partition用法
@@ -110,7 +217,7 @@ public class GuavaTest {
      */
     @Test
     public void MoreObjects() {
-        Cat cat = new Cat(22, MultiLanguageString.of(Maps.newHashMap()), 11);
+        Cat cat = new Cat(22, MultiLanguageString.of(Maps.newHashMap()), 11, null);
         String str = MoreObjects.toStringHelper("catxxxx").add("state", cat.getState()).toString();
         System.out.println(str);
 //输出Person{age=11}

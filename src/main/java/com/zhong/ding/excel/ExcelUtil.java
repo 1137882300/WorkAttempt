@@ -1,4 +1,4 @@
-package com.zhong.excel;
+package com.zhong.ding.excel;
 
 import com.alibaba.excel.ExcelReader;
 import com.alibaba.excel.ExcelWriter;
@@ -31,15 +31,27 @@ public final class ExcelUtil {
         }
         ExcelListener<T> listener = new ExcelListener<>();
         // 这里因为EasyExcel-1.1.1版本的bug，所以需要选用下面这个标记已经过期的版本
-        ExcelReader reader = new ExcelReader(inputStream,  valueOf(inputStream), null, listener);
+        ExcelReader reader = new ExcelReader(inputStream, valueOf(inputStream), null, listener);
         reader.read(new Sheet(sheetNo, 1, clazz));
+
+        return listener.getRows();
+    }
+
+    public static <T extends BaseRowModel> List<T> readExcelByHeadLine(final InputStream inputStream, final Class<? extends BaseRowModel> clazz, Integer sheetNo, int headLine) {
+        if (null == inputStream) {
+            throw new NullPointerException("the inputStream is null!");
+        }
+        ExcelListener<T> listener = new ExcelListener<>();
+        // 这里因为EasyExcel-1.1.1版本的bug，所以需要选用下面这个标记已经过期的版本
+        ExcelReader reader = new ExcelReader(inputStream, valueOf(inputStream), null, listener);
+        reader.read(new Sheet(sheetNo, headLine, clazz));
 
         return listener.getRows();
     }
 
 
     public static void writeExcel(final File file, List<? extends BaseRowModel> list) {
-        Assert.assertNotSame("list 不能为空",0, list.size());
+        Assert.assertNotSame("list 不能为空", 0, list.size());
         try (OutputStream out = new FileOutputStream(file)) {
             ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX);
             //写第一个sheet,  有模型映射关系

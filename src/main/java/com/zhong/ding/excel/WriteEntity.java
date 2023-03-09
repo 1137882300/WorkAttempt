@@ -1,4 +1,4 @@
-package com.zhong.excel;
+package com.zhong.ding.excel;
 
 import com.alibaba.excel.metadata.BaseRowModel;
 import lombok.Data;

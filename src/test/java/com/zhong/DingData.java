@@ -452,7 +452,7 @@ public class DingData {
                 sb.append(divisionInfoPO.getDivisionLevel()).append(",");
                 sb.append("\"").append("product_GLO").append("\"").append(",");
                 sb.append(divisionInfoPO.getCreatorId()).append(",");
-                sb.append(divisionInfoPO.getModifierId()).append(",");
+                sb.append("-22").append(",");
                 sb.append(divisionInfoPO.getCreateTime()).append(",");
                 sb.append(divisionInfoPO.getUpdateTime()).append(",");
                 sb.append(0).append(",");
@@ -468,7 +468,7 @@ public class DingData {
                 languageSb.append("\"").append(divisionInfoPO.getDivisionName()).append("\"").append(",");
                 languageSb.append("\"").append("in_ID").append("\"").append(",");
                 languageSb.append(divisionInfoPO.getCreatorId()).append(",");
-                languageSb.append(divisionInfoPO.getModifierId()).append(",");
+                languageSb.append("-22").append(",");
                 languageSb.append(divisionInfoPO.getCreateTime()).append(",");
                 languageSb.append(divisionInfoPO.getUpdateTime()).append(",");
                 languageSb.append(0).append(",");

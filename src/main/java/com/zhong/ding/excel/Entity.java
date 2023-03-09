@@ -1,14 +1,24 @@
-package com.zhong.excel;
+package com.zhong.ding.excel;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
+import com.alibaba.fastjson.annotation.JSONField;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.apache.poi.ss.usermodel.CellStyle;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zhong.zihan@xyb2b.com
  * @date 2021/12/20 19:08
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Entity extends BaseRowModel {
 
 
@@ -38,4 +48,7 @@ public class Entity extends BaseRowModel {
 
     @ExcelProperty(value = "第9列", index = 8)
     private String column9;
+
+    @ExcelIgnore
+    private Long Id;
 }
