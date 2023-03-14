@@ -25,6 +25,23 @@ import java.util.stream.Stream;
  */
 public class CollectionTest {
 
+    /**
+     * @author juzi
+     * @date 2023/3/14 10:47
+     * @description map 赋值的另一种写法
+     * Collectors.toMap 的第四个参数 （）-> xxx
+     */
+    @Test
+    public void assignmentMap() {
+        List<User> list = Lists.newArrayList(new User(1, 11), new User(2, 22), new User(3, null));
+        HashMap<Integer, User> hashMap = list.stream()
+                .collect(Collectors.toMap(
+                        User::getId,
+                        Function.identity(),
+                        (s, e) -> e,
+                        Maps::newHashMap));
+    }
+
     @Test
     public void emptySet() {
         HashSet<String> hashSet = Sets.newHashSet();
