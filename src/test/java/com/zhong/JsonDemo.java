@@ -11,16 +11,12 @@ import com.zhong.cache.AreaModel;
 import com.zhong.cache.CurrencyModel;
 import com.zhong.cache.UnitModel;
 import com.zhong.entity.*;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import org.springframework.web.bind.annotation.ValueConstants;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -292,15 +288,48 @@ public class JsonDemo {
 
 
         List<Dog> dogs = new ArrayList<>();
-        Dog dog = Dog.builder().id(1).state(StateEnum.OPEN).build();
+        Dog dog = Dog.builder().id(1).state(StateEnum.OPEN).dogMap(new HashMap<String,String>(){{put("aaa","bbb");}}).build();
         dogs.add(dog);
         MultiLanguageString string = new MultiLanguageString();
         string.registerDefaultLanguage("巴林");
         ObList obList = ObList.builder().id(23).dogList(dogs).fromCountries(string).build();
+        //SerializerFeature.DisableCircularReferenceDetect
         String s = JSON.toJSONString(obList);
-        System.out.println(s);
+//        System.out.println(s);
+
+        List<Map<Locale, String>> refList = Lists.newArrayList();
+        Map<Locale, String> refMap = new HashMap<Locale,String>(){{
+            put(Locale.US,  "ddd");
+            put(Locale.PRC, "ccc");
+        }};
+        refList.add(refMap);
+        String s2 = JSON.toJSONString(refList );
+        System.out.println(s2);
 
     }
+
+    /**
+     * 重复引用
+     */
+    @Test
+    public void ref() {
+        List<Map<String, Integer>> detailList = new ArrayList<>();
+        Map<String, Integer> exceptionMap = new HashMap<>();
+        for (int i = 0; i < 2; i++) {
+            exceptionMap.put("code",i);
+            exceptionMap.put("message", i+5);
+            detailList.add(exceptionMap);
+        }
+
+//        System.out.println(detailList);
+//        SerializerFeature.DisableCircularReferenceDetect
+//        System.out.println(JSON.toJSONString(detailList,SerializerFeature.DisableCircularReferenceDetect));
+
+        MultiLanguageString string = new MultiLanguageString();
+        System.out.println(JSON.toJSONString(string));
+//        {"allLanguageString":{},"defaultLocale":"in_ID","languageStringMap":{"$ref":"$.allLanguageString"}}， 这里languageStringMap和allLanguageString是一样的对象，重复引用了
+    }
+
 //    itemTransport:{}
 //    "fromCountries":[{"countryId":1,"countryAbbreviation":"火星"}],"toCountries":[{"countryId":2,"countryAbbreviation":"巴林"}]
 
