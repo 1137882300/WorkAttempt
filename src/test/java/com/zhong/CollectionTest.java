@@ -40,6 +40,19 @@ public class CollectionTest {
                         Function.identity(),
                         (s, e) -> e,
                         Maps::newHashMap));
+
+        Map<Integer, User> map = Maps.newHashMap();
+        list.stream().collect(Collectors.toMap(
+                User::getId,
+                Function.identity(),
+                (s, e) -> e,
+                () -> map));
+        //
+        list.stream().collect(Collectors.collectingAndThen(Collectors.toMap(
+                User::getId,
+                Function.identity(),
+                (s, e) -> e), Function.identity()));
+
     }
 
     @Test
