@@ -46,6 +46,16 @@ import java.util.stream.Collectors;
 public class BaseTest {
 
     @Test
+    public void BigDecimalTest(){
+        BigDecimal settlementUnitPrice = BigDecimal.valueOf(0);
+        BigDecimal multiply = BigDecimal.valueOf(1 - 1).multiply(settlementUnitPrice);
+        System.out.println(multiply);
+
+        int i = settlementUnitPrice.compareTo(BigDecimal.ZERO);
+        System.out.println(i<0);
+    }
+
+    @Test
     public void money(){
         //cent 分
         Integer integer = Convert.toInt(new Money(new BigDecimal("99.9")).getCent());
