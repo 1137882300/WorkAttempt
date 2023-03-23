@@ -18,4 +18,20 @@ public class BizTest {
         System.out.println(name.getLanguageStringMap());//NullPointerException
     }
 
+    public static String concatUrl(String a, String b) {
+        if (a.endsWith("/")) {
+            a = a.substring(0, a.length() - 1);
+        }
+        if (b.startsWith("/")) {
+            b = b.substring(1);
+        }
+        return a + "/" + b;
+    }
+
+    @Test
+    public void ss(){
+        String s = concatUrl("aaa/ccc/eee/", "eee/ttt/uuu/");
+        System.out.println(s);//:    aaa/ccc/eee/eee/ttt/uuu/
+    }
+
 }
