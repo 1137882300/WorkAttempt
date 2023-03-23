@@ -140,6 +140,12 @@
             <version>2.7</version>
         </dependency>
 
+        <!--认证，登录，header之类的-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
 
 <!--        <dependency>-->
 <!--            <groupId>org.javamoney</groupId>-->
