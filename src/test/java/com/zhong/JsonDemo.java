@@ -34,6 +34,16 @@ import java.util.stream.Collectors;
 public class JsonDemo {
 
     @Test
+    public void add() {
+        String ss = "{\"pid\":51}";
+//        String ss = null;
+        JSONObject jsonObject = JSON.parseObject(Optional.ofNullable(ss).orElse("{}"));
+        jsonObject.fluentPut("equityDeduction", true);
+        System.out.println(jsonObject.toString());
+
+    }
+
+    @Test
     public void Test3() {
         List<JSONObject> list = Lists.newArrayList(
                 new JSONObject().fluentPut("category_backend_id", 111).fluentPut("category", "[{\"value\": \"母婴ttt\", \"locale\": \"zh_CN\"}]"),
