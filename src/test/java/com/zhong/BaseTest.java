@@ -46,6 +46,11 @@ import java.util.stream.Collectors;
 public class BaseTest {
 
     @Test
+    public void booTest(){
+        boolean equals = !Boolean.FALSE.equals(false);
+        System.out.println(equals);
+    }
+    @Test
     public void BigDecimalTest(){
         BigDecimal settlementUnitPrice = BigDecimal.valueOf(0);
         BigDecimal multiply = BigDecimal.valueOf(1 - 1).multiply(settlementUnitPrice);

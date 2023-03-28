@@ -2,6 +2,9 @@ package com.zhong;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.date.DateField;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Maps;
 import org.junit.Test;
 
@@ -11,6 +14,12 @@ import java.util.Map;
  * @date 2022/5/7 14:04
  */
 public class HutoolTest {
+
+    @Test
+    public void date(){
+        DateTime offset = DateUtil.date().offset(DateField.MINUTE, 30);
+        System.out.println(offset);
+    }
 
 
     @Test
