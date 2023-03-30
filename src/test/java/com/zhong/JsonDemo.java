@@ -14,6 +14,7 @@ import com.zhong.entity.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -33,6 +34,22 @@ import java.util.stream.Collectors;
  */
 public class JsonDemo {
 
+
+    /**
+     * @author juzi
+     * @date 2023/3/30 10:51
+     * @description get 空 的bool时,用BooleanUtils.toBoolean 防止空指针
+     */
+    @Test
+    public void empty(){
+        Map<String, String> hashMap = Maps.newHashMap();
+        hashMap.put("aaa", Boolean.toString(true));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.putAll(hashMap);
+        boolean aaa = BooleanUtils.toBoolean(jsonObject.getBoolean("aaa"));
+        System.out.println(aaa);
+
+    }
     @Test
     public void add() {
         String ss = "{\"pid\":51}";
