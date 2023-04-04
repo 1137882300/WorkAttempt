@@ -1,5 +1,9 @@
 package com.zhong;
 
+import cn.hutool.core.date.DateField;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -13,6 +17,27 @@ import java.util.Date;
  * @date: 2023/3/23
  */
 public class DateTest {
+
+    /**
+     * @author juzi
+     * @date 2023/4/4 9:33
+     * @description date转string, string转date
+     */
+    @Test
+    public void convert() {
+
+        Date dateLimit = DateUtil.date().offset(DateField.MINUTE, 30);
+        //date转string
+        String format = DateUtil.format(dateLimit, DatePattern.NORM_DATETIME_FORMAT);
+        System.out.println(format);
+
+        //string 转 date
+        DateTime parse = DateUtil.parse(format, DatePattern.NORM_DATETIME_FORMAT);
+        System.out.println(parse);
+
+        boolean after = parse.after(new Date());
+        System.out.println(after);
+    }
 
     /**
      * @author juzi
