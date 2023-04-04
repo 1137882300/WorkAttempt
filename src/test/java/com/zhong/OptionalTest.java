@@ -38,6 +38,17 @@ public class OptionalTest {
     }
 
     /**
+     * @author juzi
+     * @date 2023/4/4 9:48
+     * @description 纯用Optional报错，String类型不合适
+     */
+    @Test
+    public void orElseThrow(){
+        String expiryDate = "";
+        Optional.ofNullable(expiryDate).orElseThrow(() -> new RuntimeException("sss"));
+    }
+
+    /**
      * 区别
      * .flatMap：返回的不是Optional，需要自己包装成Optional
      * .map：返回的就是Optional
