@@ -2,6 +2,7 @@ package com.zhong.decryption;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.zhong.Utils.FileUtils;
@@ -9,6 +10,7 @@ import com.zhong.decryption.util.HzTourAesCbcAndBase64Util;
 import lombok.SneakyThrows;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +22,14 @@ import java.util.List;
 public class Test2 {
 
 
+    /**
+     * @author juzi
+     * @date 2023/4/7 15:02
+     * @description
+     * String.valueOf(jsonObject) 搭配 result.toString()  生成json格式
+     */
     @SneakyThrows
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
 
         String slatKey = "gMhXfD9ePF8YhXQx";
         String vectorKey = "hm3qvrxGaeJLrvx9";
@@ -40,12 +48,20 @@ public class Test2 {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.fluentPut("type", 1);
                 jsonObject.fluentPut("member", encrypt);
-                result.add(jsonObject.toJSONString());
-            } catch (Exception e) {
-
+                result.add(String.valueOf(jsonObject));
+            } catch (Exception ignored) {
             }
         });
-        FileUtil.writeUtf8String(JSON.toJSONString(result), new File("入参.json"));
+        FileUtil.writeUtf8String(result.toString(), new File("入参.json"));
+    }
+
+
+    public static void main(String[] args) {
+        File file = new File("C:\\Users\\root\\Desktop\\入参.json");
+        String string = FileUtil.readUtf8String(file);
+        JSONArray jsonArray = JSONObject.parseArray(string);
+        System.out.println(jsonArray.get(0));
+        System.out.println(jsonArray.get(1));
     }
 
 }
