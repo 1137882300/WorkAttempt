@@ -5,6 +5,7 @@ import com.alibaba.fastjson.*;
 import com.alibaba.fastjson.serializer.PropertyPreFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.cache.AreaModel;
@@ -34,6 +35,18 @@ import java.util.stream.Collectors;
  */
 public class JsonDemo {
 
+    @Test
+    public void SerializerFeatureTest(){
+        String aa = "1";
+
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.QuoteFieldNames);
+
+        String string = JSONObject.toJSONString(aa, SerializerFeature.QuoteFieldNames);
+        String string2 = JSONObject.toJSONString(aa);
+        System.out.println(string);
+        System.out.println(string2);
+    }
 
     /**
      * @author juzi
