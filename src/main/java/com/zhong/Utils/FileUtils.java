@@ -88,6 +88,11 @@ public class FileUtils {
         });
     }
 
+    public static List<String> readFile(String path) {
+        File file = new File(path);
+        return FileUtil.readUtf8Lines(file);
+    }
+
     public static Map<String, String> readJsonToMap(String path) {
         File file = new File(path);
         String string = FileUtil.readUtf8String(file);

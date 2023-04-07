@@ -16,7 +16,7 @@ import java.util.Base64;
  * @author: 橘子
  * @date: 2023/3/8
  */
-public class test {
+public class Test {
 
     /**
      *  AES-128-CBC，数据采用PKCS#7填充
