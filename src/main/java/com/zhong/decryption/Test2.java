@@ -29,7 +29,7 @@ public class Test2 {
      * String.valueOf(jsonObject) 搭配 result.toString()  生成json格式
      */
     @SneakyThrows
-    public static void main2(String[] args) {
+    public static void main(String[] args) {
 
         String slatKey = "gMhXfD9ePF8YhXQx";
         String vectorKey = "hm3qvrxGaeJLrvx9";
@@ -38,7 +38,7 @@ public class Test2 {
 
         List<String> list = FileUtils.readFile(path);
         List<String> result = Lists.newArrayList();
-        list.forEach(x -> {
+        list.stream().distinct().forEach(x -> {
             try {
                 JSONObject json = new JSONObject();
                 json.fluentPut("cardNo", x);
@@ -56,7 +56,7 @@ public class Test2 {
     }
 
 
-    public static void main(String[] args) {
+    public static void main7(String[] args) {
         File file = new File("C:\\Users\\root\\Desktop\\入参.json");
         String string = FileUtil.readUtf8String(file);
         JSONArray jsonArray = JSONObject.parseArray(string);
