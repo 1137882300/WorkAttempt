@@ -334,6 +334,20 @@ public class CollectionTest {
     }
 
     @Test
+    public void flatMapTest() {
+        List<String> list = Arrays.asList("北京 天安门", "上海 东方明珠", "厦门 鼓浪屿");
+        //flatMap
+        List<String> collect = list.stream().flatMap(item -> Arrays.stream(item.split(" ")))
+                .collect(Collectors.toList());
+        System.out.println(collect);
+//                .forEach(System.out::println);
+        //map
+        list.stream().map(item -> Stream.of(item.split(" ")))
+                .forEach(System.out::println);
+
+    }
+
+    @Test
     public void values() {
         Map<String, List<String>> listMap = Maps.newHashMap();
         listMap.put("aa", Lists.newArrayList("11", "22"));
