@@ -1,5 +1,6 @@
 package com.zhong;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -9,10 +10,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.zhong.cache.AreaModel;
 import com.zhong.entity.ItemBaseLanguagePO;
+import lombok.SneakyThrows;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import sun.security.provider.ConfigFile;
 
 import java.io.*;
 import java.util.*;
@@ -22,6 +25,34 @@ import java.util.*;
  * @date 2022/1/4 19:36
  */
 public class FileTest {
+
+    @Test
+    public void ttt2() {
+        ArrayList<String> list = Lists.newArrayList("rankingCompilationDetail"
+                , "informationList", "announcementList", "configInfo", "subjectFlow", "subjectIndex", "cultureMuseumShowList", "cultureMuseumRecommend", "cultureBookingIndex", "userFavoriteList", "userFootprintPunchCard", "noteDetail", "playSubjectFlow", "localCuisineDiscoverList", "localCuisineIndex", "pointDetailRound", "pointDetail", "playSeason1"
+                , "scenicFilterQuery", "scenicIndex", "countyDetailPlayList", "countyDetail", "serviceIndex", "discoverIndex"
+        );
+        for (String s : list) {
+            String underlineCase = StrUtil.toUnderlineCase(s);
+            System.out.println(underlineCase);
+        }
+    }
+
+    @SneakyThrows
+    @Test
+    public void ttt() {
+        String path = "C:\\Users\\root\\Desktop\\ttt.json";
+        File file = new File(path);
+        String content = FileUtils.readFileToString(file, "UTF-8");
+        JSONArray jsonArray = JSONArray.parseArray(content);
+        List<String> list = Lists.newArrayList();
+        for (Object o : jsonArray) {
+            JSONObject jsonObject = (JSONObject) o;
+            String apiName = jsonObject.getString("apiName");
+            list.add(apiName);
+            System.out.println(apiName);
+        }
+    }
 
     @Test
     public void write() throws IOException {

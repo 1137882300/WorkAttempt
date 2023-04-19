@@ -7,7 +7,7 @@ package com.zhong.working;
  */
 public class Config {
 
-
+    //参数类型
     enum ParameterType {
         baseType(1),
         complexType(2),
@@ -23,6 +23,7 @@ public class Config {
     }
 
 
+    //具体类型
     enum ConcreteType {
         String(1),
         Int(2),
@@ -30,6 +31,8 @@ public class Config {
         Float(4),
         Double(5),
         Boolean(6),
+
+
         Object(7),
         Map(9),
         ;
