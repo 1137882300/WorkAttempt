@@ -31,7 +31,15 @@ public class HttpService {
     }
 
 
-    public static JSONObject post(String path, Pair<String,String> header , JSONObject body) {
+    public static JSONObject get(String path, Map<String, String> header) {
+        Request request = Request.Get(path)
+                .addHeader("Content-Type", "application/json;  charset=utf-8");
+        header.forEach(request::addHeader);
+        return doRequest(request);
+    }
+
+
+    public static JSONObject post(String path, Pair<String, String> header, JSONObject body) {
         Request request = Request.Post(path)
                 .addHeader("Content-Type", "application/json;  charset=utf-8")
                 .addHeader(header.getKey(), header.getValue())
@@ -39,7 +47,7 @@ public class HttpService {
         return doRequest(request);
     }
 
-    public static JSONObject post(String path, Map<String,String> header , JSONObject body) {
+    public static JSONObject post(String path, Map<String, String> header, JSONObject body) {
         Request request = Request.Post(path)
                 .addHeader("Content-Type", "application/json;  charset=utf-8")
                 .bodyString(body.toJSONString(), ContentType.APPLICATION_JSON);
