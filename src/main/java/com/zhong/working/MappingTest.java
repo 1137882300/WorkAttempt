@@ -26,7 +26,7 @@ public class MappingTest {
 
     //内部类用$符号分割
     public static void main(String[] args) {
-        Class<?> aClass = getClassFromClass("com.zhong.working.entity.MuseumOrderDetailVO");
+        Class<?> aClass = getClassFromClass("com.zhong.working.entity.RouteDetailVO");
 //        printFields(aClass);
         JSONArray jsonArray = new JSONArray();
         printFieldsV2(aClass, jsonArray, 1);
