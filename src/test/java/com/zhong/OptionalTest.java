@@ -38,6 +38,38 @@ public class OptionalTest {
     }
 
     /**
+     * @author juzi
+     * @date 2023/4/11 13:56
+     * @desc  当ss不是空时，orElse依然会执行，orElseGet才不会执行
+     * 当ss是空时，orElse会执行，orElseGet会执行
+     */
+    @Test
+    public void orElse() {
+        Integer ss = null;
+        Integer orElse = Optional.ofNullable(ss).orElse(orElseTest("orElse"));
+        System.out.println(orElse);
+
+        Integer orElseGet = Optional.ofNullable(ss).orElseGet(() -> orElseTest("orElseGet"));
+        System.out.println(orElseGet);
+    }
+
+    private Integer orElseTest(String ss) {
+        System.out.println(ss + " 依然执行了");
+        return 20;
+    }
+
+    /**
+     * @author juzi
+     * @date 2023/4/4 9:48
+     * @description 纯用Optional报错，String类型不合适
+     */
+    @Test
+    public void orElseThrow() {
+        String expiryDate = "";
+        Optional.ofNullable(expiryDate).orElseThrow(() -> new RuntimeException("sss"));
+    }
+
+    /**
      * 区别
      * .flatMap：返回的不是Optional，需要自己包装成Optional
      * .map：返回的就是Optional

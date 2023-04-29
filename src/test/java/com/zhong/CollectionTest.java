@@ -25,6 +25,36 @@ import java.util.stream.Stream;
  */
 public class CollectionTest {
 
+    /**
+     * @author juzi
+     * @date 2023/3/14 10:47
+     * @description map 赋值的另一种写法
+     * Collectors.toMap 的第四个参数 （）-> xxx
+     */
+    @Test
+    public void assignmentMap() {
+        List<User> list = Lists.newArrayList(new User(1, 11), new User(2, 22), new User(3, null));
+        HashMap<Integer, User> hashMap = list.stream()
+                .collect(Collectors.toMap(
+                        User::getId,
+                        Function.identity(),
+                        (s, e) -> e,
+                        Maps::newHashMap));
+
+        Map<Integer, User> map = Maps.newHashMap();
+        list.stream().collect(Collectors.toMap(
+                User::getId,
+                Function.identity(),
+                (s, e) -> e,
+                () -> map));
+        //
+        list.stream().collect(Collectors.collectingAndThen(Collectors.toMap(
+                User::getId,
+                Function.identity(),
+                (s, e) -> e), Function.identity()));
+
+    }
+
     @Test
     public void emptySet() {
         HashSet<String> hashSet = Sets.newHashSet();
@@ -301,6 +331,20 @@ public class CollectionTest {
                 888
         ).collect(Collectors.toList());
         System.out.println(collect);
+    }
+
+    @Test
+    public void flatMapTest() {
+        List<String> list = Arrays.asList("北京 天安门", "上海 东方明珠", "厦门 鼓浪屿");
+        //flatMap
+        List<String> collect = list.stream().flatMap(item -> Arrays.stream(item.split(" ")))
+                .collect(Collectors.toList());
+        System.out.println(collect);
+//                .forEach(System.out::println);
+        //map
+        list.stream().map(item -> Stream.of(item.split(" ")))
+                .forEach(System.out::println);
+
     }
 
     @Test

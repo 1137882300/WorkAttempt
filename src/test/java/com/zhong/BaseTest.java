@@ -2,7 +2,9 @@ package com.zhong;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.math.MathUtil;
+import cn.hutool.core.math.Money;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.PageUtil;
@@ -42,6 +44,30 @@ import java.util.stream.Collectors;
  * @date 2021/10/14 10:20
  */
 public class BaseTest {
+
+    @Test
+    public void booTest(){
+        boolean equals = !Boolean.FALSE.equals(false);
+        System.out.println(equals);
+    }
+    @Test
+    public void BigDecimalTest(){
+        BigDecimal settlementUnitPrice = BigDecimal.valueOf(0);
+        BigDecimal multiply = BigDecimal.valueOf(1 - 1).multiply(settlementUnitPrice);
+        System.out.println(multiply);
+
+        int i = settlementUnitPrice.compareTo(BigDecimal.ZERO);
+        System.out.println(i<0);
+    }
+
+    @Test
+    public void money(){
+        //cent 分
+        Integer integer = Convert.toInt(new Money(new BigDecimal("99.9")).getCent());
+        System.out.println(integer);
+        long cent = new Money(new BigDecimal("99.9")).getCent();
+        System.out.println(cent);
+    }
 
     /**
      * boolean 类型引用 不行
@@ -383,6 +409,14 @@ public class BaseTest {
 
     }
 
+    @Test
+    public void yu() {
+        Integer k = 200;
+        int o = k % 1000;
+        int p = k / 1000;
+        System.out.println(" % : " + o);
+        System.out.println(" / : " + p);
+    }
 
     @Test
     public void split() {

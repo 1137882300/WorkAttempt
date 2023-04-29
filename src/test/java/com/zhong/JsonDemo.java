@@ -5,6 +5,7 @@ import com.alibaba.fastjson.*;
 import com.alibaba.fastjson.serializer.PropertyPreFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.cache.AreaModel;
@@ -13,6 +14,8 @@ import com.zhong.cache.UnitModel;
 import com.zhong.entity.*;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -28,6 +31,44 @@ import java.util.stream.Collectors;
  * @date 2021/11/26 17:50
  */
 public class JsonDemo {
+
+    @Test
+    public void SerializerFeatureTest(){
+        String aa = "1";
+
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.QuoteFieldNames);
+
+        String string = JSONObject.toJSONString(aa, SerializerFeature.QuoteFieldNames);
+        String string2 = JSONObject.toJSONString(aa);
+        System.out.println(string);
+        System.out.println(string2);
+    }
+
+    /**
+     * @author juzi
+     * @date 2023/3/30 10:51
+     * @description get 空 的bool时,用BooleanUtils.toBoolean 防止空指针
+     */
+    @Test
+    public void empty(){
+        Map<String, String> hashMap = Maps.newHashMap();
+        hashMap.put("aaa", Boolean.toString(true));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.putAll(hashMap);
+        boolean aaa = BooleanUtils.toBoolean(jsonObject.getBoolean("aaa"));
+        System.out.println(aaa);
+
+    }
+    @Test
+    public void add() {
+        String ss = "{\"pid\":51}";
+//        String ss = null;
+        JSONObject jsonObject = JSON.parseObject(Optional.ofNullable(ss).orElse("{}"));
+        jsonObject.fluentPut("equityDeduction", true);
+        System.out.println(jsonObject.toString());
+
+    }
 
     @Test
     public void Test3() {
