@@ -38,6 +38,38 @@ public class FunctionUtil {
                 ArrayList::new));
     }
 
+    /**
+     * 抽取 T 中的字段并去重用 ',' 进行join
+     *
+     * @author 美年达
+     * @date 2022/5/27 11:04 AM
+     */
+    public static <T> String extractFieldAndJoin(Collection<T> collection, Function<T, String> mapper) {
+        return extractFieldAndJoinWith(collection, mapper, ",");
+    }
+
+    /**
+     * 抽取 T 中的字段并去重用delimiter join
+     *
+     */
+    public static <T> String extractFieldAndJoinWith(Collection<T> collection, Function<T, String> mapper, CharSequence delimiter) {
+        if (collection == null || mapper == null || delimiter == null) {
+            return "";
+        }
+        return collection.stream().map(mapper).distinct().filter(Objects::nonNull).collect(Collectors.joining(delimiter));
+    }
+
+    /**
+     * 抽取 T 中的字段并去重
+     *
+     */
+    public static <T, R> List<R> extractField2List(Collection<T> collection, Function<T, R> mapper) {
+        if (collection == null || mapper == null) {
+            return new ArrayList<>();
+        }
+        return collection.stream().map(mapper).distinct().filter(Objects::nonNull).collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
         List<AreaInfoPO> list = Lists.newArrayList(
                 AreaInfoPO.builder().id(12L).countryId(12L).parentId(76L).build(),
