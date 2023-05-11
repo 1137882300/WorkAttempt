@@ -8,6 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author: juzi
@@ -16,6 +18,18 @@ import java.util.List;
  */
 public class PostGerSql {
 
+
+    public static void main1(String[] args) {
+        String str = "<p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><img src=\"https://hztour-img.youxiake.com/cms/post/202304/27/113723/25Gs1682566701711.jpg\" data-mce-src=\"https://hztour-img.youxiake.com/cms/post/202304/27/113723/25Gs1682566701711.jpg\"></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><br></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">期待已久的五一假期</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">终于越来越近了</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">带上这份萧山五一游玩全攻略</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">选择目的地出发吧！<br></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">这个假期，畅玩景区乐园</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">&nbsp;<br><span style=\"font-size: 16px;\" data-mce-style=\"font-size: 16px;\"><strong><em>湘湖跨湖桥景区</em></strong></span></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><br></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><img src=\"https://hztour-img.youxiake.com/cms/post/202304/27/113723/25Gs1682566739867.jpg\" data-mce-src=\"https://hztour-img.youxiake.com/cms/post/202304/27/113723/25Gs1682566739867.jpg\"></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><br></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">露营、踏青、喝茶、打卡</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">一起来看看</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">湘湖“五·一”绘梦艺术系列</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">都有哪些精彩活动吧~</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><br></p><p style=\"text-align: center;\" ";
+        String regex = "(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]";  // 匹配数字的正则表达式
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+
+        while (matcher.find()) {  // 循环查找匹配项
+            String match = matcher.group();  // 获取匹配到的子字符串
+            System.out.println(match);  // 输出匹配到的数字子字符串
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -39,21 +53,20 @@ public class PostGerSql {
         entityList.removeIf(x -> StringUtils.isBlank(x.getColumn2()));
         System.out.println(entityList.size());
 
+        //匹配请求的URL
+        String regex = "(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]";
+        Pattern pattern = Pattern.compile(regex);
 
         List<String> list = Lists.newArrayList();
         entityList.forEach(x -> {
-            String between = StringUtils.substringBetween(x.getColumn2(), "<img src=\"", " ");
-            if (StringUtils.isBlank(between)) {
-                return;
+            Matcher matcher = pattern.matcher(x.getColumn2());
+            list.add(String.format(sql1, x.getColumn1(), x.getColumn1()) + " ;\n");
+            while (matcher.find()) {
+                String group = matcher.group();
+                list.add("\n"+String.format(sql2, x.getColumn1(), x.getColumn1(), group) + " ;");
             }
-            String substring = between.substring(0, between.length() - 1);
-            list.add(
-                    String.format(sql1, x.getColumn1(), x.getColumn1()) + " ;\n" + String.format(sql2, x.getColumn1(), x.getColumn1(), substring) + " ;"
-            );
         });
-
         //写文件
         FileUtil.writeUtf8Lines(list, new File("结果.sql"));
-
     }
 }
