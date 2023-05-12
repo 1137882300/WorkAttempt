@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author: juzi
@@ -60,13 +61,17 @@ public class PostGerSql {
         List<String> list = Lists.newArrayList();
         entityList.forEach(x -> {
             Matcher matcher = pattern.matcher(x.getColumn2());
-            list.add(String.format(sql1, x.getColumn1(), x.getColumn1()) + " ;\n");
+            list.add(String.format("\n" + sql1, x.getColumn1(), x.getColumn1()) + " ;");
             while (matcher.find()) {
                 String group = matcher.group();
-                list.add("\n"+String.format(sql2, x.getColumn1(), x.getColumn1(), group) + " ;");
+                list.add("\n" + String.format(sql2, x.getColumn1(), x.getColumn1(), group) + " ;");
             }
         });
+        System.out.println(list.size());
+        List<String> collect = list.stream().distinct().collect(Collectors.toList());
+        System.out.println(collect.size());
+
         //写文件
-        FileUtil.writeUtf8Lines(list, new File("结果.sql"));
+        FileUtil.writeUtf8Lines(collect, new File("结果2.sql"));
     }
 }
