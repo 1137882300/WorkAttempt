@@ -1,17 +1,20 @@
 package com.zhong;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.BeanCopier;
 import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Maps;
+import com.zhong.entity.EntityTest;
 import org.junit.Test;
 
 import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -21,11 +24,28 @@ public class HutoolTest {
 
     /**
      * @author juzi
+     * @date 2023/5/12 下午 3:01
+     * @description 复制
+     */
+    @Test
+    public void copy2() {
+        EntityTest entityTest = EntityTest.builder().id(12L).sex(true).age(20).name("nn").build();
+        LinkedHashMap<String, Object> copy = BeanCopier.create(entityTest,
+                new LinkedHashMap<String, Object>(),
+                CopyOptions.create()
+                        .setIgnoreNullValue(true)
+                        .setIgnoreProperties("requestUrl", "sourceChannel")
+        ).copy();
+        System.out.println(copy);
+    }
+
+    /**
+     * @author juzi
      * @date 2023/3/29 16:43
      * @description 日期
      */
     @Test
-    public void date(){
+    public void date() {
         Date offset = DateUtil.date().offset(DateField.MINUTE, 30);
         System.out.println(offset);
         String formatDate = DateUtil.format(offset, DatePattern.NORM_DATETIME_FORMAT);
