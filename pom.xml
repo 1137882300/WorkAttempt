@@ -15,6 +15,13 @@
 
     <dependencies>
 
+        <!--加解密的包-->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.70</version>
+        </dependency>
+
         <!--jsqlparser-->
         <dependency>
             <groupId>com.github.jsqlparser</groupId>
@@ -224,11 +231,6 @@
 
 
 
-        <dependency>
-            <groupId>bouncycastle</groupId>
-            <artifactId>bcprov-jdk16</artifactId>
-            <version>140</version>
-        </dependency>
 
         <dependency>
             <groupId>io.swagger</groupId>
