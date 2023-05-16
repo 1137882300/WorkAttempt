@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 import java.awt.image.ImageProducer;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author zhong.zihan@xyb2b.com
@@ -24,6 +25,7 @@ public class OptionalTest {
 
     private User u1, u2, u3, u4, u5, u6, u7;
     private People u8;
+    private List<User> userList;
 
     @Before
     public void init() {
@@ -39,8 +41,23 @@ public class OptionalTest {
 
     /**
      * @author juzi
+     * @date 2023/5/16 下午 2:56
+     * @description Optional.map 不會空指針
+     */
+    @Test
+    public void map() {
+//        userList = null; 也不會空指針
+        List<Integer> integers = Optional.ofNullable(userList)
+                .map(x -> x.stream().map(User::getId)
+                        .collect(Collectors.toList()))
+                .orElse(null);
+        System.out.println(integers);
+    }
+
+    /**
+     * @author juzi
      * @date 2023/4/11 13:56
-     * @desc  当ss不是空时，orElse依然会执行，orElseGet才不会执行
+     * @desc 当ss不是空时，orElse依然会执行，orElseGet才不会执行
      * 当ss是空时，orElse会执行，orElseGet会执行
      */
     @Test

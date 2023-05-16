@@ -1,4 +1,4 @@
-package com.zhong.designPatterns.strategyMode;
+package com.zhong.designPatterns.strategyMode.v1;
 
 import org.springframework.core.annotation.Order;
 
