@@ -50,7 +50,7 @@ public class OptionalTest {
         List<Integer> integers = Optional.ofNullable(userList)
                 .map(x -> x.stream().map(User::getId)
                         .collect(Collectors.toList()))
-                .orElse(null);
+                .orElseGet(Lists::newArrayList);
         System.out.println(integers);
     }
 
