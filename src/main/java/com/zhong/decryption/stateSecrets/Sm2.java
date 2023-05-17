@@ -65,7 +65,8 @@ public class Sm2 {
         System.out.println("私钥解密后：" + decryptStr2);
 
         sm2.setMode(SM2Engine.Mode.C1C3C2);
-        sm2.setEncoding(new PlainDSAEncoding());
+        sm2.usePlainEncoding();
+//        sm2.setEncoding(new PlainDSAEncoding());
         byte[] sign = sm2.sign(text, null);
         String signEncode = Base64.encode(sign);
         System.out.println("签名：" + signEncode);
