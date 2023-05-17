@@ -53,10 +53,16 @@ public class Sm2 {
         //Base64.encode
         String privateKeyEncode = Base64.encode(privateKey);
         String publicKeyEncode = Base64.encode(publicKey);
+        //私钥: MIGTAgEAMBMGByqGSM49AgEGCCqBHM9VAYItBHkwdwIBAQQgV0e6VMnggGPxeS1X/1COxr8TgzSniQXRtMpgcSAoJFOgCgYIKoEcz1UBgi2hRANCAAQU3CXT/pdCsVmevHE33a5HL460gI5h61cj+4B3EpVlCnxWfXQtYG8bgUy5KGSXOyugcj1rt3BsmwMwZzw7AhUW
+        //公钥: MFkwEwYHKoZIzj0CAQYIKoEcz1UBgi0DQgAEFNwl0/6XQrFZnrxxN92uRy+OtICOYetXI/uAdxKVZQp8Vn10LWBvG4FMuShklzsroHI9a7dwbJsDMGc8OwIVFg==
+
         System.out.println("私钥: " + privateKeyEncode);
         System.out.println("公钥: " + publicKeyEncode);
 
-        SM2 sm2 = SmUtil.sm2(privateKeyEncode, publicKeyEncode);
+        String prk = "MIGTAgEAMBMGByqGSM49AgEGCCqBHM9VAYItBHkwdwIBAQQgV0e6VMnggGPxeS1X/1COxr8TgzSniQXRtMpgcSAoJFOgCgYIKoEcz1UBgi2hRANCAAQU3CXT/pdCsVmevHE33a5HL460gI5h61cj+4B3EpVlCnxWfXQtYG8bgUy5KGSXOyugcj1rt3BsmwMwZzw7AhUW";
+        String puk = "MFkwEwYHKoZIzj0CAQYIKoEcz1UBgi0DQgAEFNwl0/6XQrFZnrxxN92uRy+OtICOYetXI/uAdxKVZQp8Vn10LWBvG4FMuShklzsroHI9a7dwbJsDMGc8OwIVFg==";
+
+        SM2 sm2 = SmUtil.sm2(prk, puk);
         // 公钥加密
         String encryptStr2 = sm2.encryptBase64(text, KeyType.PublicKey);
         System.out.println("公钥加密后：" + encryptStr2);
