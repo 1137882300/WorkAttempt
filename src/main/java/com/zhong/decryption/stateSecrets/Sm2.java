@@ -28,8 +28,8 @@ import org.bouncycastle.util.encoders.Hex;
  * @author: juzi
  * @date: 2023/5/16
  * @desc: sm2加密算法
- * 私钥D值（编码后的私钥）
- * 公钥Q值（编码后的公钥）
+ * 私钥 D值（编码后的私钥）
+ * 公钥 Q值（编码后的公钥）
  * 非对称加密，基于ECC。该算法已公开。由于该算法基于ECC，故其签名速度与秘钥生成速度都快于RSA。
  * ECC 256位（SM2采用的就是ECC 256位的一种）安全强度比RSA 2048位高，但运算速度快于RSA。
  */
