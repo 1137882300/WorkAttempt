@@ -22,6 +22,23 @@ import java.util.stream.Stream;
  * @date 2021/10/8 14:53
  */
 public class LambdaTest {
+
+    /**
+     * @author juzi
+     * @date 2023/5/19 下午 2:12
+     * @description reduce方法这里做的是：从前两个元素开始，进行某种操作（我这里进行的是加法操作）后，返回一个结果，然后再拿这个结果跟第三个元素执行同样的操作，以此类推，直到最后的一个元素。
+     */
+    @Test
+    public void reduce(){
+        Stream.of(1, 22, 33, 44, 55, 66, 77, 88, 99)
+                .reduce((a, b) -> {
+                    System.out.printf("%s: %d + %d = %d%n",
+                            Thread.currentThread().getName(), a, b, a + b);
+                    return a + b;
+                })
+                .ifPresent(System.out::println);
+    }
+
     /**
      * max 比较
      * .max(Comparator.comparing(User::getId).thenComparing(User::getAge))
