@@ -15,6 +15,13 @@
 
     <dependencies>
 
+        <!--FFmpeg 是一个非常强大的多媒体处理工具，能够处理各种格式的音频、视频等多媒体数据，包括 RTMP 直播流-->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>ffmpeg</artifactId>
+            <version>4.4-1.5.6</version>
+        </dependency>
+
         <!--jsqlparser-->
         <dependency>
             <groupId>com.github.jsqlparser</groupId>
