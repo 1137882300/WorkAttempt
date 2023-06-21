@@ -18,6 +18,23 @@ import java.util.Date;
  */
 public class DateTest {
 
+
+    /**
+     * @author juzi
+     * @date 2023/6/21 上午 11:48
+     * @description 获取当前时间：单位：秒
+     */
+    @Test
+    public void InstantNow(){
+        long epochSecond = Instant.now().getEpochSecond();
+        long nano = Instant.now().getNano();
+        System.out.println(epochSecond);
+        System.out.println(nano);
+
+        long epochMilli = Instant.now().toEpochMilli();
+        System.out.println(epochMilli/1000);
+    }
+
     /**
      * @author juzi
      * @date 2023/4/4 9:33
