@@ -12,12 +12,39 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @author zhong.zihan@xyb2b.com
  * @date 2022/1/21 11:34
  */
 public class GuavaTest {
+
+    /**
+     * @author juzi
+     * @date 2023/6/26 下午 2:24
+     * @description Lists.reverse
+     */
+    @Test
+    public void reverse() {
+        List<Integer> list = Lists.newArrayList(3, 1, 2);
+        List<Integer> reverseList = Lists.reverse(list);
+        System.out.println(reverseList);
+    }
+
+    /**
+     * @author juzi
+     * @date 2023/6/26 下午 2:23
+     * @description Lists.transform  流处理
+     */
+    @Test
+    public void transform() {
+        List<String> list = Lists.newArrayList("a", "b", "c");
+        List<String> transformList = list.stream().map(String::toUpperCase).collect(Collectors.toList());
+        List<String> transformList2 = Lists.transform(list, x -> x.toUpperCase());
+        System.out.println(transformList);
+    }
+
     /**
      * 双向Map
      * 注意：不能存储多对一的关系
