@@ -9,6 +9,7 @@ import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
+import org.springframework.util.StopWatch;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -251,6 +252,7 @@ public class GuavaTest {
     }
 
     /**
+     * Guava 的方式
      * 计算中间代码的运行时间#
      */
     @Test
@@ -261,6 +263,20 @@ public class GuavaTest {
         }
         long nanos = stopwatch.elapsed(TimeUnit.MILLISECONDS);
         System.out.println(nanos);
+    }
+
+    /**
+     * spring的方式
+     */
+    @Test
+    public void StopWatch2() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        for (int i = 0; i < 100000; i++) {
+        }
+        stopWatch.stop();
+        long totalTimeMillis = stopWatch.getTotalTimeMillis();
+        System.out.println(totalTimeMillis);//2
     }
 
     @Test
