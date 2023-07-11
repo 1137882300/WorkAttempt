@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.google.common.collect.Maps;
 import org.junit.Test;
 
@@ -19,13 +20,20 @@ import java.util.Map;
  */
 public class HutoolTest {
 
+
+    @Test
+    public void SecureUtil() {
+        String s = SecureUtil.md5("123456");
+        System.out.println(s);//e10adc3949ba59abbe56e057f20f883e
+    }
+
     /**
      * @author juzi
      * @date 2023/3/29 16:43
      * @description 日期
      */
     @Test
-    public void date(){
+    public void date() {
         Date offset = DateUtil.date().offset(DateField.MINUTE, 30);
         System.out.println(offset);
         String formatDate = DateUtil.format(offset, DatePattern.NORM_DATETIME_FORMAT);
