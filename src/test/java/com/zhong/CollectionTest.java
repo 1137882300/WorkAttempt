@@ -297,10 +297,10 @@ public class CollectionTest {
 //        System.out.println(list);
 
 
-        Dog dog5 = new Dog(null, StateEnum.OPEN);
+        Dog dog5 = new Dog(1, StateEnum.OPEN);
         Dog dog1 = new Dog(9, StateEnum.OPEN);
-        Dog dog4 = new Dog(null, StateEnum.OPEN);
-        Dog dog2 = new Dog(4, StateEnum.OPEN);
+        Dog dog4 = new Dog(1, StateEnum.OPEN);
+        Dog dog2 = new Dog(2, StateEnum.OPEN);
         Dog dog3 = new Dog(6, StateEnum.OPEN);
         Dog dog6 = new Dog(11, StateEnum.OPEN);
         ArrayList<Dog> arrayList = Lists.newArrayList(dog1, dog2, dog3, dog4, dog5, dog6);
@@ -314,7 +314,21 @@ public class CollectionTest {
 
 
 //        arrayList.stream().sorted(Comparator.comparing(Dog::getId, Comparator.nullsLast(Long::compareTo))).collect(Collectors.toList());
+        System.out.println("=======================================");
 
+        Optional<Integer> optional = arrayList.stream().min(Comparator.comparing(Dog::getId, Comparator.nullsLast(Comparator.naturalOrder()))).map(Dog::getId);
+//        System.out.println(optional.get());
+        System.out.println("=======================================");
+        Optional<Integer> integerOptional = arrayList.stream()
+                .filter(dog -> dog.getId() != null) // 过滤掉ID为null的Dog对象
+                .min(Comparator.comparing(Dog::getId, Comparator.nullsLast(Comparator.naturalOrder())))
+                .map(Dog::getId);
+//        System.out.println(integerOptional.get());
+
+        Optional<Integer> aa = arrayList.stream()
+                .min(Comparator.comparing(Dog::getId))
+                .map(Dog::getId);
+        System.out.println(integerOptional.get());
     }
 
     /**

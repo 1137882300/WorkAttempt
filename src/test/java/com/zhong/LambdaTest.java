@@ -40,6 +40,9 @@ public class LambdaTest {
         list.add(user1);
         Optional<User> userOptional = list.stream().max(Comparator.comparing(User::getId).thenComparing(User::getAge));
         System.out.println(userOptional.get());
+
+        Optional<Integer> integer = list.stream().max(Comparator.comparing(User::getId).thenComparing(User::getAge)).map(User::getAge);
+        System.out.println(integer.get());
     }
 
     private User u1, u2, u3, u4, u5, u6, u7;
