@@ -289,12 +289,13 @@ public class CollectionTest {
      * list 排序
      * nullsLast ：null的大于非null的
      * 对象可以为空，以及对象内的属性
+     * list.sort() 默认是升序
      */
     @Test
     public void sort() {
         ArrayList<Integer> list = Lists.newArrayList(3, 5, 6, 1, 8, 2, null, 6, null);
         list.sort(Comparator.nullsLast(Comparator.naturalOrder()));
-//        System.out.println(list);
+        System.out.println(list);
 
 
         Dog dog5 = new Dog(1, StateEnum.OPEN);
