@@ -47,8 +47,21 @@ public class BaseTest {
 
     /**
      * @author juzi
+     * @date 2023/7/18 下午 3:43
+     * @description compareTo: 左边 减 右边
+     */
+    @Test
+    public void compareTo() {
+        BigDecimal bigDecimal1 = new BigDecimal("0.00");
+        BigDecimal bigDecimal2 = new BigDecimal("1.00");
+        int i = bigDecimal1.compareTo(bigDecimal2);
+        System.out.println(i);
+    }
+
+    /**
+     * @author juzi
      * @date 2023/7/18 下午 3:25
-     * @description  计算 BigDecimal 求和
+     * @description 计算 BigDecimal 求和
      */
     @Test
     public void t() {
