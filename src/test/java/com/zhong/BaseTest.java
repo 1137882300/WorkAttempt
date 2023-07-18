@@ -45,23 +45,41 @@ import java.util.stream.Collectors;
  */
 public class BaseTest {
 
+    /**
+     * @author juzi
+     * @date 2023/7/18 下午 3:25
+     * @description  计算 BigDecimal 求和
+     */
     @Test
-    public void booTest(){
+    public void t() {
+        List<EntityTest> entityTests = Lists.newArrayList(
+                EntityTest.builder().amount(new BigDecimal("10.10")).build(),
+                EntityTest.builder().amount(new BigDecimal("20.20")).build(),
+                EntityTest.builder().amount(new BigDecimal("30")).build()
+
+        );
+        BigDecimal refundAmount = entityTests.stream().map(EntityTest::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println(refundAmount);
+    }
+
+    @Test
+    public void booTest() {
         boolean equals = !Boolean.FALSE.equals(false);
         System.out.println(equals);
     }
+
     @Test
-    public void BigDecimalTest(){
+    public void BigDecimalTest() {
         BigDecimal settlementUnitPrice = BigDecimal.valueOf(0);
         BigDecimal multiply = BigDecimal.valueOf(1 - 1).multiply(settlementUnitPrice);
         System.out.println(multiply);
 
         int i = settlementUnitPrice.compareTo(BigDecimal.ZERO);
-        System.out.println(i<0);
+        System.out.println(i < 0);
     }
 
     @Test
-    public void money(){
+    public void money() {
         //cent 分
         Integer integer = Convert.toInt(new Money(new BigDecimal("99.9")).getCent());
         System.out.println(integer);

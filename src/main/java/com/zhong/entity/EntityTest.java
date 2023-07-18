@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 /**
  * @author: juzi
  * @date: 2023/5/12
@@ -21,6 +23,8 @@ public class EntityTest {
     private Integer age;
     private Boolean sex;
     private Integer phone;
+
+    private BigDecimal amount;
 
 
 }
