@@ -1,0 +1,35 @@
+<root>
+<VendorId>40348</VendorId>
+<token>token-40348</token>
+<order>
+<vendorId>40348</vendorId>
+<orderId>24184732274</orderId>
+<action>Cancel</action>
+<vendorProductCode>HZ-47885</vendorProductCode>
+<messageId>1690180660277</messageId>
+<departureDate>1690214400000</departureDate>
+<returnDate>1690300800000</returnDate>
+<distributionChannel></distributionChannel>
+<isRealTimeConfirm>false</isRealTimeConfirm>
+<orderInfo>
+    <bookingTime>1690114192700</bookingTime>
+    <bookingChannel>APP/H5</bookingChannel>
+    <confirmTime>-1</confirmTime>
+    <productInfo>
+        <productId>26749674</productId>
+        <productName>福州平潭岛2日1晚私家团·【深度平潭岛+福州集合+海边民宿】2-6人超级VIP小团 | 漫步海上玻璃栈道， 醉美环岛路-俯瞰风车田-文艺北港村-距台湾岛最近的点猴研岛 ，休闲亲子家庭行之选~</productName>
+        <vendorProductName>小车团 · 深度平潭- 独立成团</vendorProductName>
+    </productInfo>
+    <optionInfoList /><boardingInfo /><travelerList /><isPaid>false</isPaid>
+    <remark>2023-07-23 20:09: ;2023-07-23 20:09: 手机号码：13362109310,消息模板：220089,发送内容：{&quot;DepartCity&quot;:&quot;福州&quot;,&quot;AdultNumber&quot;:1,&quot;ProductName&quot;:&quot;福州平潭岛2日1晚私家团·【深度平潭岛+福州集合+海边民宿】2-6人超级VIP小团 | 漫步海上玻璃栈道， 醉美环岛路-俯瞰风车田-文艺北港村-距台湾岛最近的点猴研岛 ，休闲亲子家庭行之选~-2日套餐&quot;,&quot;ProductID&quot;:26749674,&quot;ChildNumber&quot;:1,&quot;Link&quot;:&quot;http://t.ctrip.cn/nd571GL?headerStyle=0&quot;,&quot;DepartDate&quot;:&quot;2023-07-25&quot;}, msgId=3832906542688461617;2023-07-23 20:09: App类型：10017, 发送内容：您有一条新订单24184732274需要处理,noticeid=ca0c841e-915b-4c8e-8ceb-00addb1f1aba;2023-07-23 20:10: ;2023-07-24 14:37: ;2023-07-24 14:37: 手机号码：13362109310,消息模板：220318,发送内容：{&quot;DepartCity&quot;:&quot;福州&quot;,&quot;AdultNumber&quot;:1,&quot;ProductName&quot;:&quot;福州平潭岛2日1晚私家团·【深度平潭岛+福州集合+海边民宿】2-6人超级VIP小团 | 漫步海上玻璃栈道， 醉美环岛路-俯瞰风车田-文艺北港村-距台湾岛最近的点猴研岛 ，休闲亲子家庭行之选~-2日套餐&quot;,&quot;ProductID&quot;:26749674,&quot;ChildNumber&quot;:1,&quot;Link&quot;:&quot;http://t.ctrip.cn/2J00VBS?headerStyle=0&quot;,&quot;DepartDate&quot;:&quot;2023-07-25&quot;}, msgId=7149572586634503734;2023-07-24 14:37: ;2023-07-24 14:37: App类型：10015, 发送内容：您有一条待取消订单24184732274需要处理,noticeid=14ffe355-6964-49b2-ab3a-0d501ff9b84e;</remark>
+    <vendorOperateResult>Pending</vendorOperateResult>
+    <bookingContact>
+        <name>携程用户</name>
+        <mobile>+8613604403912</mobile>
+        <email /></bookingContact>
+    <providerSettlementInfo /><packageInfo>
+    <vendorPackageCode /><currency></currency>
+    <exchangeRate /><adultQuantity /><adultCostPrice /><adultSalesPrice /><childQuantity /><childCostPrice /><childSalesPrice /><singlePersonCostPrice /><singlePersonSalesPrice /></packageInfo>
+</orderInfo>
+</order>
+</root>
