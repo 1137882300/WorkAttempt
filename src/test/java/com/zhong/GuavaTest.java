@@ -1,9 +1,6 @@
 package com.zhong;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Splitter;
-import com.google.common.base.Stopwatch;
+import com.google.common.base.*;
 import com.google.common.collect.*;
 import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
@@ -64,6 +61,12 @@ public class GuavaTest {
         System.out.println(s);//value already present: 4
     }
 
+    /**
+     * @author juzi
+     * @date 2023/7/31 下午 1:39
+     * @description Maps.filterValues
+     * 留下为true的数据
+     */
     @Test
     public void map() {
         HashMap<String, Integer> hashMap = new HashMap<String, Integer>() {{
@@ -74,7 +77,7 @@ public class GuavaTest {
             put("e", 4);
         }};
         Map<String, Integer> map = Maps.filterValues(hashMap, x -> x.equals(4));
-        System.out.println();
+        System.out.println(map);
     }
 
     /**
@@ -98,6 +101,7 @@ public class GuavaTest {
      * CollectionUtils.subtract
      * 减法
      * 保留自身不同的
+     * list1 - list2
      */
     @Test
     public void subtract() {
@@ -126,6 +130,7 @@ public class GuavaTest {
         ArrayList<String> list1 = Lists.newArrayList("aa", "bb", "cc", "pp");
         ArrayList<String> list2 = Lists.newArrayList("aa", "bb", "cc", "rr");
 
+        //保留交叉的，共有的
         Collection<String> intersection = CollectionUtils.intersection(list2, list1);
         System.out.println(intersection);//[aa, bb, cc]
 
@@ -139,6 +144,7 @@ public class GuavaTest {
     /**
      * hashMultiMap，一个key，多个value
      * value 的 类型是set
+     * 一对多的Map
      */
     @Test
     public void hashMultiMap() {
@@ -165,6 +171,7 @@ public class GuavaTest {
 
         List<Integer> numList = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
 
+        //两个元素一组
         List<List<Integer>> partition = Lists.partition(numList, 2);
         System.out.println(partition);//[[1, 2], [3, 4], [5, 6], [7, 8]]
 
@@ -174,22 +181,33 @@ public class GuavaTest {
     /**
      * Join连接器
      * 将集合转为特定规则的字符串
+     * skipNulls
      */
     @Test
-    public void JoinList() {
-        List<String> lists = Lists.newArrayList("a", "b", "g", null, "8", "9");
-        String result = Joiner.on("--").skipNulls().join(lists);//跳过空的
-        System.out.println(result); //a--b--g--8--9
+    public void JoinerToStr() {
+        List<String> lists = Lists.newArrayList("a", "b", "g", null, "8", "", "9");
+        String result = Joiner.on("--").skipNulls().join(lists);//跳过null的,不会跳过空串
+        System.out.println(result); //a--b--g--8----9
     }
 
+    /**
+     * @author juzi
+     * @date 2023/7/31 下午 1:48
+     * @description useForNull
+     */
     @Test
-    public void JoinList2() {
+    public void JoinerToStr2() {
         // joiner useForNull(final String value)用value替换null元素值
         List<String> lists = Lists.newArrayList("a", "b", "g", null, "8", null, "9");
         String result = Joiner.on(",").useForNull("我来替换").join(lists);// 用值去替换空的
         System.out.println(result);
     }
 
+    /**
+     * @author juzi
+     * @date 2023/7/31 下午 1:49
+     * @description withKeyValueSeparator
+     */
     @Test
     public void JoinMap() {
         // joiner withKeyValueSeparator(String value) map连接器，keyValueSeparator为key和value之间的分隔符
@@ -212,19 +230,28 @@ public class GuavaTest {
 //        结果：[34344, 34, 34, 哈哈]
     }
 
+    /**
+     * @author juzi
+     * @date 2023/7/31 下午 1:55
+     * @description trimResults
+     * 删除首位的字符
+     */
     @Test
     public void Splitter2() {
         //splitter trimResults 拆分去除前后空格
-        String test = "  34344,34,34,哈哈 ";
+        String test = " =,  34344,34,34,哈哈  ,=  ";
         List<String> lists = Splitter.on(",").trimResults().splitToList(test);
         System.out.println(lists);
 //        结果：[34344, 34, 34, 哈哈]
+
+        List<String> lists2 = Splitter.on(",").trimResults(CharMatcher.is('=')).splitToList(test);
+        System.out.println(lists2);
     }
 
     @Test
     public void Splitter3() {
         //splitter omitEmptyStrings 去除拆分出来空的字符串(去除空的)
-        String test = "  3434,434,34,,哈哈 ";
+        String test = "  ,,,,3434,434,34,,,,,,,哈哈 ";
         List<String> lists = Splitter.on(",").omitEmptyStrings().splitToList(test);
         System.out.println(lists);
 //        结果：[  3434, 434, 34, 哈哈 ]
@@ -252,7 +279,8 @@ public class GuavaTest {
     }
 
     /**
-     * Guava 的方式
+     * 代码的运行时间
+     * 1. Guava 的方式
      * 计算中间代码的运行时间#
      */
     @Test
@@ -266,7 +294,7 @@ public class GuavaTest {
     }
 
     /**
-     * spring的方式
+     * 2. spring的方式
      */
     @Test
     public void StopWatch2() {
