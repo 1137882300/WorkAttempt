@@ -15,6 +15,7 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -130,7 +131,7 @@ public class FileUtils {
         // 获得输入流
         InputStream in = connection.getInputStream();
         // 获得输出流
-        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+        BufferedOutputStream out = new BufferedOutputStream(Files.newOutputStream(file.toPath()));
         // 构建缓冲区
         byte[] buf = new byte[1024];
         int size;

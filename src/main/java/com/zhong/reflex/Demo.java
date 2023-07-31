@@ -20,7 +20,7 @@ public class Demo {
         System.out.println(field);
         String name = field.getName();
         System.out.println(name);
-        System.out.println(Arrays.stream(field.getDeclaredAnnotations()).toArray());
+        System.out.println(Arrays.toString(Arrays.stream(field.getDeclaredAnnotations()).toArray()));
 
         System.out.println(dog);
     }

@@ -40,7 +40,7 @@ public class ImgCrawling {
 
         List<String> list = Lists.newLinkedList();
         Element element = doc.getElementById("artContent");
-        Optional.of(element)
+        Optional.ofNullable(element)
                 .map(e -> element.select("p"))
 //                .map(Elements::next)
                 .ifPresent(x -> {

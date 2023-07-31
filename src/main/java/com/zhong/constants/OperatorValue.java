@@ -22,18 +22,14 @@ public class OperatorValue implements Serializable {
 
     /**
      * 精确匹配，即 =
-     *
-     * @return
      */
-    public OperatorValue accurateMatch() {
+    public void accurateMatch() {
         this.conditionOp = OperatorConstants.equals;
-        return this;
     }
 
     /**
      * 模糊匹配，即 like
      *
-     * @return
      */
     public OperatorValue fuzzyMatch() {
         this.conditionOp = OperatorConstants.like;

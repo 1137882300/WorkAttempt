@@ -7,6 +7,7 @@ import java.io.Serializable;
 /**
  * @date 2022/6/8 10:37
  */
+@ToString
 public class QueryValue implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,22 +28,16 @@ public class QueryValue implements Serializable {
 
     /**
      * 精确匹配，即 =
-     *
-     * @return
      */
-    public QueryValue accurateMatch() {
+    public void accurateMatch() {
         this.conditionOp = OperatorConstants.equals;
-        return this;
     }
 
     /**
      * 模糊匹配，即 like
-     *
-     * @return
      */
-    public QueryValue fuzzyMatch() {
+    public void fuzzyMatch() {
         this.conditionOp = OperatorConstants.like;
-        return this;
     }
 
 
