@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author: juzi
  * @date: 2023/7/31
- * @desc:
+ * @desc: 比较原始的方式，建议用easyExcel
  */
 public class ExcelParser {
 
