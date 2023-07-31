@@ -28,13 +28,8 @@ public class GuavaCache {
         // 往缓存写数据
         loadingCache.put(key, "v");
 
-        // 获取value的值，如果key不存在，调用collable方法获取value值加载到key中再返回
-        String value = loadingCache.get(key, new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return getValueFromDB(key);
-            }
-        });
+        // 获取value的值，如果key不存在，调用Callable方法获取value值加载到key中再返回
+        String value = loadingCache.get(key, () -> getValueFromDB(key));
         System.out.println(value);
         // 删除key
         loadingCache.invalidate(key);
