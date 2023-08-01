@@ -403,6 +403,12 @@ public class BaseTest {
         //boolean 类型
         String format2 = String.format("%b or %B", "false", "false");
         System.out.println(format2);
+
+        // null 和 "" 的区别
+        String cc = String.format("%s, aa, %s", "cc", null);
+        System.out.println(cc);//cc, aa, null
+        String cc1 = String.format("%s, aa, %s", "cc", "");
+        System.out.println(cc1);//cc, aa,
     }
 
 
