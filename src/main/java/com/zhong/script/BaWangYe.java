@@ -204,6 +204,7 @@ public class BaWangYe {
 
     @Data
     static class HentityVo {
+//        seed 是种子 name 是名字 size 是种子大小 date 是日期
         private String seed;
         private String name;
         private String size;
