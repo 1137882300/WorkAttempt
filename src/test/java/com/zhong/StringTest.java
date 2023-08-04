@@ -26,4 +26,10 @@ public class StringTest {
         String[] strings = list.toArray(new String[0]);
         System.out.println(Arrays.toString(strings));
     }
+
+    @Test
+    public void replaceAll(){
+        String s = "asda/asdasd-asda-asdasd-".replaceAll("/", "-");
+        System.out.println(s);
+    }
 }
