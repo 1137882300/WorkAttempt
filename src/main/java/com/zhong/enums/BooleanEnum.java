@@ -3,6 +3,8 @@ package com.zhong.enums;
 
 import lombok.Getter;
 
+import java.util.stream.Stream;
+
 /**
  * @author: juzi
  * @date: 2023/8/16
@@ -22,6 +24,13 @@ public enum BooleanEnum {
         this.value = value;
         this.boo = boo;
         this.label = label;
+    }
+
+    public static BooleanEnum getThis(Integer value) {
+        return Stream.of(BooleanEnum.values())
+                .filter(x -> x.value.equals(value))
+                .findFirst()
+                .orElse(null);
     }
 
 }
