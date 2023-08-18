@@ -38,7 +38,7 @@ import javax.xml.bind.DatatypeConverter;
  * 非对称加密，基于ECC。该算法已公开。由于该算法基于ECC，故其签名速度与秘钥生成速度都快于RSA。
  * ECC 256位（SM2采用的就是ECC 256位的一种）安全强度比RSA 2048位高，但运算速度快于RSA。
  */
-public class Sm2 {
+public class Sm2Test {
 
     private static final String PROVIDER_NAME = "BC"; // BouncyCastle Provider
     private static final String ENCODING = "UTF-8"; // 字符编码

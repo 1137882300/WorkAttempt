@@ -15,7 +15,6 @@ import org.bouncycastle.crypto.util.SubjectPublicKeyInfoFactory;
 import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
-import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
 import org.bouncycastle.util.encoders.Hex;
 
 import org.bouncycastle.crypto.util.PrivateKeyFactory;
@@ -131,27 +130,7 @@ public class Sm2 {
             return engine.processBlock(encryptedData, 0, encryptedData.length);
         }
 
-        public static String exportPublicKey(PublicKey publicKey) throws IOException {
-            String publicKeyPEM = "";
-            try (StringWriter stringWriter = new StringWriter();
-                 JcaPEMWriter pemWriter = new JcaPEMWriter(stringWriter)) {
-                pemWriter.writeObject(publicKey);
-                pemWriter.flush();
-                publicKeyPEM = stringWriter.toString();
-            }
-            return publicKeyPEM;
-        }
 
-        public static String exportPrivateKey(PrivateKey privateKey) throws IOException {
-            String privateKeyPEM = "";
-            try (StringWriter stringWriter = new StringWriter();
-                 JcaPEMWriter pemWriter = new JcaPEMWriter(stringWriter)) {
-                pemWriter.writeObject(privateKey);
-                pemWriter.flush();
-                privateKeyPEM = stringWriter.toString();
-            }
-            return privateKeyPEM;
-        }
 
     }
 }

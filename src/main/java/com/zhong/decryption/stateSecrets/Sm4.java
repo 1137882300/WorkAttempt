@@ -2,6 +2,7 @@ package com.zhong.decryption.stateSecrets;
 
 import cn.hutool.core.util.ByteUtil;
 import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import org.bouncycastle.util.encoders.Hex;
@@ -25,7 +26,8 @@ public class Sm4 {
         //密钥字符串应该是偶数长度，因为每个十六进制字符表示4个bit。
         //密钥字符串中只能包含0-9和a-f（不区分大小写）的字符，其余字符都是非法的。
         //密钥字符串不应包含任何前缀，如"0x"或"0X"。
-        byte[] key = Hex.decode("635a6df163f598f450192fc1e5ac730e");
+//        byte[] key = Hex.decode("635a6df163f598f450192fc1e5ac730e");
+        byte[] key = HexUtil.decodeHex("635a6df163f598f450192fc1e5ac730e");
         SymmetricCrypto sm4 = SmUtil.sm4(key);
 
         String encryptHex = sm4.encryptHex(text);
@@ -34,7 +36,6 @@ public class Sm4 {
         System.out.println("解密后：" + decryptStr);
 
     }
-
 
 
 }
