@@ -17,4 +17,18 @@ public class Sm3 {
 
     }
 
+    /**
+     * @author juzi
+     * @date 2023/8/23 下午 2:53
+     * @description 自定义盐值
+     */
+    public static void main2(String[] args) {
+
+        String slat = "oahd238djoaidhsaf";
+        String text = "我的信息";
+        String digestHex = SmUtil.sm3(text + slat);
+        System.out.println("加密后：" + digestHex);
+
+    }
+
 }
