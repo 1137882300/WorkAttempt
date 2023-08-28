@@ -178,6 +178,16 @@ public class GuavaTest {
         partition.forEach(System.out::println);
     }
 
+    @Test
+    public void joinerNull(){
+        List<String> lists = Lists.newArrayList();
+        String join = Joiner.on(",").join(lists);
+        System.out.println(join);
+
+        String join1 = Joiner.on(";").join("aaa", join, "aaa");
+        System.out.println(join1);
+    }
+
     /**
      * Join连接器
      * 将集合转为特定规则的字符串
