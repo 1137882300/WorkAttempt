@@ -1,6 +1,7 @@
 package com.zhong;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -28,8 +29,27 @@ public class StringTest {
     }
 
     @Test
-    public void replaceAll(){
+    public void replaceAll() {
         String s = "asda/asdasd-asda-asdasd-".replaceAll("/", "-");
         System.out.println(s);
+    }
+
+    @Test
+    public void split() {
+        String[] split = "1;2;3".split(";");
+        if (ArrayUtils.isNotEmpty(split)) {
+            if (split.length >= 1) {
+                String s0 = split[0];
+                System.out.println(s0);
+            }
+            if (split.length >= 2) {
+                String s1 = split[1];
+                System.out.println(s1);
+            }
+            if (split.length >= 3) {
+                String s2 = split[2];
+                System.out.println(s2);
+            }
+        }
     }
 }
