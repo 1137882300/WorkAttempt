@@ -1,4 +1,4 @@
-package com.zhong.Utils;
+package com.zhong.utils;
 
 import com.alibaba.nacos.api.exception.runtime.NacosDeserializationException;
 import com.alibaba.nacos.api.exception.runtime.NacosSerializationException;

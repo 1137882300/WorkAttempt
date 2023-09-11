@@ -2,18 +2,14 @@ package com.zhong.crawler;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import com.zhong.Utils.FileUtils;
-import com.zhong.ding.excel.Entity;
+import com.zhong.utils.FileUtils;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.parser.Parser;
-import org.jsoup.select.Elements;
 
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 

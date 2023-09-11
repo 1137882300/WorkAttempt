@@ -1,4 +1,4 @@
-package com.zhong.Utils;
+package com.zhong.utils;
 
 import org.apache.commons.lang3.StringUtils;
 

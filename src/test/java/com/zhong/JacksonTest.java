@@ -1,22 +1,18 @@
 package com.zhong;
 
-import cn.hutool.core.compress.ZipReader;
 import cn.hutool.core.util.ZipUtil;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.nacos.common.utils.MD5Utils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.Lists;
-import com.zhong.Utils.JacksonUtils;
+import com.zhong.utils.JacksonUtils;
 import com.zhong.cache.AreaModel;
 import com.zhong.cache.PropertyModel;
 import com.zhong.cache.UnitModel;
 import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
-import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
@@ -24,16 +20,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 /**
  * @date 2022/3/30 11:29

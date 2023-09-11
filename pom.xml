@@ -160,7 +160,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>20.0</version>
+            <version>32.1.2-jre</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -297,6 +297,16 @@
             <artifactId>sm-crypto</artifactId>
             <version>0.3.2</version>
         </dependency>
+
+        <!--WebDriver-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.0.0-alpha-3</version>
+<!--              <version>4.11.0</version>-->
+        </dependency>
+
+
     </dependencies>
 
 </project>
