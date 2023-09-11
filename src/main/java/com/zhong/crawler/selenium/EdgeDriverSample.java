@@ -1,5 +1,7 @@
 package com.zhong.crawler.selenium;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -11,7 +13,7 @@ import java.util.Collections;
 /**
  * @author: juzi
  * @date: 2023/9/11
- * @desc:
+ * @desc: 教程：<a href="https://learn.microsoft.com/zh-cn/microsoft-edge/webdriver-chromium/?tabs=java">...</a>
  */
 public class EdgeDriverSample {
 
@@ -35,16 +37,26 @@ public class EdgeDriverSample {
 
         System.setProperty("webdriver.edge.driver", "C:\\Users\\root\\Downloads\\edgedriver_win64\\msedgedriver.exe");
         EdgeDriver driver = new EdgeDriver(edgeOptions);
-        try {
-            driver.navigate().to("https://bing.com");
-            WebElement element = driver.findElement(By.id("sb_form_q"));
-            element.sendKeys("WebDriver");
-            element.submit();
+        Thread.sleep(3000);
 
-            Thread.sleep(5000);
-        } finally {
-            driver.quit();
-        }
+//        driver.get("https://promptszone.com/rewards");
+//        WebElement element = driver.findElement(By.className("d-none"));
+//        element.submit();
+//
+//
+//        WebElement element1 = driver.findElement(By.className("form-control"));
+//        element1.sendKeys("923828430@qq.com");
+//        element1.submit();
+
+//        try {
+//            driver.navigate().to("https://bing.com");
+//            WebElement element = driver.findElement(By.id("sb_form_q"));
+//            element.sendKeys("美女");
+//            element.submit();
+//            Thread.sleep(20000);
+//        } finally {
+//            driver.quit();
+//        }
     }
 
 }
