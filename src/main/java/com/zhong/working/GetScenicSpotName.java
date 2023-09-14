@@ -61,6 +61,7 @@ public class GetScenicSpotName {
             });
         }
         executorService.shutdown();
+        //等待所有任务执行完成。
         executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
         System.out.println(JSONObject.toJSONString(list));
     }
