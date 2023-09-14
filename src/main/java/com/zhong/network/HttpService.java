@@ -64,9 +64,9 @@ public class HttpService {
             if (statusCode >= 200 && statusCode < 300) {
                 return JSONObject.parseObject(responseString);
             }
-        } catch (Throwable throwable) {
+        } catch (Throwable ignored) {
         }
-        throw new RuntimeException();
+        return null;
     }
 
 }
