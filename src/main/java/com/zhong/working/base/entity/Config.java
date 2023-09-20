@@ -8,14 +8,14 @@ package com.zhong.working.base.entity;
 public class Config {
 
     //参数类型
-    enum ParameterType {
+    public enum ParameterType {
         baseType(1),
         complexType(2),
         baseList(3),
         complexList(4),
 
         ;
-        final int value;
+        public final int value;
 
         ParameterType(int value) {
             this.value = value;
@@ -24,7 +24,7 @@ public class Config {
 
 
     //具体类型
-    enum ConcreteType {
+    public enum ConcreteType {
         String(1),
         Int(2),
         Long(3),
@@ -36,7 +36,7 @@ public class Config {
         Object(7),
         Map(9),
         ;
-        final int value;
+        public final int value;
 
         ConcreteType(int value) {
             this.value = value;

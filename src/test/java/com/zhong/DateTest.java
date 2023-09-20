@@ -9,8 +9,12 @@ import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author: juzi
@@ -19,21 +23,51 @@ import java.util.Date;
 public class DateTest {
 
 
+    @Test
+    public void convert2(){
+        String dateStr = "9月20日";
+        LocalDate date = parseChineseDate(dateStr);
+        System.out.println(date);
+    }
+    private static LocalDate parseChineseDate(String dateString) {
+        Pattern pattern = Pattern.compile("(\\d+)月(\\d+)日");
+        Matcher matcher = pattern.matcher(dateString);
+        if (matcher.find()) {
+            int month = Integer.parseInt(matcher.group(1));
+            int dayOfMonth = Integer.parseInt(matcher.group(2));
+            return LocalDate.of(LocalDate.now().getYear(), month, dayOfMonth);
+        }
+        throw new IllegalArgumentException("Invalid date format: " + dateString);
+    }
+
     /**
      * @author juzi
      * @date 2023/6/21 上午 11:48
      * @description 获取当前时间：单位：秒
      */
     @Test
-    public void InstantNow(){
+    public void InstantNow() {
         long epochSecond = Instant.now().getEpochSecond();
         long nano = Instant.now().getNano();
         System.out.println(epochSecond);
         System.out.println(nano);
 
         long epochMilli = Instant.now().toEpochMilli();
-        System.out.println(epochMilli/1000);
+        System.out.println(epochMilli / 1000);
     }
+
+
+    /**
+     * @author juzi
+     * @date 2023/9/19 下午 5:32
+     * @description 获取当月的日分
+     */
+    @Test
+    public void ri() {
+        int dayOfMonth = LocalDate.now().getDayOfMonth();
+        System.out.println(dayOfMonth);
+    }
+
 
     /**
      * @author juzi
