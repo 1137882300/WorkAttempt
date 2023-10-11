@@ -9,6 +9,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.google.common.collect.Maps;
 import com.zhong.entity.EntityTest;
+import lombok.Data;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -22,12 +23,20 @@ import java.util.Map;
  */
 public class HutoolTest {
 
+    @Data
+    static class AA{
+        private Long id;
+        private Integer name;
+        private Integer age;
+        private String sex;
+        private Integer phone;
+    }
 
     @Test
     public void copy2() {
         EntityTest entityTest = EntityTest.builder().id(1L).amount(BigDecimal.ZERO).name("ss").sex(false).build();
-        EntityTest entityTest1 = BeanUtil.copyProperties(entityTest, EntityTest.class);
-        System.out.println(entityTest1);
+        AA aa = BeanUtil.copyProperties(entityTest, AA.class, "name");
+        System.out.println(aa);
     }
 
 
