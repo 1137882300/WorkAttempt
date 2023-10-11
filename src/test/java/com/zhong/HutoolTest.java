@@ -8,8 +8,10 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.google.common.collect.Maps;
+import com.zhong.entity.EntityTest;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -19,6 +21,14 @@ import java.util.Map;
  * @date 2022/5/7 14:04
  */
 public class HutoolTest {
+
+
+    @Test
+    public void copy2() {
+        EntityTest entityTest = EntityTest.builder().id(1L).amount(BigDecimal.ZERO).name("ss").sex(false).build();
+        EntityTest entityTest1 = BeanUtil.copyProperties(entityTest, EntityTest.class);
+        System.out.println(entityTest1);
+    }
 
 
     @Test
