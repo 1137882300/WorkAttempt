@@ -7,15 +7,20 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.entity.EntityTest;
+import lombok.Builder;
 import lombok.Data;
 import org.junit.Test;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,12 +29,55 @@ import java.util.Map;
 public class HutoolTest {
 
     @Data
-    static class AA{
+    static class AA {
         private Long id;
         private Integer name;
         private Integer age;
         private String sex;
         private Integer phone;
+    }
+
+    @Data
+    @Builder
+    public static class FlowData {
+        private String name;
+        private String ts;
+        private double tengxun_lng;
+        private double tengxun_lat;
+        private String type;
+        private int value;
+    }
+
+    @Data
+    @Builder
+    public static class MongoAsianFlowDataModel implements Serializable {
+        private static final long serialVersionUID = 1L;
+        private Integer id;
+        private Integer MongoAsianDataId;
+        private Integer value;
+        private String name;
+        private String ts;
+        private String tengxun_lng;
+        private String tengxun_lat;
+        private String type;
+        private Byte deleted;
+        private Date createdAt;
+        private Date deletedAt;
+        private Date updatedAt;
+    }
+
+    //String -> double
+    //Integer -> int
+    //都是ok的
+    @Test
+    public void copyList() {
+        ArrayList<MongoAsianFlowDataModel> list = Lists.newArrayList(
+                MongoAsianFlowDataModel.builder().id(1).name("111").ts("112").tengxun_lng("113").tengxun_lat("114").value(115).build(),
+                MongoAsianFlowDataModel.builder().id(1).name("211").ts("212").tengxun_lng("213").tengxun_lat("214").value(215).build(),
+                MongoAsianFlowDataModel.builder().id(1).name("311").ts("312").tengxun_lng("313").tengxun_lat("314").value(315).build()
+        );
+        List<FlowData> flowData = BeanUtil.copyToList(list, FlowData.class);
+        System.out.println(flowData);
     }
 
     @Test
