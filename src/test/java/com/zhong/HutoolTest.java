@@ -46,6 +46,9 @@ public class HutoolTest {
         private double tengxun_lat;
         private String type;
         private int value;
+        private String createdAt;
+        private String deletedAt;
+        private String updatedAt;
     }
 
     @Data
@@ -72,11 +75,11 @@ public class HutoolTest {
     @Test
     public void copyList() {
         ArrayList<MongoAsianFlowDataModel> list = Lists.newArrayList(
-                MongoAsianFlowDataModel.builder().id(1).name("111").ts("112").tengxun_lng("113").tengxun_lat("114").value(115).build(),
-                MongoAsianFlowDataModel.builder().id(1).name("211").ts("212").tengxun_lng("213").tengxun_lat("214").value(215).build(),
-                MongoAsianFlowDataModel.builder().id(1).name("311").ts("312").tengxun_lng("313").tengxun_lat("314").value(315).build()
+                MongoAsianFlowDataModel.builder().id(1).name("111").ts("112").tengxun_lng("113").tengxun_lat("114").value(115).updatedAt(new Date()).createdAt(new Date()).build(),
+                MongoAsianFlowDataModel.builder().id(1).name("211").ts("212").tengxun_lng("213").tengxun_lat("214").value(215).updatedAt(new Date()).createdAt(new Date()).build(),
+                MongoAsianFlowDataModel.builder().id(1).name("311").ts("312").tengxun_lng("313").tengxun_lat("314").value(315).updatedAt(new Date()).createdAt(new Date()).build()
         );
-        List<FlowData> flowData = BeanUtil.copyToList(list, FlowData.class);
+        List<FlowData> flowData = BeanUtil.copyToList(list, FlowData.class, CopyOptions.create().setIgnoreProperties("updatedAt", "createdAt"));
         System.out.println(flowData);
     }
 
