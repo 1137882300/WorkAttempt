@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: juzi
@@ -26,5 +28,5 @@ public class EntityTest {
 
     private BigDecimal amount;
 
-
+    private List<Dog> dogs = new ArrayList<>();
 }

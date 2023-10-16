@@ -33,7 +33,18 @@ import java.util.stream.Collectors;
 public class JsonDemo {
 
     @Test
-    public void SerializerFeatureTest(){
+    public void WriteNullStringAsEmpty() {
+        EntityTest entityTest = new EntityTest();
+        String jsonString = JSON.toJSONString(entityTest, SerializerFeature.WriteNullStringAsEmpty);
+        System.out.println(jsonString);
+        String jsonString2 = JSON.toJSONString(entityTest.getDogs());
+        System.out.println(jsonString2);//[]
+        String jsonString3 = JSON.toJSONString(entityTest.getDogs(), SerializerFeature.WriteNullStringAsEmpty);
+        System.out.println(jsonString3);//[]
+    }
+
+    @Test
+    public void SerializerFeatureTest() {
         String aa = "1";
 
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
@@ -51,7 +62,7 @@ public class JsonDemo {
      * @description get 空 的bool时,用BooleanUtils.toBoolean 防止空指针
      */
     @Test
-    public void empty(){
+    public void empty() {
         Map<String, String> hashMap = Maps.newHashMap();
         hashMap.put("aaa", Boolean.toString(true));
         JSONObject jsonObject = new JSONObject();
@@ -60,6 +71,7 @@ public class JsonDemo {
         System.out.println(aaa);
 
     }
+
     @Test
     public void add() {
         String ss = "{\"pid\":51}";
@@ -329,7 +341,9 @@ public class JsonDemo {
 
 
         List<Dog> dogs = new ArrayList<>();
-        Dog dog = Dog.builder().id(1).state(StateEnum.OPEN).dogMap(new HashMap<String,String>(){{put("aaa","bbb");}}).build();
+        Dog dog = Dog.builder().id(1).state(StateEnum.OPEN).dogMap(new HashMap<String, String>() {{
+            put("aaa", "bbb");
+        }}).build();
         dogs.add(dog);
         MultiLanguageString string = new MultiLanguageString();
         string.registerDefaultLanguage("巴林");
@@ -339,12 +353,12 @@ public class JsonDemo {
 //        System.out.println(s);
 
         List<Map<Locale, String>> refList = Lists.newArrayList();
-        Map<Locale, String> refMap = new HashMap<Locale,String>(){{
-            put(Locale.US,  "ddd");
+        Map<Locale, String> refMap = new HashMap<Locale, String>() {{
+            put(Locale.US, "ddd");
             put(Locale.PRC, "ccc");
         }};
         refList.add(refMap);
-        String s2 = JSON.toJSONString(refList );
+        String s2 = JSON.toJSONString(refList);
         System.out.println(s2);
 
     }
@@ -357,8 +371,8 @@ public class JsonDemo {
         List<Map<String, Integer>> detailList = new ArrayList<>();
         Map<String, Integer> exceptionMap = new HashMap<>();
         for (int i = 0; i < 2; i++) {
-            exceptionMap.put("code",i);
-            exceptionMap.put("message", i+5);
+            exceptionMap.put("code", i);
+            exceptionMap.put("message", i + 5);
             detailList.add(exceptionMap);
         }
 
