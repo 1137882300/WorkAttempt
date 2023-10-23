@@ -4,6 +4,7 @@ import com.google.common.base.*;
 import com.google.common.collect.*;
 import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
+//import com.zhong.mask.MaskEntryTransformer;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 import org.springframework.util.StopWatch;
@@ -17,6 +18,22 @@ import java.util.stream.Collectors;
  * @date 2022/1/21 11:34
  */
 public class GuavaTest {
+
+    /**
+     * @author juzi
+     * @date 2023/10/23 下午 2:01
+     * @description 脱敏
+     */
+//    @Test
+//    public void mask() {
+//        HashMap<String, String> hashMap = Maps.newHashMap();
+//        hashMap.put("aa","13");
+//        hashMap.put("bb","66");
+//        Map<String, Object> stringObjectMap = Maps.transformEntries(hashMap, MaskEntryTransformer.getInstance());
+//        System.out.println(stringObjectMap);
+//
+//    }
+
 
     /**
      * @author juzi
@@ -179,7 +196,7 @@ public class GuavaTest {
     }
 
     @Test
-    public void joinerNull(){
+    public void joinerNull() {
         List<String> lists = Lists.newArrayList();
         String join = Joiner.on(",").join(lists);
         System.out.println(join);
