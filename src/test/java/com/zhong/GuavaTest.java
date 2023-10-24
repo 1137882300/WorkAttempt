@@ -6,6 +6,7 @@ import com.zhong.entity.Cat;
 import com.zhong.entity.MultiLanguageString;
 //import com.zhong.mask.MaskEntryTransformer;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.junit.Test;
 import org.springframework.util.StopWatch;
 
@@ -18,6 +19,15 @@ import java.util.stream.Collectors;
  * @date 2022/1/21 11:34
  */
 public class GuavaTest {
+
+    @Test
+    public void concat() {
+        List<Integer> list = Lists.newArrayList(3, 1, 2);
+        List<Integer> reverseList = Lists.reverse(list);
+        List<Integer> merge = Lists.newArrayList(Iterables.concat(list, reverseList));
+        System.out.println(merge);
+    }
+
 
     /**
      * @author juzi
