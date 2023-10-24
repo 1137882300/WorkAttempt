@@ -38,7 +38,8 @@ public class HutoolTest {
      */
     @Test
     public void url() {
-        String url = "http://m.youxiake.test/ranking/productList?type=3&sitecode=1";
+//        String url = "http://m.youxiake.test/ranking/productList?type=3&sitecode=1";
+        String url = "";//结果是null，不会空指针
         Map<String, String> params = HttpUtil.decodeParamMap(url, StandardCharsets.UTF_8);
         String typeValue = StrUtil.toString(params.get("type"));
         System.out.println(typeValue);
