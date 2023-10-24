@@ -6,7 +6,9 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import cn.hutool.http.HttpUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhong.entity.EntityTest;
@@ -16,6 +18,7 @@ import org.junit.Test;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +30,21 @@ import java.util.Map;
  * @date 2022/5/7 14:04
  */
 public class HutoolTest {
+
+    /**
+     * @author juzi
+     * @date 2023/10/24 下午 6:08
+     * @description url 解析参数
+     */
+    @Test
+    public void url() {
+        String url = "http://m.youxiake.test/ranking/productList?type=3&sitecode=1";
+        Map<String, String> params = HttpUtil.decodeParamMap(url, StandardCharsets.UTF_8);
+        String typeValue = StrUtil.toString(params.get("type"));
+        System.out.println(typeValue);
+        String format = String.format("/src/subpackage/Ranking/Ranking?type=%s&source=xcx_sy&sdm=201.102.1.17", typeValue);
+        System.out.println(format);
+    }
 
     @Data
     static class AA {
