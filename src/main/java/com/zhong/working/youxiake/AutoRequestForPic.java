@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.zhong.network.HttpService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.util.Collections;
@@ -28,8 +29,16 @@ public class AutoRequestForPic {
 
         List<String> list = FileUtil.readUtf8Lines(new File("img.txt"));
         List<String> filteredList = CollUtil.removeNull(CollUtil.removeEmpty(list));
+
+        //适合：“https://hztour-img.youxiake.com/cms/post/202211/16/155321/gpif1668585779962.jpeg”,
+//        List<String> collect = filteredList.stream().filter(Objects::nonNull)
+//                .map(o -> o.trim().substring(1, o.length() - 2))
+//                .distinct()
+//                .collect(Collectors.toList());
+
+        //适合：https://fxhz.wgly.hangzhou.gov.cn/oss/cms/post/202302/07/140330/MIWL1675750062132.png
         List<String> collect = filteredList.stream().filter(Objects::nonNull)
-                .map(o -> o.trim().substring(1, o.length() - 2))
+                .map(o -> StringUtils.replace(o, "https://fxhz.wgly.hangzhou.gov.cn/oss", "https://hztour-img.youxiake.com"))
                 .distinct()
                 .collect(Collectors.toList());
 
