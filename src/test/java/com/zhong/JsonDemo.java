@@ -33,6 +33,18 @@ import java.util.stream.Collectors;
 public class JsonDemo {
 
     @Test
+    public void replace(){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("aa","11");
+        jsonObject.put("vv","22");
+        jsonObject.put("gg","33");
+        //替换了key的名称
+        String replace = JSONObject.toJSONString(jsonObject).replace("aa", "rr");
+        System.out.println(replace);
+    }
+
+
+    @Test
     public void WriteNullStringAsEmpty() {
         EntityTest entityTest = new EntityTest();
         String jsonString = JSON.toJSONString(entityTest, SerializerFeature.WriteNullStringAsEmpty);
