@@ -37,6 +37,7 @@ public class AutoRequestForPic {
 //                .collect(Collectors.toList());
 
         //适合：https://fxhz.wgly.hangzhou.gov.cn/oss/cms/post/202302/07/140330/MIWL1675750062132.png
+        //都支持
         List<String> collect = filteredList.stream().filter(Objects::nonNull)
                 .map(o -> StringUtils.replace(o.trim(), "https://fxhz.wgly.hangzhou.gov.cn/oss", "https://hztour-img.youxiake.com"))
                 .distinct()
