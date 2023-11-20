@@ -33,6 +33,13 @@ import java.util.stream.Collectors;
 public class JsonDemo {
 
     @Test
+    public void sssss(){
+        Integer uid = 44;
+        JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(uid));
+        System.out.println(jsonObject);
+    }
+
+    @Test
     public void replace(){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("aa","11");

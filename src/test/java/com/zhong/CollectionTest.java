@@ -10,6 +10,7 @@ import jdk.nashorn.internal.objects.annotations.Where;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 import org.apache.commons.lang3.StringUtils;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -24,6 +25,19 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    /**
+     * @author juzi
+     * @date 2023/11/20 下午 4:38
+     * @description list 另一种赋值方式
+     */
+    @Test
+    public void list22(){
+        List<User> objects = new ArrayList<>();
+        List<User> list = Lists.newArrayList(new User(1, 11), new User(2, 22), new User(3, null));
+        list.stream().collect(Collectors.toCollection(() -> objects));
+        System.out.println(objects);
+    }
 
     /**
      * @author juzi
