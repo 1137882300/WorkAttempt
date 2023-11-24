@@ -26,13 +26,28 @@ import java.util.stream.Stream;
  */
 public class CollectionTest {
 
+    @Test
+    public void statistics() {
+        List<User> list = Lists.newArrayList(new User(1, 11), new User(1, 22), new User(3, 1));
+        Map<Integer, Integer> map = list.stream().collect(Collectors.groupingBy(User::getId, Collectors.summingInt(e -> 1)));
+        Map<Integer, Integer> map2 = list.stream().collect(Collectors.groupingBy(User::getId, Collectors.summingInt(User::getAge)));
+        Map<Integer, Long> map4 = list.stream().collect(Collectors.groupingBy(User::getId, Collectors.counting()));
+        Map<Integer, Integer> map3 = new HashMap<>();
+        list.forEach(e -> map3.merge(e.getId(), 1, Integer::sum));
+
+        System.out.println(map);
+        System.out.println(map2);
+        System.out.println(map3);
+        System.out.println(map4);
+    }
+
     /**
      * @author juzi
      * @date 2023/11/20 下午 4:38
      * @description list 另一种赋值方式
      */
     @Test
-    public void list22(){
+    public void list22() {
         List<User> objects = new ArrayList<>();
         List<User> list = Lists.newArrayList(new User(1, 11), new User(2, 22), new User(3, null));
         list.stream().collect(Collectors.toCollection(() -> objects));
