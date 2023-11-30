@@ -43,6 +43,17 @@ public class CollectionTest {
 
     /**
      * @author juzi
+     * @date 2023/11/30 下午 2:10
+     * @description groupBy 的另一种赋值方法
+     */
+    @Test
+    public void groupBy(){
+//        distributionRebateDetailMapper.selectByOidsAndPids(oidList, pidList).stream()
+//                .collect(Collectors.groupingBy(DistributionEquipPO::getOrderId, () -> distributionMap, Collectors.toList()));
+    }
+
+    /**
+     * @author juzi
      * @date 2023/11/20 下午 4:38
      * @description list 另一种赋值方式
      */
