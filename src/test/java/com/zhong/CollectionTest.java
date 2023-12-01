@@ -47,7 +47,19 @@ public class CollectionTest {
      * @description groupBy 的另一种赋值方法
      */
     @Test
-    public void groupBy(){
+    public void groupBy2() {
+        Map<Integer, List<Integer>> skuMap = Maps.newHashMap();
+//        distributionMap.values().stream().flatMap(Collection::stream).collect(Collectors.groupingBy(DistributionEquipPO::getOrderId, () -> skuMap,
+//                Collectors.mapping(DistributionEquipPO::getSkuId, Collectors.toList())));
+    }
+
+    /**
+     * @author juzi
+     * @date 2023/11/30 下午 2:10
+     * @description groupBy 的另一种赋值方法
+     */
+    @Test
+    public void groupBy() {
 //        distributionRebateDetailMapper.selectByOidsAndPids(oidList, pidList).stream()
 //                .collect(Collectors.groupingBy(DistributionEquipPO::getOrderId, () -> distributionMap, Collectors.toList()));
     }
