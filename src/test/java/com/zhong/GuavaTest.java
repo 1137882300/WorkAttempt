@@ -207,12 +207,12 @@ public class GuavaTest {
 
     @Test
     public void joinerNull() {
-        List<String> lists = Lists.newArrayList();
+        List<String> lists = Lists.newArrayList("qq");
         String join = Joiner.on(",").join(lists);
-        System.out.println(join);
+        System.out.println(join);//qq
 
         String join1 = Joiner.on(";").join("aaa", join, "aaa");
-        System.out.println(join1);
+        System.out.println(join1);//aaa;qq;aaa
     }
 
     /**
