@@ -10,6 +10,7 @@ import org.apache.poi.poifs.filesystem.FileMagic;
 import org.junit.Assert;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public final class ExcelUtil {
     /**
      * 从Excel中读取文件，读取的文件是一个DTO类，该类必须继承BaseRowModel
      * 具体实例参考 ： MemberMarketDto.java
-     * 参考：https://github.com/alibaba/easyexcel
+     * 参考：<a href="https://github.com/alibaba/easyexcel">...</a>
      * 字符流必须支持标记，FileInputStream 不支持标记，可以使用BufferedInputStream 代替
      * BufferedInputStream bis = new BufferedInputStream(new FileInputStream(...));
      */
@@ -52,7 +53,7 @@ public final class ExcelUtil {
 
     public static void writeExcel(final File file, List<? extends BaseRowModel> list) {
         Assert.assertNotSame("list 不能为空", 0, list.size());
-        try (OutputStream out = new FileOutputStream(file)) {
+        try (OutputStream out = Files.newOutputStream(file.toPath())) {
             ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX);
             //写第一个sheet,  有模型映射关系
             Class<? extends BaseRowModel> t = list.get(0).getClass();
