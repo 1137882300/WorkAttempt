@@ -180,7 +180,6 @@ public class FileUtils {
                     URL url = new URL(imageUrl);
                     HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
                     int responseCode = httpConn.getResponseCode();
-
                     if (responseCode == HttpURLConnection.HTTP_OK) {
                         String filename = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
                         InputStream inputStream = httpConn.getInputStream();
@@ -195,7 +194,7 @@ public class FileUtils {
                         inputStream.close();
                         System.out.println("图片下载成功: " + filename);
                     } else {
-                        System.out.println("图片下载失败：" + responseCode);
+                        System.out.println("图片下载失败：" + imageUrl + "___" + responseCode);
                     }
                     httpConn.disconnect();
                 } catch (IOException e) {
