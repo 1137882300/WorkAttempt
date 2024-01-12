@@ -6,6 +6,7 @@ import com.alibaba.excel.metadata.BaseRowModel;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.apache.poi.ss.usermodel.CellStyle;
 
@@ -17,6 +18,7 @@ import java.util.Map;
  * @date 2021/12/20 19:08
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Entity extends BaseRowModel {
@@ -48,6 +50,9 @@ public class Entity extends BaseRowModel {
 
     @ExcelProperty(value = "第9列", index = 8)
     private String column9;
+
+    @ExcelProperty(value = "第9列", index = 9)
+    private String column10;
 
     @ExcelIgnore
     private Long Id;
