@@ -1,10 +1,6 @@
 package com.zhong.jdk17;
 
 
-import jdk.incubator.foreign.MemoryAccess;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.MemoryLayout;
-import jdk.incubator.foreign.MemorySegment;
 import lombok.SneakyThrows;
 import org.apache.commons.math3.geometry.spherical.twod.Circle;
 

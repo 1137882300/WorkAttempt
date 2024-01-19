@@ -49,22 +49,22 @@
 
         <!-- https://mvnrepository.com/artifact/org.bytedeco/javacv-platform -->
         <!-- JavaCV -->
-<!--        <dependency>-->
-<!--            <groupId>org.bytedeco</groupId>-->
-<!--            <artifactId>javacv</artifactId>-->
-<!--            <version>1.5.6</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.bytedeco</groupId>-->
-<!--            <artifactId>javacv-platform</artifactId>-->
-<!--            <version>1.5.6</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.bytedeco</groupId>-->
+        <!--            <artifactId>javacv</artifactId>-->
+        <!--            <version>1.5.6</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.bytedeco</groupId>-->
+        <!--            <artifactId>javacv-platform</artifactId>-->
+        <!--            <version>1.5.6</version>-->
+        <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/com.madgag/animated-gif-lib -->
-<!--        <dependency>-->
-<!--            <groupId>com.madgag</groupId>-->
-<!--            <artifactId>animated-gif-lib</artifactId>-->
-<!--            <version>1.4</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.madgag</groupId>-->
+        <!--            <artifactId>animated-gif-lib</artifactId>-->
+        <!--            <version>1.4</version>-->
+        <!--        </dependency>-->
 
         <!--poi excel-->
         <dependency>
@@ -290,6 +290,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
+            <!--            <version>3.3.3</version>-->
             <version>2.1.6</version>
         </dependency>
 
