@@ -3,7 +3,7 @@ package com.zhong.event;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 
-import javax.annotation.Resource;
+//import javax.annotation.Resource;
 
 /**
  * @date 2022/9/9 15:32

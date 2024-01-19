@@ -1,7 +1,8 @@
 package com.zhong.network;
 
+import cn.hutool.core.lang.Pair;
 import com.alibaba.fastjson.JSONObject;
-import javafx.util.Pair;
+//import javafx.util.Pair;
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpResponse;

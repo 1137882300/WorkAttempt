@@ -6,7 +6,8 @@ package com.zhong.gif;
  * @desc:
  */
 
-import com.madgag.gif.fmsware.AnimatedGifEncoder;
+//import com.madgag.gif.fmsware.AnimatedGifEncoder;
+import cn.hutool.core.img.gif.AnimatedGifEncoder;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.Java2DFrameConverter;
 
