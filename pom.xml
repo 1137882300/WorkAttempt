@@ -15,6 +15,44 @@
 
     <dependencies>
 
+        <!--gif庫-->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>ffmpeg-platform</artifactId>
+            <version>4.4-1.5.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bytedeco</groupId>
+                    <artifactId>javacpp</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.bytedeco/javacv-platform -->
+        <!-- JavaCV -->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>javacv</artifactId>-->
+<!--            <version>1.5.6</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>javacv-platform</artifactId>-->
+<!--            <version>1.5.6</version>-->
+<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.madgag/animated-gif-lib -->
+<!--        <dependency>-->
+<!--            <groupId>com.madgag</groupId>-->
+<!--            <artifactId>animated-gif-lib</artifactId>-->
+<!--            <version>1.4</version>-->
+<!--        </dependency>-->
+
         <!--poi excel-->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -188,11 +226,11 @@
             <version>0.9.1</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.javamoney</groupId>-->
-<!--            <artifactId>moneta</artifactId>-->
-<!--            <version>1.4.2</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.javamoney</groupId>-->
+        <!--            <artifactId>moneta</artifactId>-->
+        <!--            <version>1.4.2</version>-->
+        <!--        </dependency>-->
 
 
         <dependency>
@@ -243,18 +281,22 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-log4j12</artifactId>-->
-<!--            <version>1.7.25</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.slf4j</groupId>-->
+        <!--            <artifactId>slf4j-log4j12</artifactId>-->
+        <!--            <version>1.7.25</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <dependency>
-            　　<groupId>org.slf4j</groupId>
-            　　<artifactId>slf4j-simple</artifactId>
-            　　<version>1.7.25</version>
-            　　<scope>compile</scope>
+            　　
+            <groupId>org.slf4j</groupId>
+            　　
+            <artifactId>slf4j-simple</artifactId>
+            　　
+            <version>1.7.25</version>
+            　　
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -263,22 +305,22 @@
             <version>2.0.1</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.bouncycastle</groupId>-->
-<!--            <artifactId>bcprov-jdk15on</artifactId>-->
-<!--            <version>1.68</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.bouncycastle</groupId>-->
-<!--            <artifactId>bcpkix-jdk15on</artifactId>-->
-<!--            <version>1.69</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.bouncycastle</groupId>-->
+        <!--            <artifactId>bcprov-jdk15on</artifactId>-->
+        <!--            <version>1.68</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.bouncycastle</groupId>-->
+        <!--            <artifactId>bcpkix-jdk15on</artifactId>-->
+        <!--            <version>1.69</version>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>bouncycastle</groupId>-->
-<!--            <artifactId>bcprov-jdk16</artifactId>-->
-<!--            <version>140</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>bouncycastle</groupId>-->
+        <!--            <artifactId>bcprov-jdk16</artifactId>-->
+        <!--            <version>140</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.bouncycastle</groupId>
@@ -303,7 +345,7 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.0.0-alpha-3</version>
-<!--              <version>4.11.0</version>-->
+            <!--              <version>4.11.0</version>-->
         </dependency>
 
 
