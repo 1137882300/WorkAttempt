@@ -70,7 +70,7 @@ public class PostcardTest {
     }
 
     public static void main(String[] args) {
-        try (FileInputStream inputStream = new FileInputStream("F:\\工作记录\\电子名片信息表1.12.xlsx")) {
+        try (FileInputStream inputStream = new FileInputStream("F:\\工作记录\\电子名片信息表模板(杭州艺术学校)-2.4.xlsx")) {
             List<Entity> list = ExcelUtil.readExcel(new BufferedInputStream(inputStream), Entity.class, 1);
 
             List<String> sqlList = Lists.newArrayList();
@@ -82,20 +82,27 @@ public class PostcardTest {
                 String phone = entity.getColumn4();
                 if (StringUtils.isNotBlank(phone)) {
                     phone = sm4Encrypt(phone, null);
+                } else {
+                    phone = "";
                 }
                 String telephone = entity.getColumn5();
                 if (StringUtils.isNotBlank(telephone)) {
                     telephone = sm4Encrypt(telephone, null);
+                } else {
+                    telephone = "";
                 }
                 String email = "";
-                String job_unit = entity.getColumn6();
-                String job_position = entity.getColumn7();
-                String address = entity.getColumn8();
+
+                String job_place = entity.getColumn6();
+
+                String job_unit = entity.getColumn7();
+                String job_position = entity.getColumn8();
+                String address = entity.getColumn9();
 
                 sqlList.add(
-                        String.format("INSERT INTO \"postcard\"(\"real_name\", \"phone\", \"telephone\", \"email\", \"job_unit\", \"job_position\", \"status\", \"foreign_name\", \"address\")" +
-                                        " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '1', '%s', '%s');",
-                                real_name, phone, telephone, email, job_unit, job_position, foreign_name, address)
+                        String.format("INSERT INTO \"postcard\"(\"real_name\", \"phone\", \"telephone\", \"email\", \"job_unit\", \"job_position\", \"status\", \"foreign_name\", \"address\", \"job_place\")" +
+                                        " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '1', '%s', '%s', '%s');",
+                                real_name, phone, telephone, email, job_unit, job_position, foreign_name, address, job_place)
                 );
             }
 
