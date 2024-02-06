@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
@@ -30,6 +31,15 @@ import java.util.Map;
  * @date 2022/5/7 14:04
  */
 public class HutoolTest {
+
+    @Test
+    public void uuid(){
+        UUID uuid = UUID.fastUUID();
+        UUID uuid1 = UUID.randomUUID();
+
+        System.out.println(uuid);
+        System.out.println(uuid1);
+    }
 
     /**
      * @author juzi
