@@ -71,7 +71,7 @@ public class PostcardTest {
     }
 
     public static void main(String[] args) {
-        try (FileInputStream inputStream = new FileInputStream("F:\\工作记录\\电子名片信息表模板(杭州艺术学校)-2.4.xlsx")) {
+        try (FileInputStream inputStream = new FileInputStream("F:\\工作记录\\杭州图书馆电子名片信息表.xlsx")) {
             List<Entity> list = ExcelUtil.readExcel(new BufferedInputStream(inputStream), Entity.class, 1);
 
             List<String> sqlList = Lists.newArrayList();
