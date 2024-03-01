@@ -10,6 +10,7 @@ import jdk.nashorn.internal.objects.annotations.Where;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -57,12 +58,39 @@ public class CollectionTest {
 
 
         // 使用Collator对象对字符串数组进行排序
-        Arrays.sort(data, collator);
+//        Arrays.sort(data, collator);
 
+        // 使用Collator对象对字符串数组进行排序
+        // 按照中文和英文混合排序
+//        Arrays.sort(data, collator::compare);
+//        Arrays.sort(data, new Comparator<String>() {
+//            @Override
+//            public int compare(String str1, String str2) {
+//                // 按照中文和英文混合排序
+//                return collator.compare(str1, str2);
+//            }
+//        });
+
+        Arrays.sort(data, (str1, str2) -> {
+            // Check if both strings are numeric
+            if (str1.matches("\\d+") && str2.matches("\\d+")) {
+                return Integer.compare(Integer.parseInt(str1), Integer.parseInt(str2));
+            }
+
+            // Compare strings using Collator for mixed Chinese and English characters
+            return collator.compare(str1, str2);
+        });
         // 输出排序结果
         for (String str : data) {
             System.out.println(str);
         }
+    }
+
+    @Test
+    public void sortFUZA() {
+//        List<BrandDTO> brandList = ...; // 假设这里是您的BrandDTO对象列表
+
+
     }
 
 
