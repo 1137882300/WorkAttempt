@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.text.Collator;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -24,6 +25,46 @@ import java.util.stream.Stream;
  * @date 2022/3/25 22:33
  */
 public class CollectionTest {
+
+    @Test
+    public void empty2() {
+        ArrayList<Object> objects = new ArrayList<>();
+        Object o = objects.get(0);
+        System.out.println(o);
+    }
+
+
+    public static void main(String[] args) {
+        // 创建一个中文语言环境的Collator对象
+        Collator collator = Collator.getInstance(Locale.CHINA);
+
+        // 待排序的字符串数组
+        String[] data = {
+                "3",
+                "阿迪",
+                "12",
+                "羽曦华服装饰品",
+                "思乐晴",
+                "111",
+                "阿凡提",
+                "塘栖著名果农园",
+                "312",
+                "只属于葱白",
+                "北面",
+                "ssss",
+                "addasi"
+        };
+
+
+        // 使用Collator对象对字符串数组进行排序
+        Arrays.sort(data, collator);
+
+        // 输出排序结果
+        for (String str : data) {
+            System.out.println(str);
+        }
+    }
+
 
     @Test
     public void emptySet() {

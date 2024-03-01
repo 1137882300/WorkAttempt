@@ -10,8 +10,5 @@
         <module name="WorkAttempt" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="WorkAttempt" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
