@@ -56,14 +56,14 @@ public class SyncTest {
         int start = 1512;
         int end = 1488;
 
-        List<Integer> hotelOrderIds = IntStream.rangeClosed(end, start)
-                .boxed()
-                .collect(Collectors.toList());
+//        List<Integer> hotelOrderIds = IntStream.rangeClosed(end, start)
+//                .boxed()
+//                .collect(Collectors.toList());
 
 
-//        Integer[] hotelOrderIds = {
-//
-//        }; // 可以根据需要设置不同的 hotelOrderId
+        Integer[] hotelOrderIds = {
+                1469, 1470, 1471, 1472, 1473, 1474, 1477, 1479, 1480, 1481, 1482, 1484, 1485, 1486
+         }; // 可以根据需要设置不同的 hotelOrderId
 
         ExecutorService executor = Executors.newFixedThreadPool(3); // 使用固定大小为3的线程池
 
