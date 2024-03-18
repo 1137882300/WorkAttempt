@@ -34,4 +34,5 @@ log/*
 
 WorkAttempt.iml
 
-.idea
+*.idea
+*.sql

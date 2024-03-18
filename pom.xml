@@ -361,6 +361,12 @@
             <version>4.0.0-alpha-3</version>
             <!--              <version>4.11.0</version>-->
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
 
 
     </dependencies>

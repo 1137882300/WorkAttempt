@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class Trans {
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
 
         //执行前必修改
 //        int bizType = 1;
@@ -55,5 +55,11 @@ public class Trans {
         } else {
             System.out.println("ok" + id + "--" + result);
         }
+    }
+
+    public static void main(String[] args) {
+        String ss ="　18682533039";
+        String trim = ss.replace("　", "").trim();
+        System.out.println(trim);
     }
 }
